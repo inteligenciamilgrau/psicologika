@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A iA não raciocina, ela presta atenção — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 1 — Inteligência Artificial e Neurociência</p>
+    <h1>A iA não raciocina, ela presta atenção</h1>
+
+    <p>Quando um pesquisador de iA é questionado sobre se modelos baseados em Transformers, se eles raciocinam, uma resposta bastante comum é a de que eles parecem raciocinar, mas na verdade eles seguem o mecanismo de atenção.</p>
+
+    <p>O que isso significa?</p>
+
+    <p>A parte mais importante a se entender em uma resposta de LLM é que ela é gerada palavra a palavra. Mas precisamente &ldquo;token a token&rdquo;. Um token é um pedaço de palavra. Por exemplo, ao invés da palavra &ldquo;investigar&rdquo;, como pedaços da palavra contém significado importante como o &ldquo;ar&rdquo; da conjugação contém informações importantes, é mais útil quebrar a palavra em partes ao invés de usar ela de forma completa. Porém, para efeitos didáticos &ldquo;palavra&rdquo; e &ldquo;token&rdquo; serão a mesma coisa porque facilita a compreensão.</p>
+
+    <p>Se um pesquisador estivesse buscando uma forma de prever a próxima palavra em um texto, ele poderia pensar em &ldquo;observar&rdquo; a última palavra escrita e calcular, baseado em muitos textos qual seria a seguinte estatisticamente. Então se depois da palavra &ldquo;Ela&rdquo; muitos textos escreveram &ldquo;é&rdquo;, essa seria a próxima palavra.</p>
+
+    <p>Portanto já dá pra notar que simplesmente escolher a palavra mais famosa não daria muito certo. Porque a gente já sabe que daria para começar um texto de muitas formas. &ldquo;Ela foi&hellip;&rdquo;, &ldquo;Ela estava&hellip;&rdquo;, &ldquo;Ela queria&hellip;&rdquo;! E se você ficar rígido em uma estatística só, não daria certo.</p>
+
+    <p>E muitas técnicas de prever palavras surgiram, variantes mais ou menos eficientes desse mesmo princípio.</p>
+
+    <p>O modelo de atenção tenta ser mais específico! Ao invés de prever baseado na palavra anterior, ele olha para todo o texto que já foi escrito. E ao invés de calcular uma estatística simples, ele pensa nas palavras ao redor como contexto!! Então a palavra &ldquo;banco&rdquo; cercada de outras palavras como dinheiro, depósito, cobrança significa uma coisa. E a palavra &ldquo;banco&rdquo; próximo de palavras como &ldquo;praça&rdquo;, &ldquo;descansar&rdquo;, &ldquo;sentar&rdquo; significam outra coisa.</p>
+
+    <p>Essa é a ideia por trás do contextualizar. E se você tivesse uma forma de criar uma tabela de palavras que surgem juntas e conseguisse dar pontos para aquelas que aparecem juntas e tirar pontos das que não aparecem, então você consegue criar uma forma de &ldquo;calcular&rdquo; o contexto!</p>
+
+    <p>E algumas vezes, estratégias adicionais como a posição da palavra ajudam a criar ajustes finos e então, baseado no contexto da atenção, decidir qual será a próxima palavra.</p>
+
+    <p>Se você entendeu até aqui, já percebeu que não tem mágica. É mais simples do que parece.</p>
+
+    <p>E para &ldquo;refinar&rdquo; a palavra, e fazer com que o texto realmente seja poderoso, e acertar em cheio&hellip; basta você fazer esse processo em várias etapas.</p>
+
+    <p>Como se na primeira etapa você encontra o contexto mais geral, e vai afunilando, fazendo o mesmo processo várias vezes, até que no final você encontra uma quantidade de repetições ótima, pensando no custo computacional, na memória, no tempo de processamento, e decide o tamanho da sua LLM. Essas decisões são bem difíceis porque um treinamento pode levar meses e apesar de haver algumas formas de prever o quanto de inteligência ela terá, nem sempre na prática essa expectativa é garantida.</p>
+
+    <p>Observar dessa forma, do ponto de vista pragmático parece até um milagre que um princípio tão simples gera respostas tão complexas, melhores que seres humanos. E que consegue acumular tanto conhecimento.</p>
+
+    <p>E não parece que isso é inteligência, muito menos a humana. Afinal, o cérebro é bem mais complexo que isso.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li class="vazio">— (adicione aqui as referências deste capítulo)</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="02-modelo-de-atencao.html"><span class="rotulo">Anterior</span>O modelo de Atenção</a>
+    <a class="prox" href="04-inteligencia-vs-sistema-inteligente.html"><span class="rotulo">Próximo</span>Inteligência vs Sistema Inteligente</a>
+  </nav>
+
+</body>
+</html>

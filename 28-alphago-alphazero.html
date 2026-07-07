@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Conquista das Super Inteligências — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 5 — Emoção de Máquina</p>
+    <h1>A Conquista das Super Inteligências</h1>
+
+    <p>Seul, 10 de março de 2016. No segundo jogo da série entre o AlphaGo, da DeepMind, e Lee Sedol, um dos maiores jogadores de Go da história, a máquina fez sua 37ª jogada: uma pedra na quinta linha, num ponto que nenhum profissional consideraria. Os comentaristas acharam que era um bug. Lee Sedol se levantou da mesa, precisou de quinze minutos para responder. Não era erro. Era uma jogada que a própria máquina calculou ter <strong>1 chance em 10.000</strong> de ser escolhida por um humano<sup class="cit"><a href="#ref-1">[1]</a></sup> — e que, algumas horas depois, se revelou brilhante. Naquele instante, num tabuleiro de 19 por 19, uma máquina fez algo que nós não entendíamos e não teríamos feito. Ela ficou, ali, incompreensível para nós.</p>
+
+    <p>Este capítulo é sobre como ela chegou lá — porque o <em>como</em> aponta um caminho. Existe uma barreira que todo projeto de iA precisa atravessar, e do outro lado dela mora algo que merece o nome de super inteligência: um sistema que, num domínio, ultrapassa de vez o melhor que a humanidade já produziu e não olha para trás.</p>
+
+    <h2>A barreira: no começo, a máquina precisa de nós</h2>
+
+    <p>O primeiro AlphaGo, o que venceu Lee Sedol, não começou do zero. Ele foi alimentado com uma base de cerca de 30 milhões de jogadas de partidas humanas de alto nível<sup class="cit"><a href="#ref-1">[1]</a></sup>. Aprendeu, por imitação, a jogar <em>como</em> um forte jogador humano. Essa etapa foi essencial — é assim que a máquina descobre, de saída, o que é uma jogada razoável num oceano de possibilidades. (O Go tem mais posições possíveis do que átomos no universo observável.) Sem esse empurrão inicial dos dados humanos, ela levaria tempo demais só para sair do chão.</p>
+
+    <p>Mas aqui está a barreira, e ela é lógica: <strong>quem só imita o professor não passa do professor</strong>. Uma iA treinada exclusivamente para reproduzir o que humanos fizeram tem, no melhor caso, um teto — o teto do melhor humano. É exatamente a situação em que as LLMs de hoje se encontram: elas foram treinadas com texto humano e, por isso, ecoam de forma brilhante o conhecimento humano, mas o conhecimento humano é justamente o limite que essa receita, sozinha, não ultrapassa. Para ir além, a máquina precisa parar de copiar e começar a <em>descobrir</em>. Precisa aprender sozinha.</p>
+
+    <h2>A conexão poderosa: redes neurais e aprendizado por reforço</h2>
+
+    <p>É aqui que entra uma das ligas mais férteis de toda a iA — a que une <strong>redes neurais</strong> a <strong>aprendizado por reforço</strong>. O aprendizado por reforço, formalizado por <a href="64-richard-sutton.html">Richard Sutton</a> e Andrew Barto, é aprender por tentativa e erro em busca de recompensa, como um animal sendo adestrado: você age, o mundo devolve um prêmio ou um castigo, e você ajusta o comportamento para colher mais prêmios no futuro<sup class="cit"><a href="#ref-2">[2]</a></sup>. Simples de enunciar, difícil de escalar: num jogo com um número astronômico de situações, é impossível guardar numa tabela o valor de cada uma.</p>
+
+    <p>A rede neural resolve isso. Em vez de uma tabela, ela <em>aproxima</em> — aprende a estimar, para qualquer posição nova, o quão promissora ela é e qual a melhor ação. Em 2015, essa fusão deu seu primeiro grande recado: um sistema da DeepMind, o DQN, aprendeu a jogar dezenas de jogos de Atari <em>só olhando os pixels da tela</em> e perseguindo a pontuação, atingindo nível humano ou superior em vários deles, sem ninguém lhe explicar as regras<sup class="cit"><a href="#ref-3">[3]</a></sup>. Rede neural para enxergar e avaliar; reforço para decidir e melhorar. O casamento estava selado.</p>
+
+    <p>E há um truque que transforma esse casamento em foguete: o <strong>self-play</strong>, o jogar contra si mesmo. Em vez de treinar contra humanos, a máquina joga milhões de partidas contra uma cópia de si própria. Cada versão treina contra uma versão ligeiramente mais forte, que por sua vez gera uma ainda mais forte, num ciclo sem fim. É um adversário que sobe de nível exatamente na sua velocidade, para sempre — um currículo infinito que a máquina fabrica sozinha. E, crucialmente, um currículo <em>sem teto humano</em>, porque os dados de treino não vêm mais de nós: vêm da própria máquina se superando.</p>
+
+    <h2>Quando a máquina larga a nossa mão: AlphaGo Zero</h2>
+
+    <p>Em 2017, a DeepMind mostrou o que acontece quando se corta o cordão umbilical. O <strong>AlphaGo Zero</strong> começou sabendo apenas as regras do jogo — <em>nenhuma</em> partida humana, nenhuma abertura, nada. Só ele, o tabuleiro e o self-play<sup class="cit"><a href="#ref-4">[4]</a></sup>. Partindo de jogadas aleatórias, em <strong>três dias</strong> de treino ele ultrapassou a versão que havia derrotado Lee Sedol e a venceu por <strong>100 a 0</strong>. Redescubriu sozinho, em horas, séculos de teoria humana de Go — as aberturas clássicas, os padrões consagrados — e então fez algo humilhante: descartou parte dessa teoria por considerá-la inferior às ideias que ele mesmo inventou. Os dados humanos, que no primeiro AlphaGo tinham sido a rampa de lançamento, revelaram-se, no fim, uma muleta e até um limite.</p>
+
+    <p>No ano seguinte veio a generalização: o <strong>AlphaZero</strong>, um único algoritmo que, recebendo só as regras, dominou por self-play não apenas o Go, mas também o xadrez e o shogi<sup class="cit"><a href="#ref-5">[5]</a></sup>. Em poucas horas de treino, esmagou os melhores programas de xadrez do mundo, feitos por décadas de engenharia humana — e o fez com um estilo que os grandes mestres descreveram como de outro mundo: sacrifícios de peças que pareciam loucura e se revelavam profundos, um jogo posicional que ninguém tinha visto. Não jogava como uma máquina fria. Jogava como algo que entende o xadrez de um jeito que nós ainda não entendemos. O teto humano tinha sido removido, e o que apareceu do outro lado era estranho.</p>
+
+    <h2>Move 37 e Move 78: dois lampejos de 1 em 10.000</h2>
+
+    <p>Volto àquela série de 2016, porque ela guarda uma simetria comovente. A jogada 37 do AlphaGo — a tal de 1 em 10.000 — foi a máquina nos mostrando algo novo. Dois jogos depois, na quarta partida, aconteceu o inverso. Lee Sedol, encurralado, encontrou a sua <strong>jogada 78</strong>, um encaixe no centro do tabuleiro que os comentaristas batizaram de "toque de Deus". E, detalhe belíssimo: essa jogada humana também tinha, pelas contas da máquina, cerca de <strong>1 chance em 10.000</strong> de ser jogada<sup class="cit"><a href="#ref-1">[1]</a></sup>. O AlphaGo, que se dava 70% de vitória, entrou em pane a partir do lance 87, despencou na avaliação e emendou uma sequência de erros grosseiros até abandonar. Foi a única vez que um humano derrotou aquele AlphaGo.</p>
+
+    <p>É uma cena que resume o encontro: nós e a máquina fomos capazes, cada um a seu modo, de um lampejo que o outro julgava quase impossível. Mas a assimetria do que veio depois é o ponto do capítulo. Lee Sedol se aposentou do Go profissional em 2019, dizendo que a iA é "uma entidade que não pode ser derrotada". A jogada 78 foi a última vitória de uma era. Do outro lado dela, o teto tinha se mexido — e não voltaria.</p>
+
+    <h2>As superações se espalham</h2>
+
+    <p>O que aconteceu no Go não ficou no Go. A mesma receita — dados para começar, reforço e self-play para transcender — foi varrendo um domínio atrás do outro, cada um mais complexo que o anterior:</p>
+
+    <ul>
+      <li><strong>Xadrez.</strong> Vale contrastar duas vitórias. Em 1997, o Deep Blue derrotou Garry Kasparov por <em>força bruta</em>: examinava 200 milhões de posições por segundo com uma função de avaliação escrita por humanos<sup class="cit"><a href="#ref-6">[6]</a></sup> — não aprendia nada, calculava tudo. Foi impressionante, mas era o método antigo. O AlphaZero, vinte anos depois, não calcula mais que um bom programa; ele <em>entende</em> mais, porque aprendeu sozinho.</li>
+      <li><strong>Jogos em tempo real e informação incompleta.</strong> Em abril de 2019, o OpenAI Five derrotou a OG, então campeã mundial de Dota 2 — a primeira vez que uma iA venceu campeões do mundo num e-sport<sup class="cit"><a href="#ref-7">[7]</a></sup>. Meses depois, o AlphaStar alcançou o nível Grão-Mestre de StarCraft II, ficando acima de 99,8% dos jogadores humanos ranqueados<sup class="cit"><a href="#ref-8">[8]</a></sup>. Esses jogos são muito mais difíceis que o Go: acontecem em tempo real, com informação escondida e milhares de ações possíveis por segundo.</li>
+      <li><strong>Blefe.</strong> O pôquer parecia um reduto humano — afinal, exige enganar, blefar, ler o adversário. Em 2019, o Pluribus derrotou profissionais de elite no Texas Hold'em sem limite de seis jogadores, a modalidade mais popular do mundo<sup class="cit"><a href="#ref-9">[9]</a></sup>, inventando estratégias que os profissionais consideravam erradas e passaram a copiar.</li>
+      <li><strong>Ciência.</strong> Então a coisa saltou para fora dos jogos. Em 2020, o AlphaFold resolveu, com precisão de laboratório, um problema de 50 anos da biologia: prever a forma tridimensional das proteínas a partir da sequência<sup class="cit"><a href="#ref-10">[10]</a></sup>. Não foi vencer um humano num jogo — foi superar todos os métodos científicos anteriores num problema real. Rendeu a Demis Hassabis e John Jumper o Nobel de Química de 2024.</li>
+      <li><strong>Matemática e algoritmos.</strong> O AlphaTensor, em 2022, descobriu maneiras mais rápidas de multiplicar matrizes, superando, em certos casos, um recorde estabelecido por Strassen em 1969 e intocado por meio século<sup class="cit"><a href="#ref-11">[11]</a></sup>. E, em 2024, o AlphaProof, treinando-se por reforço para escrever provas formais, resolveu quatro dos seis problemas da Olimpíada Internacional de Matemática, atingindo o nível de uma medalha de prata<sup class="cit"><a href="#ref-12">[12]</a></sup>.</li>
+    </ul>
+
+    <p>Repare no que cada item da lista tem em comum: dentro do seu domínio, virou uma <em>super inteligência estreita</em>. No Go, no xadrez, no enovelamento de proteínas, nenhum humano voltará a ser o melhor. Aquele teto caiu de vez.</p>
+
+    <h2>O que acontece quando a iA passa do limite humano</h2>
+
+    <p>Há um padrão que se repete toda vez que uma máquina cruza a fronteira humana, e ele tem três atos.</p>
+
+    <p><strong>Primeiro, ela fica incompreensível.</strong> Joga a jogada 37, sacrifica a dama sem motivo aparente, propõe um algoritmo que ninguém tinha imaginado. No momento, parece erro ou loucura, porque estamos medindo a máquina pela régua do que <em>nós</em> faríamos.</p>
+
+    <p><strong>Segundo, ela vira nossa professora.</strong> Depois do AlphaGo, os profissionais de Go passaram a estudar as partidas da máquina; a teoria das aberturas foi reescrita, jogadas antes tidas como ruins entraram para o cânone, e a qualidade média do jogo humano de elite mediu-se, objetivamente, mais alta. A máquina que nos venceu nos deixou melhores. O aluno superou o mestre e voltou para dar aula.</p>
+
+    <p><strong>Terceiro, ela redefine o que achávamos ser só nosso.</strong> Aquilo que chamávamos de intuição, criatividade, faro de gênio — o "toque de Deus" — mostrou-se, ao menos em parte, alcançável por busca e aprendizado em escala. Não para nos diminuir, mas para revelar que esses dons talvez sejam mais mecanizáveis do que gostaríamos de admitir.</p>
+
+    <p>Sejamos justos com o outro lado. Tudo isso, por enquanto, é <em>estreito</em>. E todas essas vitórias compartilham duas regalias que o mundo real não oferece: uma <strong>recompensa nítida</strong> (ganhou ou perdeu; a proteína bateu ou não com a real) e um <strong>simulador barato</strong> (dá para jogar bilhões de partidas numa semana). A vida aberta não tem placar claro nem botão de avanço rápido — você não pode "jogar" um milhão de vezes a mesma negociação, a mesma cirurgia, a mesma década. Por isso o self-play conquistou o Go antes de conquistar, digamos, administrar uma empresa: levar reforço para o mundo real, com recompensas ambíguas e sem simulação farta, é um problema em aberto e genuinamente duro<sup class="cit"><a href="#ref-13">[13]</a></sup>.</p>
+
+    <h2>O caminho para a super inteligência</h2>
+
+    <p>Junte as peças e o caminho aparece, legível. Ele tem três passos: <strong>(1)</strong> usar dados humanos para chegar depressa a um patamar competente; <strong>(2)</strong> trocar a imitação pelo reforço com self-play, assim que houver um bom sinal de recompensa; <strong>(3)</strong> deixar a máquina gerar a própria experiência e disparar para além do teto humano. É a mesma lógica que discuto em <a href="23-sensores-atuadores-experiencia.html">Sensores, atuadores e experiência própria</a>: um sistema deixa de ser aluno de humanos e passa a ter trajetória própria. E ecoa a <a href="29-evolucao-mesmo-cerebro-desempenhos-diferentes.html">Lei da Escala</a> — a própria evolução foi uma espécie de self-play de bilhões de anos. Há quem leve a tese ao extremo e argumente que a busca por recompensa, sozinha, bastaria para fazer emergir toda a inteligência<sup class="cit"><a href="#ref-14">[14]</a></sup>.</p>
+
+    <p>E o mais importante: isso deixou de ser história dos jogos. As LLMs de hoje estão presas na etapa (1) — treinadas com texto humano, coladas ao teto humano. Mas a virada já começou. Modelos de raciocínio recentes, como o DeepSeek-R1, são treinados por reforço puro sobre tarefas <em>verificáveis</em> (matemática, programação), em que a resposta pode ser conferida sem um humano no meio. E o que se observou foi assombroso: sem que ninguém ensinasse, o modelo <em>desenvolveu sozinho</em> comportamentos de raciocínio — parar, checar o próprio trabalho, voltar atrás — incluindo um "momento eureca" em que aprende a duvidar de si e recalcular, superando os modelos treinados apenas com demonstrações humanas<sup class="cit"><a href="#ref-15">[15]</a></sup>. É a transição do AlphaGo para o AlphaGo Zero acontecendo, agora, no terreno do raciocínio geral. A barreira que separa a iA que copia da iA que descobre está sendo atravessada em tempo real.</p>
+
+    <p>Foi assim no Go, no xadrez, nas proteínas: primeiro a máquina precisou de nós, depois dispensou-nos, depois nos ultrapassou de um jeito que não conseguimos mais acompanhar. Se — e é um "se" grande — resolvermos os problemas do sinal de recompensa e da simulação para domínios abertos, não há motivo de princípio para que o mesmo não aconteça com a inteligência em geral. A conquista das super inteligências começou pelas bordas, pelos jogos, pelos problemas com placar. Ela está caminhando para o centro. E a pergunta que fica não é mais "se é possível", mas se saberemos conviver — e permanecer no controle — quando a régua da inteligência deixar de ser a nossa.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a tese do caminho para a super inteligência; <strong>[contrapõe]</strong> serve de crítica.</p>
+      <ol>
+        <li id="ref-1">Silver, D. et al. (2016). <em>Mastering the game of Go with deep neural networks and tree search</em>. Nature, 529, 484–489. <a href="https://doi.org/10.1038/nature16961" target="_blank" rel="noopener">doi.org/10.1038/nature16961</a> — <strong>[sustenta]</strong> o AlphaGo: aprendizado supervisionado em jogadas humanas + reforço por self-play; a série contra Lee Sedol (4–1) e a jogada 37.</li>
+        <li id="ref-2">Sutton, R. S. &amp; Barto, A. G. (2018). <em>Reinforcement Learning: An Introduction</em> (2ª ed.). MIT Press. <a href="http://incompleteideas.net/book/the-book-2nd.html" target="_blank" rel="noopener">incompleteideas.net/book</a> — <strong>[sustenta]</strong> as bases do aprendizado por reforço: agir, receber recompensa e ajustar o comportamento.</li>
+        <li id="ref-3">Mnih, V. et al. (2015). <em>Human-level control through deep reinforcement learning</em>. Nature, 518, 529–533. <a href="https://doi.org/10.1038/nature14236" target="_blank" rel="noopener">doi.org/10.1038/nature14236</a> — <strong>[sustenta]</strong> o DQN: rede neural + reforço aprendendo a jogar Atari a partir dos pixels, nível humano ou superior.</li>
+        <li id="ref-4">Silver, D. et al. (2017). <em>Mastering the game of Go without human knowledge</em> (AlphaGo Zero). Nature, 550, 354–359. <a href="https://doi.org/10.1038/nature24270" target="_blank" rel="noopener">doi.org/10.1038/nature24270</a> — <strong>[sustenta]</strong> self-play puro, sem dados humanos: superou em 3 dias a versão que venceu Lee Sedol, por 100 a 0.</li>
+        <li id="ref-5">Silver, D. et al. (2018). <em>A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play</em> (AlphaZero). Science, 362(6419), 1140–1144. <a href="https://doi.org/10.1126/science.aar6404" target="_blank" rel="noopener">doi.org/10.1126/science.aar6404</a> — <strong>[sustenta]</strong> um único algoritmo, só com as regras, dominando três jogos e derrotando os melhores programas humanos.</li>
+        <li id="ref-6">Campbell, M., Hoane, A. J. &amp; Hsu, F.-h. (2002). <em>Deep Blue</em>. Artificial Intelligence, 134(1–2), 57–83. <a href="https://doi.org/10.1016/S0004-3702(01)00129-1" target="_blank" rel="noopener">doi.org/10.1016/S0004-3702(01)00129-1</a> — <strong>[contrapõe]</strong> a vitória sobre Kasparov (1997) por busca em força bruta e avaliação feita à mão — o método antigo, sem aprendizado.</li>
+        <li id="ref-7">OpenAI et al. (2019). <em>Dota 2 with Large Scale Deep Reinforcement Learning</em> (OpenAI Five). arXiv:1912.06680. <a href="https://arxiv.org/abs/1912.06680" target="_blank" rel="noopener">arxiv.org/abs/1912.06680</a> — <strong>[sustenta]</strong> primeira iA a vencer campeões do mundo de um e-sport, treinada por self-play em larga escala.</li>
+        <li id="ref-8">Vinyals, O. et al. (2019). <em>Grandmaster level in StarCraft II using multi-agent reinforcement learning</em> (AlphaStar). Nature, 575, 350–354. <a href="https://doi.org/10.1038/s41586-019-1724-z" target="_blank" rel="noopener">doi.org/10.1038/s41586-019-1724-z</a> — <strong>[sustenta]</strong> nível Grão-Mestre, acima de 99,8% dos jogadores humanos ranqueados.</li>
+        <li id="ref-9">Brown, N. &amp; Sandholm, T. (2019). <em>Superhuman AI for multiplayer poker</em> (Pluribus). Science, 365(6456), 885–890. <a href="https://doi.org/10.1126/science.aay2400" target="_blank" rel="noopener">doi.org/10.1126/science.aay2400</a> — <strong>[sustenta]</strong> vitória sobre profissionais de elite no pôquer de 6 jogadores, com informação escondida e blefe.</li>
+        <li id="ref-10">Jumper, J. et al. (2021). <em>Highly accurate protein structure prediction with AlphaFold</em>. Nature, 596, 583–589. <a href="https://doi.org/10.1038/s41586-021-03819-2" target="_blank" rel="noopener">doi.org/10.1038/s41586-021-03819-2</a> — <strong>[sustenta]</strong> desempenho supra-humano num problema científico real (enovelamento de proteínas; CASP14, 2020).</li>
+        <li id="ref-11">Fawzi, A. et al. (2022). <em>Discovering faster matrix multiplication algorithms with reinforcement learning</em> (AlphaTensor). Nature, 610, 47–53. <a href="https://doi.org/10.1038/s41586-022-05172-4" target="_blank" rel="noopener">doi.org/10.1038/s41586-022-05172-4</a> — <strong>[sustenta]</strong> descoberta de algoritmos que, em certos casos, superam o recorde de Strassen (1969).</li>
+        <li id="ref-12">Google DeepMind (2024). <em>AI achieves silver-medal standard solving International Mathematical Olympiad problems</em> (AlphaProof e AlphaGeometry 2). <a href="https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/" target="_blank" rel="noopener">deepmind.google</a> — <strong>[sustenta]</strong> quatro dos seis problemas da IMO 2024 (28/42 pontos), nível de medalha de prata.</li>
+        <li id="ref-13">Dulac-Arnold, G. et al. (2021). <em>Challenges of real-world reinforcement learning: definitions, benchmarks and analysis</em>. Machine Learning, 110, 2419–2468. <a href="https://doi.org/10.1007/s10994-021-05961-4" target="_blank" rel="noopener">doi.org/10.1007/s10994-021-05961-4</a> — <strong>[contrapõe]</strong> por que o reforço que brilha em jogos é difícil no mundo real: recompensas ambíguas e ausência de simulação farta.</li>
+        <li id="ref-14">Silver, D., Singh, S., Precup, D. &amp; Sutton, R. S. (2021). <em>Reward is Enough</em>. Artificial Intelligence, 299, 103535. <a href="https://doi.org/10.1016/j.artint.2021.103535" target="_blank" rel="noopener">doi.org/10.1016/j.artint.2021.103535</a> — <strong>[sustenta]</strong> tese de que a maximização de recompensa poderia, por si só, dar origem à inteligência geral.</li>
+        <li id="ref-15">DeepSeek-AI (2025). <em>DeepSeek-R1: Incentivizing reasoning capability in LLMs via reinforcement learning</em>. Nature. <a href="https://doi.org/10.1038/s41586-025-09422-z" target="_blank" rel="noopener">doi.org/10.1038/s41586-025-09422-z</a> — <strong>[sustenta]</strong> reforço puro faz emergir raciocínio (autoverificação, "momento eureca") sem demonstrações humanas — a receita do self-play chegando ao raciocínio geral.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">RS</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="64-richard-sutton.html">Richard Sutton</a></span></div>
+          <p class="autor-tag">Cientista da computação · aprendizado por reforço · prêmio Turing de 2024</p>
+          <p class="autor-bio">Um dos pais do aprendizado por reforço, a base teórica de tudo o que este capítulo conta. Autor de <em>The Bitter Lesson</em> — os métodos gerais que escalam com computação vencem os truques feitos à mão — e coautor da tese provocadora de que a recompensa "seria suficiente" para gerar inteligência. <span class="aqui">No capítulo: o motor conceitual do self-play e da super inteligência.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">DS</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">David Silver</span></div>
+          <p class="autor-tag">Cientista da DeepMind · líder do projeto AlphaGo</p>
+          <p class="autor-bio">Liderou a linha AlphaGo → AlphaGo Zero → AlphaZero, que transformou o aprendizado por reforço com self-play de teoria em manchete. Foi o time dele que cortou o cordão dos dados humanos e mostrou que a máquina joga melhor <em>sem</em> nós. <span class="aqui">No capítulo: o arquiteto das vitórias que definem a virada.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">DH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Demis Hassabis</span></div>
+          <p class="autor-tag">Cofundador da DeepMind · Nobel de Química de 2024</p>
+          <p class="autor-bio">Idealizou a DeepMind com a aposta de que jogos seriam o campo de treino para uma iA geral — e depois levou a mesma receita para a ciência, com o AlphaFold, que lhe rendeu, com John Jumper, o Nobel de Química de 2024. <span class="aqui">No capítulo: a ponte dos jogos para os problemas reais.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="27-modelos-de-mundo-estados-internos.html"><span class="rotulo">Anterior</span>Modelos de mundo e estados internos</a>
+    <a class="prox" href="29-evolucao-mesmo-cerebro-desempenhos-diferentes.html"><span class="rotulo">Próximo</span>A Lei da Escala: o mesmo cérebro, desempenhos completamente diferentes</a>
+  </nav>
+
+</body>
+</html>

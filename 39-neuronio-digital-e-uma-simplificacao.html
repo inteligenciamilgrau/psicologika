@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O neurônio digital é uma simplificação; o neurônio real está imerso em um organismo — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>O neurônio digital é uma simplificação; o neurônio real está imerso em um organismo</h1>
+
+    <p>O neurônio artificial que sustenta toda a iA moderna é uma das simplificações mais brutais — e mais produtivas — da história da ciência. Ele pega uma célula viva, complexa a ponto de tirar o fôlego, e a reduz a uma continha: "some as entradas, aplique uma função, devolva um número". Essa redução, nascida em 1943, construiu as LLMs. Mas vale lembrar <em>o quanto</em> ela jogou fora — e por que guardar tão pouco ainda assim funciona tão bem.</p>
+
+    <h2>1943: um neurônio vira uma conta</h2>
+
+    <p>A ideia é de dupla improvável: Warren McCulloch, um neurofisiologista, e Walter Pitts, um lógico autodidata. Em 1943 eles propuseram o primeiro modelo matemático de um neurônio<sup class="cit"><a href="#ref-1">[1]</a></sup>: uma unidade que soma sinais de entrada — uns que empurram para cima (excitatórios), outros para baixo (inibitórios) — e dispara "1" se o total passa de um limiar, ou fica em "0" se não passa. Tudo-ou-nada. Com isso eles provaram algo revolucionário: redes dessas unidades conseguem calcular qualquer função lógica. Pela primeira vez, o pensamento pôde ser encarado como <em>computação</em>, e o neurônio, como uma porta lógica.</p>
+
+    <p>Faltava a esse neurônio uma coisa: aprender. Foi Frank Rosenblatt, em 1958, quem lhe deu <strong>pesos ajustáveis</strong> — o Perceptron<sup class="cit"><a href="#ref-2">[2]</a></sup>. Em vez de importâncias fixas, cada entrada passou a ter um peso que a experiência pode afinar. É essencialmente o neurônio de hoje: uma <em>soma ponderada</em> das entradas, passada por uma função que decide a saída. Mas o que, no neurônio de verdade, inspirou essa imagem de "somar e disparar"?</p>
+
+    <h2>Como um neurônio de verdade dispara</h2>
+
+    <p>Um neurônio biológico tem dendritos, que recebem sinais; um corpo celular, que os integra; e um axônio, que transmite o resultado adiante. Em repouso, ele mantém uma voltagem de cerca de –70 milivolts através da membrana. Os sinais que chegam pelas sinapses empurram essa voltagem para cima ou para baixo, e o corpo celular vai <em>somando</em> tudo, no espaço e no tempo. Se a soma cruza um limiar (por volta de –55 mV), dispara o <strong>potencial de ação</strong>: uma faísca elétrica tudo-ou-nada que percorre o axônio — o mecanismo iônico que Hodgkin e Huxley decifraram e que lhes rendeu o Nobel<sup class="cit"><a href="#ref-3">[3]</a></sup>. (Contei esse disparo em detalhe em <a href="30-emergencia-do-qualia.html">Emergência do Qualia</a>.)</p>
+
+    <p>Olhe a correspondência: <em>somar as entradas e disparar acima de um limiar, tudo-ou-nada</em>. Era exatamente isso que McCulloch e Pitts tinham abstraído. O potencial de ação foi o que motivou o neurônio digital. Mas — e este é o ponto do capítulo — a abstração parou aí, e o que ela deixou de lado é quase tudo.</p>
+
+    <h2>O que a abstração jogou fora: o organismo inteiro</h2>
+
+    <p>O neurônio digital é uma função isolada: entram números, sai um número. O neurônio real é uma <strong>célula viva dentro de um corpo</strong>, e essa diferença é enorme.</p>
+
+    <ul>
+      <li><strong>Metabolismo e sangue.</strong> Um neurônio precisa de glicose e oxigênio, entregues pelo fluxo sanguíneo. O cérebro é ~2% da massa do corpo e consome ~20% da energia; sinalizar é caríssimo<sup class="cit"><a href="#ref-4">[4]</a></sup>. O fluxo de sangue acompanha a atividade (é isso que a ressonância funcional enxerga), e pressão e oxigenação afetam o funcionamento. O neurônio digital não tem fome, não respira, não tem pressão arterial.</li>
+      <li><strong>Sistema imunológico.</strong> As células imunes do cérebro, as microglias, não só combatem infecções — elas <em>podam sinapses</em>, engolindo fisicamente as conexões que não servem<sup class="cit"><a href="#ref-5">[5]</a></sup>. O sistema imune ajuda a esculpir o circuito (é uma das mãos por trás da poda que vimos no <a href="38-cerebro-do-bebe-explosao-de-sinapses.html">cérebro do bebê</a>). No neurônio digital, não há nada disso.</li>
+      <li><strong>Banho químico.</strong> Hormônios e neuromoduladores — dopamina, cortisol, serotonina — banham o neurônio conforme o estado do corpo: estresse, fome, sono, humor. O mesmo neurônio dispara diferente dependendo de como <em>o organismo inteiro</em> está. Um número dentro de uma matriz não tem estado de corpo.</li>
+    </ul>
+
+    <p>A abstração, em suma, descartou o organismo. Ficou com o esqueleto — "soma e dispara" — e apagou o sangue, a pressão, a imunidade, os hormônios e o fato bruto de ser algo <em>vivo</em>.</p>
+
+    <h2>A simplificação e as funções de ativação</h2>
+
+    <p>No lugar de toda a bioquímica do disparo, o neurônio digital põe uma única peça: a <strong>função de ativação</strong>. Depois de fazer a soma ponderada das entradas, ele passa esse valor por uma fórmula que decide a saída — o eco matemático do "disparar". E há uma pequena zoologia dessas funções, cada uma com um feitio:</p>
+
+    <ul>
+      <li><strong>Degrau</strong> (a de McCulloch-Pitts e do Perceptron): binária, 0 ou 1. Fiel ao tudo-ou-nada biológico, mas tem um defeito fatal — não é derivável, então trava o <a href="35-backpropagation-e-auto-organizacao.html">backpropagation</a>.</li>
+      <li><strong>Sigmoide</strong> e <strong>tangente hiperbólica</strong>: curvas em "S" suaves, deriváveis (foi o que destravou o treino), mas que "saturam" nas pontas e fazem o gradiente sumir.</li>
+      <li><strong>ReLU</strong> (unidade linear retificada): devolve o valor se for positivo, e zero se for negativo. Simples, barata e sem saturação para valores positivos, ela resolveu boa parte do problema do gradiente e virou o cavalo de batalha do aprendizado profundo<sup class="cit"><a href="#ref-6">[6]</a></sup> — foi a ativação da <a href="40-cnns-e-os-neuronios-visuais.html">AlexNet</a>.</li>
+      <li><strong>GELU</strong> e outras variantes suaves da ReLU: o padrão dentro dos transformers de hoje<sup class="cit"><a href="#ref-7">[7]</a></sup>.</li>
+    </ul>
+
+    <p>Essa função é o que dá <em>poder</em> à rede: sem uma não-linearidade, empilhar camadas colapsa tudo num único mapa linear, e a profundidade não serviria de nada. Mas repare na desproporção: a "ativação" de um neurônio real é uma tempestade eletroquímica de milissegundos, com dezenas de tipos de canais iônicos; a do neurônio digital é um escalar passando por uma fórmula de uma linha. O abismo entre as duas é gigantesco.</p>
+
+    <h2>Dois jeitos de aprender</h2>
+
+    <p>A diferença fica mais nítida ainda no <em>aprender</em>. O neurônio digital aprende de um jeito só: ajustando os seus pesos pelo <a href="35-backpropagation-e-auto-organizacao.html">backpropagation</a> — um erro global, calculado pela regra da cadeia, que empurra cada peso um tiquinho, de forma sincronizada, exigindo um caminho derivável e uma função de erro bem definida.</p>
+
+    <p>O neurônio real não faz nada disso. Ele aprende por <strong>plasticidade local</strong>: a sinapse se fortalece ou enfraquece conforme a atividade dos dois neurônios que ela liga, inclusive pela ordem exata dos disparos<sup class="cit"><a href="#ref-8">[8]</a></sup> — sem erro global, sem regra da cadeia, sem função de perda. Por cima disso vêm os neuromoduladores (a dopamina e companhia), que dizem <em>quando</em> vale a pena mudar. E o aprendizado biológico é também <em>físico</em>: o neurônio cria e destrói sinapses, muda de forma, mieliniza axônios, consolida memória durante o sono. Ele reescreve o próprio hardware, o tempo todo, enquanto vive. São duas engenharias opostas do aprender — a global e exata contra a local e química — chegando, cada uma a seu modo, ao mesmo resultado.</p>
+
+    <h2>A simplificação mais produtiva da ciência</h2>
+
+    <p>Fique com as duas verdades ao mesmo tempo, porque as duas importam. A primeira: o neurônio digital descartou quase tudo e guardou um esqueleto — e esse esqueleto, <a href="29-evolucao-mesmo-cerebro-desempenhos-diferentes.html">levado à escala</a>, escreveu as LLMs. Que uma simplificação tão violenta funcione tão bem é, por si só, uma das pistas mais fortes deste livro.</p>
+
+    <p>A segunda: é uma simplificação, e não devemos esquecê-lo. A abstração pode estar errada até na conta mais básica — um único neurônio cortical real é tão complexo que, para imitar o seu comportamento, é preciso uma rede profunda de <strong>cinco a oito camadas</strong><sup class="cit"><a href="#ref-9">[9]</a></sup>. Ou seja: aquilo que chamamos de "um neurônio" na iA talvez corresponda, na biologia, a uma pequena rede inteira. E o que a abstração jogou fora — o corpo, o sangue, os hormônios, o sistema imune, o fato de estar vivo — pode ser exatamente onde mora parte do que buscamos: a <a href="30-emergencia-do-qualia.html">experiência de sentir</a>, a emoção que guia o <a href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html">longo prazo</a>. O neurônio que sente o gosto do café está mergulhado numa língua e num organismo; o digital, não. Confundir o esboço genial com a coisa real seria o erro mais fácil — e o mais caro.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia o valor da simplificação; <strong>[contrapõe]</strong> lembra o que ela deixou de fora.</p>
+      <ol>
+        <li id="ref-1">McCulloch, W. S. &amp; Pitts, W. (1943). <em>A logical calculus of the ideas immanent in nervous activity</em>. Bulletin of Mathematical Biophysics, 5, 115–133. <a href="https://doi.org/10.1007/BF02478259" target="_blank" rel="noopener">doi.org/10.1007/BF02478259</a> — <strong>[sustenta]</strong> o primeiro neurônio matemático: soma limiarizada, tudo-ou-nada; redes dessas unidades computam qualquer lógica.</li>
+        <li id="ref-2">Rosenblatt, F. (1958). <em>The perceptron: a probabilistic model for information storage and organization in the brain</em>. Psychological Review, 65(6), 386–408. <a href="https://doi.org/10.1037/h0042519" target="_blank" rel="noopener">doi.org/10.1037/h0042519</a> — <strong>[sustenta]</strong> o Perceptron: o neurônio digital ganha pesos ajustáveis e passa a aprender.</li>
+        <li id="ref-3">Hodgkin, A. L. &amp; Huxley, A. F. (1952). <em>A quantitative description of membrane current and its application to conduction and excitation in nerve</em>. The Journal of Physiology, 117(4), 500–544. <a href="https://doi.org/10.1113/jphysiol.1952.sp004764" target="_blank" rel="noopener">doi.org/10.1113/jphysiol.1952.sp004764</a> — <strong>[sustenta]</strong> o mecanismo iônico do potencial de ação — a base biológica do "disparo" (Nobel de 1963).</li>
+        <li id="ref-4">Attwell, D. &amp; Laughlin, S. B. (2001). <em>An energy budget for signaling in the grey matter of the brain</em>. Journal of Cerebral Blood Flow &amp; Metabolism, 21(10), 1133–1145. <a href="https://doi.org/10.1097/00004647-200110000-00001" target="_blank" rel="noopener">doi.org/10.1097/00004647-200110000-00001</a> — <strong>[sustenta]</strong> sinalizar custa muita energia: o neurônio depende de glicose e oxigênio entregues pelo sangue.</li>
+        <li id="ref-5">Paolicelli, R. C. et al. (2011). <em>Synaptic pruning by microglia is necessary for normal brain development</em>. Science, 333(6048), 1456–1458. <a href="https://doi.org/10.1126/science.1202529" target="_blank" rel="noopener">doi.org/10.1126/science.1202529</a> — <strong>[sustenta]</strong> as células imunes do cérebro (microglias) engolem sinapses e ajudam a esculpir o circuito.</li>
+        <li id="ref-6">Glorot, X., Bordes, A. &amp; Bengio, Y. (2011). <em>Deep sparse rectifier neural networks</em>. AISTATS. <a href="https://proceedings.mlr.press/v15/glorot11a.html" target="_blank" rel="noopener">proceedings.mlr.press/v15/glorot11a</a> — <strong>[sustenta]</strong> a ReLU: função de ativação simples que destravou o treino de redes profundas.</li>
+        <li id="ref-7">Hendrycks, D. &amp; Gimpel, K. (2016). <em>Gaussian Error Linear Units (GELUs)</em>. arXiv:1606.08415. <a href="https://arxiv.org/abs/1606.08415" target="_blank" rel="noopener">arxiv.org/abs/1606.08415</a> — <strong>[sustenta]</strong> a GELU: a variante suave da ReLU usada nos transformers.</li>
+        <li id="ref-8">Bi, G. &amp; Poo, M. (1998). <em>Synaptic modifications in cultured hippocampal neurons: dependence on spike timing, synaptic strength, and postsynaptic cell type</em>. Journal of Neuroscience, 18(24), 10464–10472. <a href="https://doi.org/10.1523/JNEUROSCI.18-24-10464.1998" target="_blank" rel="noopener">doi.org/10.1523/JNEUROSCI.18-24-10464.1998</a> — <strong>[sustenta]</strong> a plasticidade dependente do tempo dos disparos (STDP): a sinapse aprende localmente, pela ordem dos disparos, sem erro global.</li>
+        <li id="ref-9">Beniaguev, D., Segev, I. &amp; London, M. (2021). <em>Single cortical neurons as deep artificial neural networks</em>. Neuron, 109(17), 2727–2739. <a href="https://doi.org/10.1016/j.neuron.2021.07.002" target="_blank" rel="noopener">doi.org/10.1016/j.neuron.2021.07.002</a> — <strong>[contrapõe]</strong> imitar um único neurônio real exige uma rede profunda de 5 a 8 camadas: a célula biológica é, ela mesma, uma pequena rede.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">MP</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Warren McCulloch e Walter Pitts</span></div>
+          <p class="autor-tag">Neurofisiologista e lógico · o primeiro neurônio matemático (1943)</p>
+          <p class="autor-bio">Reduziram o neurônio a uma unidade que soma entradas e dispara acima de um limiar, e provaram que redes dessas unidades podem computar qualquer lógica. Foi o nascimento da ideia de que pensar é calcular. <span class="aqui">No capítulo: a abstração que fundou o neurônio digital.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">FR</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="48-frank-rosenblatt.html">Frank Rosenblatt</a></span></div>
+          <p class="autor-tag">Psicólogo e cientista · inventor do Perceptron (1958)</p>
+          <p class="autor-bio">Deu ao neurônio de McCulloch e Pitts o que faltava: pesos ajustáveis, capazes de aprender com a experiência. É o antepassado direto de cada neurônio das redes de hoje. <span class="aqui">No capítulo: o neurônio digital que aprende.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">HH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Alan Hodgkin e Andrew Huxley</span></div>
+          <p class="autor-tag">Fisiologistas · Nobel de Medicina de 1963</p>
+          <p class="autor-bio">Descreveram, em equações, como os íons atravessam a membrana para gerar o potencial de ação — o disparo real que o neurônio digital imita de forma tão simplificada. <span class="aqui">No capítulo: a biofísica do disparo que a abstração reduziu a uma fórmula.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="38-cerebro-do-bebe-explosao-de-sinapses.html"><span class="rotulo">Anterior</span>O cérebro do bebê é uma explosão aleatória de sinapses que vai se organizando</a>
+    <a class="prox" href="40-cnns-e-os-neuronios-visuais.html"><span class="rotulo">Próximo</span>As CNNs e os neurônios visuais: a profundidade que refina o conhecimento</a>
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Lixo de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Arquivos temporários de editores
+*~
+*.swp
+*.tmp
+*.bak
+
+# Nada de código-fonte do gerador aqui: esta pasta é SÓ o site publicado.
+# (o editor.py, publicar_site.py, _editor/ etc. ficam no projeto, fora daqui)

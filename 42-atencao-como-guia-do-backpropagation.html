@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O modelo de atenção como guia do backpropagation — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>O modelo de atenção como guia do backpropagation</h1>
+
+    <p>Até aqui, "treinar uma rede" queria dizer uma coisa só: ajustar os pesos de um mapeamento fixo. A informação entrava por um lado, seguia sempre o mesmo caminho e saía pelo outro; o <a href="35-backpropagation-e-auto-organizacao.html">backpropagation</a> apenas afinava esse trajeto congelado. A arquitetura que apareceu em 2017 mudou <em>o que</em> o backpropagation treina. Ela não ajusta só um mapa estático — ajusta uma rede que <strong>decide, a cada entrada, por onde a informação deve fluir</strong>. Este capítulo abre o capô da LLM moderna e mostra como o backprop passou a aprender não apenas "o que calcular", mas "no que prestar atenção".</p>
+
+    <h2>A arquitetura de 2017, sem a parte da tradução</h2>
+
+    <p>O artigo que fundou tudo isso, <em>Attention Is All You Need</em><sup class="cit"><a href="#ref-1">[1]</a></sup>, foi escrito para <em>tradução</em>. Ele tinha duas metades: um <strong>encoder</strong>, que lia a frase em inglês, e um <strong>decoder</strong>, que escrevia a frase em alemão, os dois costurados por atenção. Para transformar essa máquina de traduzir num gerador de texto — o coração de uma LLM tipo GPT —, faz-se uma cirurgia simples: <strong>joga-se fora o encoder</strong> e a atenção que cruzava as duas metades, e mantém-se apenas a pilha do decoder, com uma restrição — cada token só pode olhar para os tokens <em>anteriores</em> a ele (afinal, ele não pode espiar o futuro que está tentando prever). O que sobra é uma máquina com uma única tarefa: dado o texto até aqui, prever o próximo token. Alimente a saída de volta na entrada, repita, e ela escreve<sup class="cit"><a href="#ref-2">[2]</a></sup>.</p>
+
+    <p>A anatomia de um bloco é enxuta, e ela se repete dezenas de vezes, empilhada — o mesmo bloco canônico carimbado em série, como o córtex faz com sua coluna (lembra de <a href="33-macacos-e-humanos-qualidade-das-conexoes.html">Mountcastle</a>?). Cada bloco tem duas partes: uma camada de <strong>atenção</strong>, onde os tokens trocam informação entre si, e uma <strong>rede feedforward</strong> (a velha FFN), que processa cada token individualmente — as duas envoltas em conexões de atalho e normalização. No topo da pilha, uma projeção para o vocabulário e uma softmax devolvem a probabilidade de cada palavra ser a próxima.</p>
+
+    <h2>Tokens, embeddings e o que o backprop agora ajusta</h2>
+
+    <p>Antes de a rede pensar, o texto precisa virar número. Ele é quebrado em <strong>tokens</strong> (pedaços de palavra), e cada token é convertido num vetor — o <strong>embedding</strong>, um ponto num espaço de centenas ou milhares de dimensões onde a "geografia" codifica significado: palavras parecidas ficam perto<sup class="cit"><a href="#ref-3">[3]</a></sup>. Como a atenção, por si, é cega à ordem (ela vê um <em>saco</em> de tokens), soma-se a cada embedding um sinal de posição.</p>
+
+    <p>E aqui está a primeira mudança profunda: o trabalho do backpropagation <em>cresceu</em>. Ele não ajusta mais só os pesos de uma FFN. O erro — errou o próximo token? — se propaga para trás e ajusta a projeção de saída, as FFNs de todos os blocos, todas as camadas de atenção <em>e os próprios vetores de embedding</em>. Ou seja: a rede aprende, ao mesmo tempo, o seu vocabulário de significados (os embeddings) e o que fazer com eles. Os embeddings não são dados de entrada fixos; são parâmetros que o backprop esculpe.</p>
+
+    <h2>QKV: como o backprop treina a atenção</h2>
+
+    <p>Agora o coração da coisa. Dentro da camada de atenção, o embedding de cada token é projetado, por três matrizes de pesos aprendidas, em três papéis:</p>
+
+    <ul>
+      <li>a <strong>Query</strong> (consulta): "o que eu estou procurando?";</li>
+      <li>a <strong>Key</strong> (chave): "o que eu ofereço?";</li>
+      <li>o <strong>Value</strong> (valor): "o que eu carrego comigo?".</li>
+    </ul>
+
+    <p>O mecanismo é uma busca por conteúdo. Cada token levanta a sua Query e a compara com a Key de todos os outros tokens; as combinações mais fortes vencem (uma softmax decide os pesos) e os Values correspondentes são recolhidos numa soma ponderada. Traduzindo: cada token <em>puxa</em> informação dos tokens mais relevantes para ele — não do vizinho fixo (como faz uma CNN), não do estado anterior (como faz uma rede recorrente), mas de <em>qualquer</em> token do contexto, escolhido pelo significado. E isso acontece em paralelo em várias <strong>heads</strong> (cabeças), cada uma com seu próprio trio Q, K, V: uma cabeça pode aprender a rastrear concordância entre sujeito e verbo, outra a ligar um pronome ao nome a que ele se refere, e assim por diante<sup class="cit"><a href="#ref-4">[4]</a></sup>.</p>
+
+    <p>Repare no que o backprop treina aqui, porque é de outra natureza. Ele não afina apenas "como transformar X em Y". Ele afina as matrizes que geram Q, K e V — isto é, <strong>o que cada token deve procurar e o que deve oferecer</strong>. O backpropagation passou a aprender o <em>roteamento</em> da informação, não só a transformação. E como a atenção é recalculada para cada entrada, o padrão de conexões é diferente a cada frase; o que o backprop molda são as <em>regras</em> que geram esses padrões. Daí o título deste capítulo: a atenção guia para onde a inferência caminha — e o backprop aprende a construir esse guia.</p>
+
+    <h2>Do mapa fixo à rota: FFN, CNN e recorrentes</h2>
+
+    <p>Vale medir o salto olhando de onde viemos. Cada arquitetura anterior conectava a informação de um jeito mais pobre:</p>
+
+    <ul>
+      <li>A <strong>FFN tradicional</strong> é um mapa fixo: mesmo caminho para toda entrada, sem noção de sequência nem de qual pedaço importa. É uma tabela de consulta com um pouco de suavização.</li>
+      <li>A <strong>CNN</strong> acrescentou janelas locais e compartilhamento de pesos — ótima para padrões próximos (foi a virada da <a href="40-cnns-e-os-neuronios-visuais.html">visão</a>)<sup class="cit"><a href="#ref-5">[5]</a></sup>, mas cada camada só enxerga uma vizinhança pequena; para ligar duas palavras distantes é preciso empilhar muitas camadas. Local por natureza.</li>
+      <li>As <strong>recorrentes</strong> (as LSTMs<sup class="cit"><a href="#ref-6">[6]</a></sup>) leem a sequência passo a passo, carregando um estado interno. Em tese capturam ordem e dependências longas; na prática, pagam dois preços. São <em>sequenciais</em> (lentas, não dá para paralelizar ao longo do texto) e, para ligar dois tokens distantes, o sinal precisa sobreviver a muitos passos, desbotando pelo caminho — o velho problema do gradiente que se dissipa<sup class="cit"><a href="#ref-7">[7]</a></sup>. Todo o passado tem de ser espremido num único vetor de estado: um gargalo.</li>
+    </ul>
+
+    <p>A atenção estoura esse gargalo. Qualquer token se conecta a qualquer outro em <strong>um único salto</strong> — a distância entre duas posições é constante, contra algo que cresce com o tamanho da frase nas recorrentes e nas convolucionais. E tudo em paralelo. Curiosamente, a atenção nasceu <em>dentro</em> das recorrentes, como um remendo para o gargalo da tradução<sup class="cit"><a href="#ref-8">[8]</a></sup>; o lance radical de 2017 foi jogar fora a rede recorrente e ficar só com o remendo. O ganho de complexidade tem dois lados: mais expressividade (ligações diretas, de longo alcance, escolhidas por conteúdo) e, literalmente, mais conta — cada token compara-se com <em>todos</em> os outros, um custo que cresce com o quadrado do tamanho do texto. Trocou-se a localidade barata por uma teia densa e aprendível de conexões.</p>
+
+    <h2>A indução deixou de ser um mapa e virou um caminho guiado</h2>
+
+    <p>Isso muda algo fundo no modo como a rede <em>generaliza</em>. Numa FFN ou numa CNN, a <a href="15-inducao-e-deducao.html">indução</a> é ajustar uma função fixa: aprender um mapeamento e, depois, aplicá-lo congelado. Com a atenção, o cálculo é <strong>montado na hora</strong>, para cada entrada: o modelo constrói um padrão de atenção diferente a cada contexto, decidindo quais tokens anteriores encaminhar adiante. Generalizar deixa de ser "aplicar o mapa fixo" e passa a ser <em>navegar um caminho pelo contexto, guiado pela atenção</em>.</p>
+
+    <p>E não é metáfora — dá para ver o mecanismo nos pesos. Pesquisadores de interpretabilidade acharam as chamadas <strong>induction heads</strong> ("cabeças de indução"): cabeças de atenção que executam, literalmente, uma indução. Ao encontrar um padrão [A][B]…[A], elas olham para trás, para a primeira ocorrência de A, veem o que veio depois e preveem B<sup class="cit"><a href="#ref-9">[9]</a></sup>. É completar o padrão prestando atenção ao passado. Essas cabeças surgem de repente, numa transição brusca durante o treino, e respondem por boa parte da <em>aprendizagem em contexto</em> — a capacidade da LLM de captar uma regra nova só a partir do texto do prompt, sem mudar um peso sequer. Gente como <a href="59-neel-nanda.html">Neel Nanda</a> consegue ler esses circuitos diretamente na rede, como quem lê um <a href="57-grokking.html">algoritmo escrito nos pesos</a>.</p>
+
+    <p>É esse o retrato final. A arquitetura de 2017 não deixou os modelos apenas maiores: ela mudou o que "aprender" significa. O backpropagation saiu de afinar uma função fixa e passou a afinar um sistema que <em>escolhe</em>, entrada por entrada, no que prestar atenção. O mapeamento virou um caminho guiado — e é essa flexibilidade que explica por que o mesmo bloco repetido, levado à <a href="29-evolucao-mesmo-cerebro-desempenhos-diferentes.html">escala</a>, pôde sair de traduzir frases para escrever um livro. A <a href="02-modelo-de-atencao.html">atenção</a>, que começou como um detalhe da tradução, virou o guia de tudo.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia o argumento sobre a atenção; <strong>[contrapõe]</strong> aponta um limite das arquiteturas anteriores.</p>
+      <ol>
+        <li id="ref-1">Vaswani, A. et al. (2017). <em>Attention Is All You Need</em>. NeurIPS. arXiv:1706.03762. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arxiv.org/abs/1706.03762</a> — <strong>[sustenta]</strong> o Transformer: uma arquitetura baseada só em atenção, sem recorrência nem convolução; encoder-decoder, multi-head, QKV.</li>
+        <li id="ref-2">Radford, A. et al. (2019). <em>Language Models are Unsupervised Multitask Learners</em> (GPT-2). OpenAI. <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener">openai.com (PDF)</a> — <strong>[sustenta]</strong> o Transformer só-decoder como gerador de texto: previsão autorregressiva do próximo token.</li>
+        <li id="ref-3">Mikolov, T. et al. (2013). <em>Efficient Estimation of Word Representations in Vector Space</em> (word2vec). arXiv:1301.3781. <a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">arxiv.org/abs/1301.3781</a> — <strong>[sustenta]</strong> embeddings: representar palavras como vetores aprendidos em que a posição codifica significado.</li>
+        <li id="ref-4">Elhage, N. et al. (2021). <em>A Mathematical Framework for Transformer Circuits</em>. Anthropic. <a href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener">transformer-circuits.pub</a> — <strong>[sustenta]</strong> uma leitura mecanicista do que as matrizes Q, K, V e as cabeças de atenção computam.</li>
+        <li id="ref-5">LeCun, Y., Bottou, L., Bengio, Y. &amp; Haffner, P. (1998). <em>Gradient-based learning applied to document recognition</em>. Proceedings of the IEEE, 86(11), 2278–2324. <a href="https://doi.org/10.1109/5.726791" target="_blank" rel="noopener">doi.org/10.1109/5.726791</a> — <strong>[sustenta]</strong> a CNN: campos receptivos locais e compartilhamento de pesos — conectividade local, o degrau anterior à atenção.</li>
+        <li id="ref-6">Hochreiter, S. &amp; Schmidhuber, J. (1997). <em>Long Short-Term Memory</em>. Neural Computation, 9(8), 1735–1780. <a href="https://doi.org/10.1162/neco.1997.9.8.1735" target="_blank" rel="noopener">doi.org/10.1162/neco.1997.9.8.1735</a> — <strong>[sustenta]</strong> a LSTM: a rede recorrente que carregava um estado para modelar sequências.</li>
+        <li id="ref-7">Bengio, Y., Simard, P. &amp; Frasconi, P. (1994). <em>Learning long-term dependencies with gradient descent is difficult</em>. IEEE Transactions on Neural Networks, 5(2), 157–166. <a href="https://doi.org/10.1109/72.279181" target="_blank" rel="noopener">doi.org/10.1109/72.279181</a> — <strong>[contrapõe]</strong> o gradiente que se dissipa: por que as recorrentes tropeçam nas dependências longas.</li>
+        <li id="ref-8">Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. ICLR. arXiv:1409.0473. <a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">arxiv.org/abs/1409.0473</a> — <strong>[sustenta]</strong> a atenção nasce aqui, como um remendo para o gargalo do estado único das recorrentes.</li>
+        <li id="ref-9">Olsson, C. et al. (2022). <em>In-context Learning and Induction Heads</em>. Anthropic. arXiv:2209.11895. <a href="https://arxiv.org/abs/2209.11895" target="_blank" rel="noopener">arxiv.org/abs/2209.11895</a> — <strong>[sustenta]</strong> cabeças de atenção que fazem indução ([A][B]…[A]→[B]) e respondem por boa parte da aprendizagem em contexto.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">AV</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Ashish Vaswani</span></div>
+          <p class="autor-tag">Cientista da computação · autor principal do Transformer</p>
+          <p class="autor-bio">Primeiro autor de <em>Attention Is All You Need</em> (2017), o artigo que aposentou recorrência e convolução e pôs a atenção no centro. É a arquitetura que sustenta praticamente todas as LLMs de hoje. <span class="aqui">No capítulo: a planta do gerador de texto moderno.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">YB</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Yoshua Bengio</span></div>
+          <p class="autor-tag">Cientista da computação · Turing 2018</p>
+          <p class="autor-bio">Está nas duas pontas desta história: mostrou por que as recorrentes sofrem com dependências longas e, depois, coassinou o artigo que inventou a atenção na tradução — o embrião do que viria a ser o Transformer. <span class="aqui">No capítulo: o limite das recorrentes e o nascimento da atenção.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">NN</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="59-neel-nanda.html">Neel Nanda</a></span></div>
+          <p class="autor-tag">Interpretabilidade mecanicista (Google DeepMind)</p>
+          <p class="autor-bio">Abre as redes para ler os algoritmos que elas aprenderam. É desse campo que vêm as "induction heads" — a prova, nos pesos, de que a indução virou um caminho guiado pela atenção. <span class="aqui">No capítulo: a leitura dos circuitos de atenção que fazem indução.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html"><span class="rotulo">Anterior</span>O refinamento do backpropagation e o cérebro de longo prazo</a>
+    <a class="prox" href="43-pesquisadores-de-ia-estao-a-frente-dos-neurocientistas.html"><span class="rotulo">Próximo</span>Pesquisadores de iA estão à frente dos Neurocientistas</a>
+  </nav>
+
+</body>
+</html>

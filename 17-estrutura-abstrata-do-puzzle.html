@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A estrutura abstrata do puzzle — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 4 — Lógica de Máquina</p>
+    <h1>A estrutura abstrata do puzzle</h1>
+
+    <p>Por trás do exemplo colorido existe uma forma lógica abstrata:</p>
+
+    <blockquote>
+      <p>Toda vez que um substantivo 1 executa verbo 1 em local 1, ele fica adjetivo 1.<br>
+      Se algo fica adjetivo 1, então executa verbo 2.<br>
+      Nome próprio 1 é um substantivo 1 e executou verbo 1 em local 1.<br>
+      Logo, nome próprio 1 executará verbo 2, pois ficou adjetivo 1.</p>
+    </blockquote>
+
+    <p>Essa estrutura pode ser preenchida com qualquer substantivo, verbo, nome, local e adjetivo. O conteúdo muda, mas a relação permanece. É isso que permite construir um gerador de puzzles lógicos: separa-se a estrutura formal da superfície linguística.</p>
+
+    <p>Essa separação é crucial. Se a IA acerta apenas quando as palavras são comuns, talvez esteja usando associações memorizadas. Mas se acerta com palavras inventadas, nomes novos, verbos estranhos e locais artificiais, há evidência de que está operando sobre a estrutura relacional. Não é prova final de consciência, mas é evidência de raciocínio funcional.</p>
+
+    <h2>Separar estrutura da superfície: o problema da ligação de variáveis</h2>
+
+    <p>Essa separação que você faz — a forma lógica de um lado, o &ldquo;kibble&rdquo; do outro — é precisamente o que os críticos das redes neurais diziam ser impossível. Fodor e Pylyshyn argumentavam que só um sistema capaz de manipular <em>variáveis</em> (como &ldquo;substantivo 1&rdquo;, &ldquo;verbo 2&rdquo;) poderia raciocinar de forma verdadeiramente geral, e duvidavam que uma rede conseguisse isso<sup class="cit"><a href="#ref-1">[1]</a></sup>. O seu gerador de puzzles é, no fundo, um teste dessa dúvida.</p>
+
+    <p>O interessante é que hoje já se consegue <em>abrir</em> o modelo e encontrar mecanismos que se parecem com essa manipulação de estrutura: as chamadas &ldquo;cabeças de indução&rdquo; da atenção completam padrões do tipo [A][B]…[A]→[B], operando sobre a posição e a relação, não sobre o significado da palavra<sup class="cit"><a href="#ref-2">[2]</a></sup>. É evidência mecanicista de que parte do que você chama de &ldquo;operar sobre a estrutura relacional&rdquo; realmente acontece. Detalho isso em <a href="42-atencao-como-guia-do-backpropagation.html">O modelo de atenção como guia do backpropagation</a>.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Fodor, J. A. &amp; Pylyshyn, Z. W. (1988). <em>Connectionism and cognitive architecture: A critical analysis</em>. Cognition, 28(1–2), 3–71. <a href="https://doi.org/10.1016/0010-0277(88)90031-5" target="_blank" rel="noopener">doi.org/10.1016/0010-0277(88)90031-5</a> — a exigência de estrutura com variáveis para o raciocínio sistemático.</li>
+        <li id="ref-2">Olsson, C. et al. (2022). <em>In-context Learning and Induction Heads</em>. Anthropic. arXiv:2209.11895. <a href="https://arxiv.org/abs/2209.11895" target="_blank" rel="noopener">arxiv.org/abs/2209.11895</a> — cabeças de atenção que operam sobre a posição e a relação, completando padrões abstratos.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="16-experimento-palavras-inventadas.html"><span class="rotulo">Anterior</span>O experimento das palavras inventadas</a>
+    <a class="prox" href="18-o-que-a-conjugacao-revela.html"><span class="rotulo">Próximo</span>O que a conjugação revela</a>
+  </nav>
+
+</body>
+</html>

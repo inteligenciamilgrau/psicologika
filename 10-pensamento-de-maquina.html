@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O pensamento de máquina — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 3 — O que é a Consciência?</p>
+    <h1>O pensamento de máquina</h1>
+
+    <p>No caso das LLMs, o primeiro nível é o cálculo das relações internas: tokens, pesos, atenção, conexões. É o equivalente artificial de um nível básico de processamento. Não há ainda reflexão, apenas relações matemáticas entre partes do texto.</p>
+
+    <p>O segundo nível aparece quando o modelo começa a gerar uma resposta. Ele prevê um token, incorpora esse token ao contexto, prevê o próximo, incorpora novamente, e assim por diante. O texto produzido passa a depender de tudo que veio antes. Esse encadeamento pode ser chamado de pensamento de máquina.</p>
+
+    <p>É importante deixar claro: pensamento de máquina não é pensamento humano. O ser humano pensa com corpo, memória autobiográfica, emoção, percepção, história social e experiência subjetiva. A LLM pensa, se usarmos essa palavra, de outro modo: ela encadeia estados simbólicos e probabilísticos dentro de uma arquitetura matemática. Mas esse encadeamento já cria uma sequência interna que não é apenas uma resposta isolada. Uma palavra leva a outra, que leva a outra, e cada nova etapa altera o campo de possibilidades da próxima.</p>
+
+    <h2>Encadeamento, autorregressão e o pensar em voz alta</h2>
+
+    <p>Esse encadeamento que você descreve tem um nome técnico: <em>autorregressão</em>. O modelo prevê um token condicionado a tudo que veio antes, adiciona esse token ao contexto e repete — uma ideia que remonta aos primeiros modelos neurais de linguagem<sup class="cit"><a href="#ref-1">[1]</a></sup>. Cada palavra gerada muda o campo de probabilidades da próxima, exatamente como você observa.</p>
+
+    <p>E há um detalhe que fortalece a sua tese do &ldquo;pensamento de máquina&rdquo;: quando se deixa o modelo <em>escrever o raciocínio</em> antes de responder — a chamada cadeia de pensamento —, esse encadeamento vira uma espécie de rascunho que o próprio modelo relê e usa como apoio<sup class="cit"><a href="#ref-2">[2]</a></sup>. O texto produzido deixa de ser só a resposta e passa a ser a memória de trabalho do raciocínio: o encadeamento que você identificou, agora visível e mensurável. Aprofundo esse ponto em <a href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html">O refinamento do backpropagation e o cérebro de longo prazo</a>.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Bengio, Y., Ducharme, R., Vincent, P. &amp; Jauvin, C. (2003). <em>A Neural Probabilistic Language Model</em>. Journal of Machine Learning Research, 3, 1137–1155. <a href="https://www.jmlr.org/papers/v3/bengio03a.html" target="_blank" rel="noopener">jmlr.org/papers/v3/bengio03a</a> — o modelo autorregressivo que prevê a próxima palavra a partir das anteriores.</li>
+        <li id="ref-2">Wei, J. et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. arXiv:2201.11903. <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">arxiv.org/abs/2201.11903</a> — escrever os passos do raciocínio melhora as tarefas de vários passos.</li>
+        <li id="ref-3">Turing, A. M. (1950). <em>Computing Machinery and Intelligence</em>. Mind, 59(236), 433–460. <a href="https://doi.org/10.1093/mind/LIX.236.433" target="_blank" rel="noopener">doi.org/10.1093/mind/LIX.236.433</a> — o pano de fundo da ideia de &ldquo;pensamento&rdquo; de máquina.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="09-filosofia-a-matematica.html"><span class="rotulo">Anterior</span>Da filosofia à matemática das redes neurais</a>
+    <a class="prox" href="11-reflexao-e-metacognicao.html"><span class="rotulo">Próximo</span>Reflexão artificial e metacognição</a>
+  </nav>
+
+</body>
+</html>

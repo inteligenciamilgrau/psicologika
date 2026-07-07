@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indução e dedução — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 4 — Lógica de Máquina</p>
+    <h1>Indução e dedução</h1>
+
+    <p>A discussão sobre consciência de máquina depende de uma pergunta anterior: as máquinas apenas repetem padrões ou conseguem produzir lógica nova? Essa pergunta é decisiva porque, se uma IA apenas repete aquilo que estava no treinamento, então ela é uma memória sofisticada. Mas se ela consegue aplicar regras inéditas, deduzir consequências e transformar isso em novo conhecimento, então estamos diante de algo mais próximo de uma inteligência em funcionamento.</p>
+
+    <p>No capítulo anterior, a hipótese era que a lógica indutiva das redes neurais poderia desencadear uma lógica dedutiva emergente. A crítica correta a essa ideia é perguntar: como uma certeza dedutiva poderia surgir de um sistema que, em sua base, é probabilístico e indutivo? Essa pergunta não deve ser ignorada. Pelo contrário, ela força a formulação de uma metodologia mais clara.</p>
+
+    <p>A lógica indutiva funciona por padrões. Ela observa muitos casos, encontra regularidades e estima o que provavelmente acontece em seguida. É o fundamento estatístico das redes neurais. Se muitas vezes uma sequência aparece como 0, 1, 2, 3, 4, 5, o sistema tende a completar com 6. Essa resposta pode estar correta, mas ela nasce de uma expectativa, não de uma necessidade absoluta.</p>
+
+    <p>A lógica dedutiva é diferente. Se as regras são verdadeiras e as premissas são verdadeiras, a conclusão é obrigatória. Por exemplo: se todo A que faz B vira C, e se D é um A que fez B, então D vira C. Não importa se A, B, C e D são palavras reais ou inventadas. O que importa é a estrutura da relação.</p>
+
+    <p>A pergunta então é: quando uma LLM resolve um problema desse tipo, ela está apenas imitando frases parecidas do treinamento ou está manipulando a estrutura lógica? Provavelmente existem elementos dos dois processos. A hipótese mais interessante é que a linguagem treinada forneceu ao modelo inúmeras estruturas condicionais, causais e inferenciais, e essas estruturas foram abstraídas o suficiente para serem aplicadas a casos novos.</p>
+
+    <h2>De Hume ao transformer: a velha tensão, agora medível</h2>
+
+    <p>Essa tensão entre indução e dedução é antiga. David Hume, no século XVIII, mostrou que nenhuma quantidade de observações garante <em>logicamente</em> a próxima: ver o sol nascer mil vezes não prova que nascerá amanhã — a indução é expectativa, não necessidade<sup class="cit"><a href="#ref-1">[1]</a></sup>. A dedução, ao contrário, carrega necessidade. A sua pergunta — se um sistema indutivo pode produzir dedução — é a versão moderna desse problema de mais de 250 anos.</p>
+
+    <p>E ela deixou de ser só filosófica. Pesquisadores mostraram que é possível <em>treinar</em> um transformer para raciocinar sobre regras dadas em linguagem, inclusive com entidades fictícias, encadeando premissas até a conclusão<sup class="cit"><a href="#ref-2">[2]</a></sup> — exatamente a habilidade que o seu experimento vai testar. A questão em aberto, que você formula bem, é se isso é dedução genuína sobre a estrutura ou uma imitação muito boa das formas condicionais vistas no treino.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Hume, D. (1748). <em>An Enquiry Concerning Human Understanding</em>. — o problema da indução: nenhuma observação garante logicamente o caso seguinte.</li>
+        <li id="ref-2">Clark, P., Tafjord, O. &amp; Richardson, K. (2020). <em>Transformers as Soft Reasoners over Language</em> (RuleTaker). IJCAI. arXiv:2002.05867. <a href="https://arxiv.org/abs/2002.05867" target="_blank" rel="noopener">arxiv.org/abs/2002.05867</a> — transformers treinados para deduzir sobre regras dadas, mesmo com entidades fictícias.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="14-conhecimento-novo-e-salto-evolutivo.html"><span class="rotulo">Anterior</span>Conhecimento novo e salto evolutivo</a>
+    <a class="prox" href="16-experimento-palavras-inventadas.html"><span class="rotulo">Próximo</span>O experimento das palavras inventadas</a>
+  </nav>
+
+</body>
+</html>

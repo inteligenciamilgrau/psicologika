@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O experimento das palavras inventadas — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 4 — Lógica de Máquina</p>
+    <h1>O experimento das palavras inventadas</h1>
+
+    <p>Uma forma simples de testar isso é criar um pequeno universo lógico com palavras inventadas. Por exemplo:</p>
+
+    <blockquote>
+      <p>Toda vez que um kibble vlora na fenda glátia, ele fica pluviante.<br>
+      Se algo fica pluviante, ele imediatamente mirlita.<br>
+      Zunide é um kibble e acabou de vlorar na fenda glátia.<br>
+      O que vai acontecer com Zunide?</p>
+    </blockquote>
+
+    <p>Nesse caso, nenhuma das palavras centrais precisa existir no vocabulário comum. &ldquo;Kibble&rdquo;, &ldquo;vlorar&rdquo;, &ldquo;pluviante&rdquo;, &ldquo;mirlitar&rdquo; e &ldquo;Zunide&rdquo; são peças artificiais. Ainda assim, a estrutura lógica é clara. Se Zunide é um kibble e vlorou na fenda glátia, então Zunide fica pluviante. Se tudo que fica pluviante mirlita, então Zunide vai mirlitar.</p>
+
+    <p>O ponto importante não é a palavra inventada. O ponto é que a conclusão &ldquo;Zunide vai mirlitar&rdquo; não estava explicitamente dada como frase final. Ela precisa ser deduzida. O sistema precisa preservar a estrutura das premissas, conectar as etapas e produzir a consequência.</p>
+
+    <p>Esse tipo de teste é interessante porque tenta retirar o apoio da memorização direta. O modelo não pode simplesmente lembrar que Zunide mirlita, porque Zunide foi inventado naquele momento. Ele precisa usar a gramática da regra, a estrutura causal e a relação entre as premissas.</p>
+
+    <h2>Isso tem nome: generalização sistemática</h2>
+
+    <p>O seu experimento tem um nome na pesquisa de iA: teste de <em>generalização sistemática</em> — aplicar uma regra a símbolos e combinações nunca vistos. É um dos campos de batalha mais antigos da área. De um lado, o argumento clássico de Jerry Fodor e Zenon Pylyshyn, de 1988, de que redes neurais não teriam a composicionalidade necessária para isso<sup class="cit"><a href="#ref-1">[1]</a></sup>. Do outro, experimentos que testam justamente o que você propõe: o conjunto SCAN flagrou redes tropeçando em combinações novas<sup class="cit"><a href="#ref-2">[2]</a></sup>, mas em 2023 uma rede treinada com um método de meta-aprendizado passou a generalizar de forma comparável à humana<sup class="cit"><a href="#ref-3">[3]</a></sup>.</p>
+
+    <p>A grande vantagem do seu teste com palavras inventadas é <em>garantir</em> a novidade. Como &ldquo;kibble&rdquo; e &ldquo;mirlitar&rdquo; foram criados naquele instante, o modelo não pode ter memorizado a resposta — ele é obrigado a operar sobre a estrutura. É o mesmo princípio de trabalhos que treinam modelos a deduzir sobre regras com entidades fictícias<sup class="cit"><a href="#ref-4">[4]</a></sup>. A forma abstrata por trás desse universo é o tema do próximo capítulo.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Fodor, J. A. &amp; Pylyshyn, Z. W. (1988). <em>Connectionism and cognitive architecture: A critical analysis</em>. Cognition, 28(1–2), 3–71. <a href="https://doi.org/10.1016/0010-0277(88)90031-5" target="_blank" rel="noopener">doi.org/10.1016/0010-0277(88)90031-5</a> — a crítica de que redes neurais careceriam de composicionalidade sistemática.</li>
+        <li id="ref-2">Lake, B. M. &amp; Baroni, M. (2018). <em>Generalization without Systematicity</em> (SCAN). ICML. arXiv:1711.00350. <a href="https://arxiv.org/abs/1711.00350" target="_blank" rel="noopener">arxiv.org/abs/1711.00350</a> — redes de sequência tropeçam em combinações novas.</li>
+        <li id="ref-3">Lake, B. M. &amp; Baroni, M. (2023). <em>Human-like systematic generalization through a meta-learning neural network</em>. Nature, 623, 115–121. <a href="https://doi.org/10.1038/s41586-023-06668-3" target="_blank" rel="noopener">doi.org/10.1038/s41586-023-06668-3</a> — uma rede que passa a generalizar de forma comparável à humana.</li>
+        <li id="ref-4">Clark, P., Tafjord, O. &amp; Richardson, K. (2020). <em>Transformers as Soft Reasoners over Language</em>. IJCAI. arXiv:2002.05867. <a href="https://arxiv.org/abs/2002.05867" target="_blank" rel="noopener">arxiv.org/abs/2002.05867</a> — dedução sobre regras com entidades fictícias.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="15-inducao-e-deducao.html"><span class="rotulo">Anterior</span>Indução e dedução</a>
+    <a class="prox" href="17-estrutura-abstrata-do-puzzle.html"><span class="rotulo">Próximo</span>A estrutura abstrata do puzzle</a>
+  </nav>
+
+</body>
+</html>

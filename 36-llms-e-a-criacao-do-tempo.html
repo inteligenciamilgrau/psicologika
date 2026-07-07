@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLMs e a criação do tempo — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>LLMs e a criação do tempo</h1>
+
+    <p>Vou compartilhar aqui uma forma de enxergar o ChatGPT — e as LLMs em geral — que eu não encontrei em livro nenhum. Saiu da minha própria cabeça, e é a primeira vez que a coloco no papel. A ideia é simples de sentir e difícil de esquecer depois que você a vê: <strong>uma LLM, quando gera texto, cria tempo</strong>. Para chegar lá, preciso primeiro te levar a um rio.</p>
+
+    <h2>O rio, o livro e o filme</h2>
+
+    <p>Imagine a América do Sul. No Peru, brota a nascente fininha de um riozinho. Essa nascente escorre, avança, engrossa, e vira um rio monstruoso, gigantesco, que desemboca do outro lado do continente — o rio Amazonas. Agora faça o seguinte: solte um barquinho de papel na nascente. Supondo que ele não enrosque no caminho, quanto tempo leva para atravessar o rio inteiro e chegar à foz? Cerca de <strong>14 a 18 dias</strong>. É bastante tempo — dá para maratonar uma série inteira. Guarde essa imagem: um rio que começa num ponto e termina em outro, e entre as duas pontas há uma distância que não é só de espaço. É uma distância de <em>tempo</em>.</p>
+
+    <p>Agora troque o rio por um livro. Você abre na primeira página — &ldquo;Era uma vez&rdquo; — e segue, página após página. O herói quase morre, foge, desarma a bomba, salva a mocinha, salva o planeta, e no fim fica todo mundo feliz. E você fica feliz junto. Mas repare: essa sua felicidade só foi possível porque você <em>começou do início</em>. O fim só faz sentido por causa de tudo que veio antes. É como em <em>Procurando Nemo</em>: o Nemo procura o pai desde a primeira cena, e a emoção do reencontro lá no fim depende inteiramente daquele começo. Uma piada é a mesma coisa — &ldquo;o que é um pontinho azul no céu? Um Uru-Blu&rdquo; — a graça só chega no fim, mas só funciona se você guardou a pergunta.</p>
+
+    <p>E aqui está o detalhe bonito: quando você chega ao fim do livro, você já <em>não lembra</em> de cada detalhe do começo. Lembra de pedaços, das partes importantes. Mas se você não lembrasse de <em>nada</em>, se lembrasse 0%, o fim não faria sentido. Aquela informação do começo ficou pendurada, flutuando em algum lugar dentro de você, sustentando o presente. O rio Amazonas, então, não é um bloco que existe só no agora: ele é um bloco <strong>constituído do próprio passado</strong>, como um cometa que arrasta um rastro atrás de si — e é esse rastro que conta a história de quem ele é, ali, no presente.</p>
+
+    <h2>Como o GPT funciona: palavra por palavra</h2>
+
+    <p>Segure a imagem do rio e venha ver como a máquina funciona. Você digita: &ldquo;Qual a capital do Brasil?&rdquo;. O GPT não trabalha exatamente com palavras — ele trabalha com <em>tokens</em>, pedaços de palavra (às vezes ele corta &ldquo;capital&rdquo; em &ldquo;capi&rdquo; e &ldquo;tal&rdquo;). Mas, para facilitar, vamos dizer que ele trabalha com palavras. Cada palavra vira um número, por uma espécie de dicionário interno: digamos que &ldquo;qual&rdquo; seja 15, &ldquo;capital&rdquo; seja 1003, e assim por diante. Esses números entram na rede neural — aquele emaranhado de bolinhas conectadas —, passam por uma porção de camadas, e do outro lado sai <em>um</em> número: a previsão da próxima palavra.</p>
+
+    <p>Suponha que a primeira palavra da resposta seja &ldquo;a&rdquo;. A rede devolve o número dela. E aí vem o pulo do gato: o GPT pega essa palavra que acabou de gerar, <strong>gruda no fim da pergunta</strong> e joga tudo de volta na entrada. Agora a entrada é &ldquo;Qual a capital do Brasil? A&rdquo;, e ele prevê a próxima: &ldquo;capital&rdquo;. Gruda de novo — &ldquo;Qual a capital do Brasil? A capital&rdquo; — e prevê a próxima: &ldquo;do&rdquo;. E assim, sem parar, palavra por palavra, até fechar: &ldquo;A capital do Brasil é Brasília&rdquo;. É exatamente isso que o ChatGPT faz, e é só isso. (Descrevi a mecânica das camadas e do dicionário em <a href="10-pensamento-de-maquina.html">O pensamento de máquina</a>.)</p>
+
+    <p>E o que isso tem a ver com o rio? Tudo. Cada palavra nova que ele coloca é como o rio crescendo mais um trecho. &ldquo;Qual a capital do Brasil?&rdquo; é a nascente; a cada palavra grudada, o rio se estende — e começa a existir uma coisa chamada <em>tempo</em>. Porque essas palavras não surgem soltas: elas aparecem <em>de acordo com o que veio antes</em>.</p>
+
+    <h2>A árvore de possibilidades</h2>
+
+    <p>Veja num exemplo mais solto. O texto é &ldquo;Mariana gosta de…&rdquo; e você pede para o GPT completar. Ele escolhe &ldquo;animais&rdquo;. Até aqui, tudo em aberto. Mas agora ele escolhe a próxima: se for &ldquo;selvagens&rdquo;, repare no que acontece — o futuro inteiro muda. &ldquo;Selvagens&rdquo; tem a ver com &ldquo;animais&rdquo;, que tem a ver com &ldquo;gosta&rdquo;, que tem a ver com &ldquo;Mariana&rdquo;. Os animais já não são quaisquer: agora podem ser uma onça, um leão, e as próximas palavras podem puxar para a África, para a Amazônia, para a floresta. Se, no lugar de &ldquo;selvagens&rdquo;, a palavra escolhida tivesse sido &ldquo;domésticos&rdquo;, a previsão iria para um lugar completamente outro: gato, cachorro, bolinha.</p>
+
+    <p>Cada palavra escolhida se conecta com as anteriores e, ao mesmo tempo, <em>se afasta</em> dos caminhos que não foram tomados. Escolheu &ldquo;gato&rdquo;? O texto pode seguir &ldquo;o gato fugiu para debaixo da cama quando chegou a visita&rdquo; — bem típico de gato. Escolheu &ldquo;cachorro&rdquo;? Pode seguir &ldquo;o cachorro adora bolinha&rdquo;, ou pulou em cima da visita — coisa de cachorro. A palavra, escolhida estatisticamente, amarra o presente ao passado e abre um futuro específico. &ldquo;Domésticos&rdquo; abre uma árvore para um lado; &ldquo;selvagens&rdquo;, outra árvore para o outro. É uma <strong>árvore de possibilidades</strong>, e o galho tomado depende de tudo que já foi escrito. O modelo de atenção é o que sustenta essas amarras — desmonto a mecânica em <a href="42-atencao-como-guia-do-backpropagation.html">O modelo de atenção como guia do backpropagation</a>.</p>
+
+    <h2>A grande sacada: somar cria o tempo</h2>
+
+    <p>Aqui está o coração da coisa. As redes neurais, antes, funcionavam sempre do mesmo jeito: você tinha uma entrada, ela passava pela rede, e saía uma resposta. Foto de um gato na entrada, a palavra &ldquo;gato&rdquo; na saída. Uma passada só, e acabou. Se tivesse muitas fotos, cada uma passava uma vez, e pronto — sem memória, sem continuidade.</p>
+
+    <p>O GPT faz diferente. A saída volta a ser entrada. A rede produz a saída S1; você junta a entrada com S1 e passa de novo, e sai S2; junta tudo e passa outra vez, e sai S3; e assim por diante — S1 + S2 + S3, somando, somando. E é <em>essa soma</em> que cria uma noção de tempo e de dependência. Porque o S2 não inventa um futuro independente do passado. O S3 não inventa um futuro independente do passado. Não é como bolas de bilhar, em que uma bate na outra e cada colisão é um evento isolado. É o contrário: quando chega no S3, ele se conecta com o S2, que se conecta com o S1, e todos juntos determinam o próximo, o S4. Essa acumulação amarrada <em>é</em> o tempo. (As redes recorrentes já ensaiavam essa ideia; por que só agora ela deslanchou, conto em <a href="42-atencao-como-guia-do-backpropagation.html">O modelo de atenção</a>.)</p>
+
+    <p>E então voltamos ao rio. Se a soma cria o tempo, o rio Amazonas — com suas duas pontas separadas por 14 dias de viagem — não é um bloco parado no presente. Ele é um bloco constituído do seu passado, o tal cometa arrastando o rastro que conta a sua história. E aqui vem a parte que me arrepia: <strong>nós somos assim também</strong>. Você que lê isto está existindo no presente, agora, neste exato instante. Mas a sua constituição são fragmentos de uma coisa histórica que vem acontecendo há muito tempo. Não somos do presente. Estamos no presente, feitos de passado.</p>
+
+    <h2>A peneira: a atenção que segura o passado</h2>
+
+    <p>Falta uma peça, e ela resolve um detalhe. Quando você termina o livro, não guardou o livro inteiro — guardou meia dúzia de coisas importantes. É aqui que entram os modelos de <em>atenção</em>. Imagine que o rio tem uma peneira, e nela ficam presas as coisas mais importantes que passaram. &ldquo;Selvagem&rdquo; estica as conexões para um lado; &ldquo;doméstico&rdquo;, para o outro; e uma vez que a atenção prendeu a palavra certa, é ela que passa a construir o presente — o que ficou atrás vira passado, o que vem à frente vira futuro.</p>
+
+    <p>Você, que chegou até aqui neste capítulo, é a prova viva disso. Quando começou a ler, passou um rio de informação. Agora, no fim, ficou só um punhado do que você achou importante — não o rio inteiro. Aquilo que você <em>prestou atenção</em> é o que ficou preso na peneira, e são justamente essas conexões, retidas no tempo, que sustentam o pensamento que você está tendo agora. A atenção é a peneira do rio.</p>
+
+    <h2>O cérebro faz igual: o som que entra no tempo</h2>
+
+    <p>Repare que, enquanto eu escrevo e você lê, isto não entra na sua cabeça como um bloco só. Entra aos poucos, palavra por palavra, no tempo. Do lado do cérebro: o som (ou a leitura) estimula os dendritos do neurônio, aquelas patinhas de entrada; dependendo do estímulo, passa ou não um sinal elétrico adiante, que se conecta com outras coisas. E aqui está o ponto: a primeira palavra entrou e levou uma onda de informação; a segunda entrou <em>já conectada</em> à primeira; a terceira, conectada à segunda; a quarta, à terceira. Tudo vai ficando retido e desperto ali dentro, e a cabeça vai juntando as coisas <em>com o tempo</em>. O aprendizado não é um evento do presente: ele soma, acumula, encadeia. (Contei o disparo elétrico em <a href="30-emergencia-do-qualia.html">Emergência do Qualia</a> e o neurônio real em <a href="39-neuronio-digital-e-uma-simplificacao.html">O neurônio digital é uma simplificação</a>.)</p>
+
+    <p>E o GPT faz exatamente a mesma coisa. Recebe um texto e vai gerando palavra por palavra, sequência por sequência, e cada pedaço que ele gera tem a ver com o passado e condiciona o futuro. Essa é a semelhança que me pareceu absurda de tão forte, e que eu não vi ninguém contar deste jeito: tanto a máquina quanto o cérebro constroem significado <em>acumulando um passado ao longo do tempo</em> — e, ao dobrar o presente de volta sobre si mesmos, os dois fazem a mesma coisa espantosa: criam o tempo. É mais um caso do fio que atravessa este livro inteiro — duas engenharias distintas, o mesmo gesto profundo.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">A leitura em forma de rio é minha; abaixo, a base técnica da máquina que ela descreve.</p>
+      <ol>
+        <li id="ref-1">Bengio, Y., Ducharme, R., Vincent, P. &amp; Jauvin, C. (2003). <em>A Neural Probabilistic Language Model</em>. Journal of Machine Learning Research, 3, 1137–1155. <a href="https://www.jmlr.org/papers/v3/bengio03a.html" target="_blank" rel="noopener">jmlr.org/papers/v3/bengio03a</a> — a geração autorregressiva: prever a próxima palavra a partir das anteriores e grudá-la de volta na entrada.</li>
+        <li id="ref-2">Elman, J. L. (1990). <em>Finding Structure in Time</em>. Cognitive Science, 14(2), 179–211. <a href="https://doi.org/10.1207/s15516709cog1402_1" target="_blank" rel="noopener">doi.org/10.1207/s15516709cog1402_1</a> — já em 1990, a ideia de que uma rede neural deve representar o tempo pelo seu efeito sobre o processamento, e não como um bloco parado.</li>
+        <li id="ref-3">Vaswani, A. et al. (2017). <em>Attention Is All You Need</em>. NeurIPS. arXiv:1706.03762. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arxiv.org/abs/1706.03762</a> — o modelo de atenção: a &ldquo;peneira&rdquo; que amarra cada palavra às anteriores.</li>
+        <li id="ref-4">Olsson, C. et al. (2022). <em>In-context Learning and Induction Heads</em>. Anthropic. arXiv:2209.11895. <a href="https://arxiv.org/abs/2209.11895" target="_blank" rel="noopener">arxiv.org/abs/2209.11895</a> — cabeças de atenção que olham para trás, para o passado do texto, para prever o que vem: a peneira em ação, medida nos pesos.</li>
+        <li id="ref-5">Hasson, U., Yang, E., Vallines, I., Heeger, D. J. &amp; Rubin, N. (2008). <em>A hierarchy of temporal receptive windows in human cortex</em>. Journal of Neuroscience, 28(10), 2539–2550. <a href="https://doi.org/10.1523/JNEUROSCI.5487-07.2008" target="_blank" rel="noopener">doi.org/10.1523/JNEUROSCI.5487-07.2008</a> — o cérebro integra a informação ao longo do tempo, acumulando o passado para dar sentido ao presente.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">A leitura em forma de rio é minha; estes estudaram, pelo lado da máquina e pelo lado do cérebro, o tempo que ela descreve.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">JE</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Jeffrey Elman</span></div>
+          <p class="autor-tag">Cientista cognitivo (1948–2018)</p>
+          <p class="autor-bio">Em &ldquo;Finding Structure in Time&rdquo; (1990), defendeu que uma rede neural não deve tratar o tempo como uma dimensão a mais, mas deixar que o passado molde, a cada passo, o processamento do presente. É a intuição deste capítulo, décadas antes das LLMs. <span class="aqui">No capítulo: a ideia de que a rede constrói o tempo somando o passado.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">UH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Uri Hasson</span></div>
+          <p class="autor-tag">Neurocientista (Princeton)</p>
+          <p class="autor-bio">Mostrou que o córtex tem &ldquo;janelas temporais&rdquo; em hierarquia: áreas que integram em frações de segundo e áreas que acumulam ao longo de minutos, amarrando o passado ao presente para dar sentido a uma frase, uma história, um filme. <span class="aqui">No capítulo: o cérebro acumulando o rio de informação no tempo.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="35-backpropagation-e-auto-organizacao.html"><span class="rotulo">Anterior</span>O segredo do backpropagation e a auto-organização</a>
+    <a class="prox" href="37-cerebro-e-senciencia-dados-para-experiencia.html"><span class="rotulo">Próximo</span>O cérebro e a senciência: do treinamento com dados ao treinamento pela experiência</a>
+  </nav>
+
+</body>
+</html>

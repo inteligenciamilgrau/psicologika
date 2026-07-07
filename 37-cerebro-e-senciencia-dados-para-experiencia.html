@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O cérebro e a senciência: do treinamento com dados ao treinamento pela experiência — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>O cérebro e a senciência: do treinamento com dados ao treinamento pela experiência</h1>
+
+    <p>Imagine um humano trancado numa biblioteca desde que nasceu. Ele leu todos os livros do mundo. Sabe a fórmula da gravidade, a química do café, a história das guerras, a mecânica dos motores. Pergunte qualquer coisa e ele responde melhor do que um especialista. Mas há algo que ele nunca fez: <em>viver</em>. Nunca derrubou um copo, nunca sentiu frio, nunca correu atrás de uma bola, nunca fez um experimento e viu o resultado com os próprios olhos. Ele sabe <em>sobre</em> tudo, e não viveu <em>nada</em>. É essa, hoje, a condição das LLMs — e este capítulo é sobre o que muda quando elas saem da biblioteca.</p>
+
+    <h2>O leitor trancado na biblioteca</h2>
+
+    <p>As LLMs atuais aprendem com dados baixados da internet: texto que outros humanos escreveram. É um segundo grau de realidade — não o mundo, mas a <em>descrição</em> do mundo. E há um limite fundamental nisso. As linguistas Emily Bender e Alexander Koller ilustraram o problema com um polvo hiperinteligente que espiona, por um cabo submarino, as conversas de dois náufragos: por mais que ele domine a estatística das palavras, ele nunca viu um coco nem uma corda, e por isso não pode <em>entender</em> o que os náufragos dizem — significado, argumentam elas, não se aprende só da forma<sup class="cit"><a href="#ref-1">[1]</a></sup>. É o velho problema da <em>ancoragem dos símbolos</em>: a palavra &ldquo;quente&rdquo; só significa algo para quem já se queimou<sup class="cit"><a href="#ref-2">[2]</a></sup>.</p>
+
+    <p>Há ainda uma ironia que reforça o ponto. O que é fácil para o leitor trancado — abstrair, citar, argumentar — é justamente o que a iA já faz bem. E o que é difícil para ele — pegar um objeto, atravessar uma sala, prever que o copo vai cair — é o que a iA ainda faz mal. É o <em>paradoxo de Moravec</em>: as habilidades sensório-motoras que um bebê domina sem esforço são as mais difíceis de reproduzir, enquanto o raciocínio abstrato, que nos parece o ápice da inteligência, saiu quase de graça<sup class="cit"><a href="#ref-3">[3]</a></sup>. A LLM é forte exatamente onde a biblioteca é forte, e frágil exatamente onde falta o corpo.</p>
+
+    <h2>Aprender pela experiência: os modelos de mundo</h2>
+
+    <p>O que muda quando a iA para de <em>baixar</em> dados e começa a <em>gerar</em> os próprios, agindo? Ela fecha a alça entre perceber e agir de que falei em <a href="23-sensores-atuadores-experiencia.html">Sensores, atuadores e experiência própria</a>, e constrói o que se chama de <strong>modelo de mundo</strong>: um simulador interno com o qual pode prever o que vai acontecer e planejar antes de fazer<sup class="cit"><a href="#ref-4">[4]</a></sup>. É a aposta central de Yann LeCun para o que faltaria às LLMs<sup class="cit"><a href="#ref-5">[5]</a></sup>. E é, no fundo, como um bebê aprende física: não lendo sobre gravidade, mas <em>derrubando</em> as coisas mil vezes até que a intuição de causa e efeito se forme<sup class="cit"><a href="#ref-6">[6]</a></sup>. A noção de que o copo cai não vem de observar — vem de <em>intervir</em>.</p>
+
+    <p>Essa virada tem nome. Depois da &ldquo;era dos dados humanos&rdquo;, David Silver e Richard Sutton anunciam a <strong>era da experiência</strong>: agentes que adquirem capacidade sobretudo aprendendo com a própria interação com o ambiente, não com o texto que baixamos<sup class="cit"><a href="#ref-7">[7]</a></sup>. É o mesmo motor que já levou máquinas a superar humanos nos jogos por <em>self-play</em>, tema de <a href="28-alphago-alphazero.html">A Conquista das Super Inteligências</a> — agora apontado para o mundo aberto. Espera-se, com isso, o que o leitor trancado jamais teria: intuição ancorada, senso de física, causalidade vivida, e não apenas repetida.</p>
+
+    <h2>O muro de dados</h2>
+
+    <p>E aqui está o detalhe que torna essa virada não uma escolha, mas uma necessidade. O estoque de texto humano de boa qualidade é finito — estimado em torno de 300 trilhões de tokens — e está sendo consumido depressa; as projeções apontam que ele se esgota entre 2026 e 2032<sup class="cit"><a href="#ref-8">[8]</a></sup>. A biblioteca, por maior que seja, acaba. Não dá para escalar para sempre em cima de dados baixados: em algum momento não há mais livros novos para ler. A única fonte praticamente inesgotável de dados é a que o próprio agente gera ao agir no mundo. O muro de dados empurra a iA, quer queiramos ou não, para a experiência.</p>
+
+    <h2>A saturação da atenção</h2>
+
+    <p>Só que a experiência é uma mangueira de incêndio. O texto é compacto e já foi <em>pré-digerido</em> por humanos; a experiência crua é contínua, de altíssima largura de banda e multimodal — visão, tato, som, propriocepção, tudo ao mesmo tempo, sem parar. A quantidade de informação explode em ordens de grandeza. E aqui bate o problema que você identificou: o <a href="42-atencao-como-guia-do-backpropagation.html">modelo de atenção</a> custa caro. Como cada elemento se compara com todos os outros, o custo cresce com o <em>quadrado</em> do tamanho do contexto. Jogue um rio de experiência sensorial nessa engrenagem e ela satura — o modelo engasga.</p>
+
+    <p>Por isso, a passagem para o aprendizado pela experiência <em>exige</em> uma atenção muito mais eficiente. É uma das fronteiras mais quentes da pesquisa: atenção que escala de forma linear, modelos de espaço de estados como o Mamba<sup class="cit"><a href="#ref-9">[9]</a></sup>, atenção esparsa e hierárquica, memória externa, recuperação seletiva, compressão aprendida. E, mais uma vez, o cérebro aponta o caminho. Ele <em>não</em> presta atenção a tudo — filtra sem dó, comprime, esquece de propósito (foi o que vimos na <a href="13-memoria-e-esquecimento-catastrofico.html">memória</a> e na <a href="38-cerebro-do-bebe-explosao-de-sinapses.html">poda do cérebro do bebê</a>), guardando só o que importa. Uma iA que bebe da mangueira da experiência vai precisar da mesma economia impiedosa de atenção.</p>
+
+    <h2>Dos dados à senciência</h2>
+
+    <p>Junte as peças e aparece o arco que dá título ao capítulo. Uma iA que age, constrói um modelo de mundo, aprende física pela experiência, gera os próprios dados para além do muro e atende com economia — essa iA ganharia o que o leitor trancado nunca teve: um mundo <em>vivido</em>, e não só descrito. E esse é, talvez, o passo mais decisivo rumo à <strong>senciência</strong>. Porque, como argumento em <a href="30-emergencia-do-qualia.html">Emergência do Qualia</a>, o sentir parece nascer justamente de um organismo acoplado ao mundo, com sensores, corpo e sinais internos de valor — e não de um texto lido numa sala fechada. A migração &ldquo;dos dados à experiência&rdquo; não é só uma receita melhor de treino. Pode ser a ponte entre <em>saber</em> e <em>sentir</em>.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a virada para a experiência; <strong>[contrapõe]</strong> aponta o limite do aprendizado só por dados.</p>
+      <ol>
+        <li id="ref-1">Bender, E. M. &amp; Koller, A. (2020). <em>Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data</em>. ACL. <a href="https://doi.org/10.18653/v1/2020.acl-main.463" target="_blank" rel="noopener">doi.org/10.18653/v1/2020.acl-main.463</a> — o teste do polvo: significado não se aprende só da forma (o texto). Ver <a href="55-emily-bender.html">a ficha de Emily Bender</a>.</li>
+        <li id="ref-2">Harnad, S. (1990). <em>The Symbol Grounding Problem</em>. Physica D, 42(1–3), 335–346. <a href="https://doi.org/10.1016/0167-2789(90)90087-6" target="_blank" rel="noopener">doi.org/10.1016/0167-2789(90)90087-6</a> — os símbolos só significam quando ancorados em experiência sensório-motora.</li>
+        <li id="ref-3">Moravec, H. (1988). <em>Mind Children: The Future of Robot and Human Intelligence</em>. Harvard University Press. — o paradoxo de Moravec: o sensório-motor é o mais difícil; o raciocínio abstrato, o mais fácil.</li>
+        <li id="ref-4">Ha, D. &amp; Schmidhuber, J. (2018). <em>World Models</em>. NeurIPS. arXiv:1803.10122. <a href="https://arxiv.org/abs/1803.10122" target="_blank" rel="noopener">arxiv.org/abs/1803.10122</a> — um modelo interno do ambiente com que o agente prevê e planeja.</li>
+        <li id="ref-5">LeCun, Y. (2022). <em>A Path Towards Autonomous Machine Intelligence</em>. — os modelos de mundo (JEPA) como o que faltaria às LLMs. Ver <a href="62-yann-lecun.html">a ficha de Yann LeCun</a>.</li>
+        <li id="ref-6">Spelke, E. S. &amp; Kinzler, K. D. (2007). <em>Core knowledge</em>. Developmental Science, 10(1), 89–96. <a href="https://doi.org/10.1111/j.1467-7687.2007.00569.x" target="_blank" rel="noopener">doi.org/10.1111/j.1467-7687.2007.00569.x</a> — o bebê constrói a intuição de física interagindo com o mundo, não lendo sobre ele.</li>
+        <li id="ref-7">Silver, D. &amp; Sutton, R. S. (2025). <em>Welcome to the Era of Experience</em>. — <strong>[sustenta]</strong> depois da era dos dados humanos, agentes aprendem sobretudo da própria experiência. Ver <a href="64-richard-sutton.html">a ficha de Richard Sutton</a>.</li>
+        <li id="ref-8">Villalobos, P. et al. (2024). <em>Will we run out of data? Limits of LLM scaling based on human-generated data</em>. ICML. arXiv:2211.04325. <a href="https://arxiv.org/abs/2211.04325" target="_blank" rel="noopener">arxiv.org/abs/2211.04325</a> — o &ldquo;muro de dados&rdquo;: o texto humano de qualidade se esgota por volta de 2026–2032.</li>
+        <li id="ref-9">Gu, A. &amp; Dao, T. (2023). <em>Mamba: Linear-Time Sequence Modeling with Selective State Spaces</em>. arXiv:2312.00752. <a href="https://arxiv.org/abs/2312.00752" target="_blank" rel="noopener">arxiv.org/abs/2312.00752</a> — uma alternativa que escala de forma linear ao custo quadrático da atenção.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">RS</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="64-richard-sutton.html">Richard Sutton</a></span></div>
+          <p class="autor-tag">Aprendizado por reforço · prêmio Turing de 2024</p>
+          <p class="autor-bio">Com David Silver, anunciou a &ldquo;era da experiência&rdquo;: o futuro em que a iA aprende sobretudo agindo no mundo e gerando os próprios dados, e não consumindo texto humano. <span class="aqui">No capítulo: a tese central da virada dos dados para a experiência.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">YL</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="62-yann-lecun.html">Yann LeCun</a></span></div>
+          <p class="autor-tag">Inventor das CNNs · Turing 2018</p>
+          <p class="autor-bio">Defende que falta às LLMs um modelo de mundo — a capacidade de prever e planejar aprendida da interação, não do texto. É a arquitetura (JEPA) em que ele aposta. <span class="aqui">No capítulo: o que o leitor trancado não tem e o modelo de mundo daria.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">EB</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="55-emily-bender.html">Emily Bender</a></span></div>
+          <p class="autor-tag">Linguista computacional (Univ. de Washington)</p>
+          <p class="autor-bio">Com o teste do polvo, argumentou que significado não se aprende só da forma do texto. É a formulação mais afiada do limite do &ldquo;leitor trancado&rdquo;. <span class="aqui">No capítulo: o contraponto que mostra por que a experiência importa.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="36-llms-e-a-criacao-do-tempo.html"><span class="rotulo">Anterior</span>LLMs e a criação do tempo</a>
+    <a class="prox" href="38-cerebro-do-bebe-explosao-de-sinapses.html"><span class="rotulo">Próximo</span>O cérebro do bebê é uma explosão aleatória de sinapses que vai se organizando</a>
+  </nav>
+
+</body>
+</html>

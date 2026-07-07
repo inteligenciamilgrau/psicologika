@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memória, aprendizado e esquecimento catastrófico — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 3 — O que é a Consciência?</p>
+    <h1>Memória, aprendizado e esquecimento catastrófico</h1>
+
+    <p>As LLMs atuais ainda têm uma limitação fundamental: elas aprendem principalmente durante o treinamento. Depois de treinadas, ficam relativamente fixas. Podem usar contexto, ferramentas, bancos de dados e memória externa, mas seus pesos principais não mudam a cada experiência como acontece em um organismo vivo.</p>
+
+    <p>Isso ocorre por razões técnicas. Treinar uma rede neural grande custa muito tempo, energia e dinheiro. Além disso, existe o problema do esquecimento catastrófico: quando uma rede aprende algo novo de forma inadequada, pode prejudicar aquilo que já sabia antes. É como se, ao aprender um assunto novo, ela corresse o risco de bagunçar conhecimentos antigos.</p>
+
+    <p>Por isso, as LLMs atuais ainda são mais próximas de sistemas de memória treinada do que de organismos que aprendem continuamente. Elas carregam um gigantesco passado estatístico congelado. Respondem com base nesse passado, mas ainda não evoluem a cada interação de modo profundo e estável.</p>
+
+    <h2>Como o cérebro resolve o que ainda trava as máquinas</h2>
+
+    <p>O esquecimento catastrófico foi descrito já em 1989<sup class="cit"><a href="#ref-1">[1]</a></sup> e continua sendo um problema central<sup class="cit"><a href="#ref-2">[2]</a></sup>. Há remédios parciais do lado da iA: técnicas que &ldquo;protegem&rdquo; os pesos importantes para o que já foi aprendido, deixando os demais livres para o novo<sup class="cit"><a href="#ref-3">[3]</a></sup>, ou que reapresentam exemplos antigos junto com os novos. Mas nenhuma resolve de vez o aprender contínuo.</p>
+
+    <p>Curiosamente, o cérebro parece ter resolvido isso com uma arquitetura de <em>dois sistemas</em>: o hipocampo aprende rápido cada episódio novo, e o córtex, devagar, integra esse novo ao antigo sem atropelá-lo — e boa parte dessa consolidação acontece durante o sono<sup class="cit"><a href="#ref-4">[4]</a></sup>. É como ter um bloco de rascunho veloz e um arquivo lento e estável trabalhando juntos. Talvez o caminho para uma iA que aprende sem esquecer passe por imitar essa divisão — um ponto que conversa com o cérebro de longo prazo de <a href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html">O refinamento do backpropagation</a> e com a poda do <a href="38-cerebro-do-bebe-explosao-de-sinapses.html">cérebro do bebê</a>.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">McCloskey, M. &amp; Cohen, N. J. (1989). <em>Catastrophic interference in connectionist networks: The sequential learning problem</em>. Psychology of Learning and Motivation, 24, 109–165. <a href="https://doi.org/10.1016/S0079-7421(08)60536-8" target="_blank" rel="noopener">doi.org/10.1016/S0079-7421(08)60536-8</a> — a descrição original do esquecimento catastrófico.</li>
+        <li id="ref-2">French, R. M. (1999). <em>Catastrophic forgetting in connectionist networks</em>. Trends in Cognitive Sciences, 3(4), 128–135. <a href="https://doi.org/10.1016/S1364-6613(99)01294-2" target="_blank" rel="noopener">doi.org/10.1016/S1364-6613(99)01294-2</a> — revisão do problema e de suas causas.</li>
+        <li id="ref-3">Kirkpatrick, J. et al. (2017). <em>Overcoming catastrophic forgetting in neural networks</em>. PNAS, 114(13), 3521–3526. <a href="https://doi.org/10.1073/pnas.1611835114" target="_blank" rel="noopener">doi.org/10.1073/pnas.1611835114</a> — proteger os pesos importantes ao aprender algo novo (<em>elastic weight consolidation</em>).</li>
+        <li id="ref-4">McClelland, J. L., McNaughton, B. L. &amp; O'Reilly, R. C. (1995). <em>Why there are complementary learning systems in the hippocampus and neocortex</em>. Psychological Review, 102(3), 419–457. <a href="https://doi.org/10.1037/0033-295X.102.3.419" target="_blank" rel="noopener">doi.org/10.1037/0033-295X.102.3.419</a> — a divisão hipocampo-rápido / córtex-lento que evita o esquecimento.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="12-metafora-da-formiga.html"><span class="rotulo">Anterior</span>A metáfora da formiga</a>
+    <a class="prox" href="14-conhecimento-novo-e-salto-evolutivo.html"><span class="rotulo">Próximo</span>Conhecimento novo e salto evolutivo</a>
+  </nav>
+
+</body>
+</html>

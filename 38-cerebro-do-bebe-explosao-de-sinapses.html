@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O cérebro do bebê é uma explosão aleatória de sinapses que vai se organizando — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>O cérebro do bebê é uma explosão aleatória de sinapses que vai se organizando</h1>
+
+    <p>Há um fato sobre o cérebro do bebê que contraria toda a intuição: ele tem <em>mais</em> conexões do que o cérebro de um adulto. Crescer, em boa parte, não é acrescentar — é <strong>perder</strong>. O recém-nascido chega ao mundo com um cérebro que dispara para tudo quanto é lado, superconectado e barulhento, um emaranhado que liga quase tudo a quase tudo. E aprender, nos primeiros anos, é sobretudo a arte de aparar esse excesso: reforçar os poucos caminhos que importam e desligar a multidão que não serve. Este capítulo é sobre esse gesto — e sobre como ele reaparece, quase idêntico, na maneira como uma rede neural sai do puro ruído para a competência.</p>
+
+    <h2>O cérebro que dispara para tudo</h2>
+
+    <p>No primeiro ano de vida, o número de sinapses no cérebro de um bebê se multiplica mais de dez vezes<sup class="cit"><a href="#ref-1">[1]</a></sup>. É uma superprodução deliberada: o cérebro fabrica conexões em excesso, muito além do que vai usar. E, antes mesmo de ter dados do mundo para processar, ele já se agita sozinho. A retina de um feto, com os olhos ainda fechados, dispara <em>ondas espontâneas</em> de atividade que ajudam a fiar o sistema visual<sup class="cit"><a href="#ref-1">[1]</a></sup>. O cérebro em formação gera o próprio barulho para começar a se organizar. No começo, ele é justamente isso que os neurocientistas descrevem: um sistema que se ativa por todo lado, indiscriminado, exuberante, sem saber ainda o que é sinal e o que é ruído.</p>
+
+    <h2>Aprender é podar</h2>
+
+    <p>O que transforma esse caos em mente é uma regra simples e implacável: <strong>"use ou perca"</strong>. As sinapses que são ativadas com frequência se fortalecem; as que ficam ociosas enfraquecem e acabam eliminadas. Entre mais ou menos os 2 e os 10 anos, cerca de <strong>metade</strong> das sinapses excedentes é podada<sup class="cit"><a href="#ref-2">[2]</a></sup>. A experiência é o cinzel: é ela que decide, conexão por conexão, o que fica e o que cai. Já em 1976, Jean-Pierre Changeux propôs que o aprendizado seria, no fundo, uma <em>estabilização seletiva</em> — a natureza superproduz e depois escolhe<sup class="cit"><a href="#ref-3">[3]</a></sup>. Aprender, nesse sentido, é esculpir por subtração.</p>
+
+    <p>E há uma segunda peça, tão importante quanto a poda: o cérebro precisa aprender a <strong>inibir</strong>. À medida que amadurecem os circuitos inibitórios (movidos pelo neurotransmissor GABA), o cérebro ganha a capacidade de calar o barulho e ativar apenas o que interessa — e é justamente essa maturação da inibição que abre e fecha as "janelas críticas" do desenvolvimento<sup class="cit"><a href="#ref-4">[4]</a></sup>. Refinar é, ao mesmo tempo, fortalecer o útil e silenciar o resto.</p>
+
+    <p>O exemplo mais bonito disso está na fala. Até por volta dos 6 meses, um bebê distingue <em>todos</em> os sons de <em>todas</em> as línguas do mundo. Aos 12 meses, ele já perdeu a capacidade de ouvir as distinções que a sua língua não usa — enquanto fica cada vez mais afiado nas que usa<sup class="cit"><a href="#ref-5">[5]</a></sup>. Um bebê japonês deixa de ouvir a diferença entre o "r" e o "l" do inglês não por falta de treino, mas porque o cérebro <em>podou</em> uma percepção que o seu mundo não pedia. Você se torna especialista no seu ambiente perdendo a capacidade de perceber os outros. (Esse afinamento humano é lentíssimo: como vimos em <a href="33-macacos-e-humanos-qualidade-das-conexoes.html">Macacos e humanos</a>, a poda dos espinhos no nosso córtex pré-frontal se estende até a terceira década de vida.)</p>
+
+    <h2>A rede neural também começa no caos</h2>
+
+    <p>Agora troque o tecido nervoso por uma rede neural, e a história rima de um jeito espantoso. Uma rede recém-criada tem os pesos das conexões <strong>sorteados ao acaso</strong> — é puro ruído. Peça qualquer coisa a ela nesse estado e a resposta é lixo: todas as opções saem mais ou menos igualmente prováveis. É o equivalente digital do bebê que dispara para tudo — indiferenciado, sem viés, exuberante.</p>
+
+    <p>Mas — e aqui está o pulo do gato — esse acaso precisa ser <em>calibrado</em>. Se você zerar todos os pesos, a rede fica simétrica e não aprende nada. Se sortear valores grandes demais, os sinais explodem ao atravessar as camadas; pequenos demais, eles somem. Por isso existem receitas cuidadosas de <strong>inicialização</strong>: a de Xavier Glorot, que ajusta a "força" do sorteio para que a variância do sinal se mantenha estável de camada em camada<sup class="cit"><a href="#ref-6">[6]</a></sup>, e a de Kaiming He, adaptada aos neurônios do tipo ReLU<sup class="cit"><a href="#ref-7">[7]</a></sup>. Assim como no cérebro em formação, o que se quer é uma atividade aleatória <em>na medida certa</em> — alta o bastante para se propagar, contida o bastante para poder ser moldada.</p>
+
+    <p>Nas LLMs vale o mesmo, em escala monstruosa. Um transformer com bilhões de parâmetros nasce com números minúsculos e aleatórios, com um cuidado extra de reduzir a "voz" das camadas conforme a rede fica mais profunda, para que o sinal sobreviva à travessia de dezenas delas. No instante do nascimento, o modelo é a ignorância máxima: prevê qualquer próxima palavra com quase a mesma chance. E, como o cérebro do bebê, ele é <em>superparametrizado</em> de propósito — tem muito mais conexões do que precisará usar.</p>
+
+    <h2>Do caos ao ajuste: o treino como poda</h2>
+
+    <p>O que vem depois é o análogo direto do desenvolvimento. O treino — via <a href="35-backpropagation-e-auto-organizacao.html">backpropagation</a> — faz o que a infância faz: fortalece os pesos que ajudam a prever e empurra os inúteis para perto do zero. Técnicas de regularização (como o <em>weight decay</em>) pressionam ativamente as conexões ociosas a encolher — um "use ou perca" matemático. O <em>dropout</em> desliga neurônios ao acaso durante o treino, para que a rede não dependa demais de nenhum caminho — um eco da redundância e da robustez do cérebro.</p>
+
+    <p>Mas o paralelo mais arrepiante é a <strong>Hipótese do Bilhete Premiado</strong>. Jonathan Frankle e Michael Carbin mostraram que, dentro de uma rede grande inicializada ao acaso, esconde-se uma <em>sub-rede</em> pequena — um "bilhete premiado" — que, treinada sozinha a partir do seu sorteio original, iguala o desempenho da rede inteira<sup class="cit"><a href="#ref-8">[8]</a></sup>. Dá para podar 80%, 90% dos pesos e não perder quase nada. É <em>exatamente</em> a história do cérebro do bebê: superproduza um emaranhado gigantesco e fique só com a sub-rede esparsa que funciona. Aliás, a ideia de podar redes é antiga — já em 1990 havia um método com o nome nada sutil de "Dano Cerebral Ótimo"<sup class="cit"><a href="#ref-9">[9]</a></sup>. Tanto a natureza quanto a máquina começam com excesso e aprendem selecionando.</p>
+
+    <h2>Duas engenharias, o mesmo gesto</h2>
+
+    <p>É o fio que atravessa este livro reaparecendo mais uma vez. Um cérebro e uma rede neural partem, os dois, de uma conectividade aleatória e exuberante, e se tornam inteligentes não só somando, mas <strong>selecionando e podando</strong> — refinando um começo caótico até virar um instrumento afinado. Começar do ruído, ricamente conectado e sem viés, não é um defeito: é a pré-condição para ser moldado pelo mundo.</p>
+
+    <p>Sejamos justos com os limites da analogia. Os mecanismos diferem — a poda biológica é molecular, guiada pela atividade ao longo de anos e imersa num corpo, enquanto a poda da rede é uma otimização de treino sobre um erro global. E há uma ressalva que corta fundo: o cérebro do bebê <em>não</em> é, no rigor, uma folha aleatória em branco. Ele já vem ricamente estruturado pela evolução — o genoma pré-cabeia muita coisa antes de qualquer experiência<sup class="cit"><a href="#ref-10">[10]</a></sup>. Uma rede neural, essa sim, começa mais perto do acaso puro. A diferença é instrutiva: talvez uma parte do que damos "de graça" à máquina em dados e computação, a natureza já tenha nos dado em bilhões de anos de evolução. Ainda assim, o gesto abstrato é o mesmo, e é dos mais profundos que existem: comece com mais do que precisa, deixe a experiência aparar o excesso, guarde o que importa. É o que faz um bebê aprender a ouvir a própria língua — e o que faz um <a href="35-backpropagation-e-auto-organizacao.html">emaranhado de números aleatórios</a> aprender a escrever.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia o paralelo entre desenvolvimento e treino; <strong>[contrapõe]</strong> serve de crítica.</p>
+      <ol>
+        <li id="ref-1">Katz, L. C. &amp; Shatz, C. J. (1996). <em>Synaptic activity and the construction of cortical circuits</em>. Science, 274(5290), 1133–1138. <a href="https://doi.org/10.1126/science.274.5290.1133" target="_blank" rel="noopener">doi.org/10.1126/science.274.5290.1133</a> — <strong>[sustenta]</strong> superprodução de sinapses e atividade espontânea (como as ondas retinianas) fiando os circuitos antes da experiência.</li>
+        <li id="ref-2">Huttenlocher, P. R. &amp; Dabholkar, A. S. (1997). <em>Regional differences in synaptogenesis in human cerebral cortex</em>. Journal of Comparative Neurology, 387(2), 167–178. <a href="https://doi.org/10.1002/(SICI)1096-9861(19971020)387:2%3C167::AID-CNE1%3E3.0.CO;2-Z" target="_blank" rel="noopener">doi.org/10.1002/(SICI)1096-9861(19971020)387:2</a> — <strong>[sustenta]</strong> a densidade sináptica dispara na infância e depois é podada; regiões diferentes amadurecem em tempos diferentes.</li>
+        <li id="ref-3">Changeux, J.-P. &amp; Danchin, A. (1976). <em>Selective stabilisation of developing synapses as a mechanism for the specification of neuronal networks</em>. Nature, 264, 705–712. <a href="https://doi.org/10.1038/264705a0" target="_blank" rel="noopener">doi.org/10.1038/264705a0</a> — <strong>[sustenta]</strong> o aprendizado como estabilização seletiva: superproduzir e depois escolher.</li>
+        <li id="ref-4">Hensch, T. K. (2005). <em>Critical period plasticity in local cortical circuits</em>. Nature Reviews Neuroscience, 6, 877–888. <a href="https://doi.org/10.1038/nrn1787" target="_blank" rel="noopener">doi.org/10.1038/nrn1787</a> — <strong>[sustenta]</strong> a maturação da inibição (GABA) permite ao cérebro silenciar o ruído e abre/fecha as janelas críticas.</li>
+        <li id="ref-5">Kuhl, P. K. (2004). <em>Early language acquisition: cracking the speech code</em>. Nature Reviews Neuroscience, 5, 831–843. <a href="https://doi.org/10.1038/nrn1533" target="_blank" rel="noopener">doi.org/10.1038/nrn1533</a> — <strong>[sustenta]</strong> o estreitamento perceptivo: o bebê perde a percepção de fonemas que a sua língua não usa.</li>
+        <li id="ref-6">Glorot, X. &amp; Bengio, Y. (2010). <em>Understanding the difficulty of training deep feedforward neural networks</em>. AISTATS. <a href="https://proceedings.mlr.press/v9/glorot10a.html" target="_blank" rel="noopener">proceedings.mlr.press/v9/glorot10a</a> — <strong>[sustenta]</strong> a inicialização de Xavier: sortear os pesos preservando a variância do sinal entre as camadas.</li>
+        <li id="ref-7">He, K., Zhang, X., Ren, S. &amp; Sun, J. (2015). <em>Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification</em>. ICCV. arXiv:1502.01852. <a href="https://arxiv.org/abs/1502.01852" target="_blank" rel="noopener">arxiv.org/abs/1502.01852</a> — <strong>[sustenta]</strong> a inicialização de He, adaptada aos neurônios ReLU.</li>
+        <li id="ref-8">Frankle, J. &amp; Carbin, M. (2019). <em>The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks</em>. ICLR. arXiv:1803.03635. <a href="https://arxiv.org/abs/1803.03635" target="_blank" rel="noopener">arxiv.org/abs/1803.03635</a> — <strong>[sustenta]</strong> uma sub-rede esparsa dentro da rede aleatória iguala a rede inteira: superproduzir e podar até o "bilhete premiado".</li>
+        <li id="ref-9">LeCun, Y., Denker, J. S. &amp; Solla, S. A. (1990). <em>Optimal Brain Damage</em>. NeurIPS. <a href="https://proceedings.neurips.cc/paper/1989/hash/6c9882bbac1c7093bd25041881277658-Abstract.html" target="_blank" rel="noopener">proceedings.neurips.cc</a> — <strong>[sustenta]</strong> um dos primeiros métodos de poda de redes: remover conexões pouco importantes sem perder desempenho.</li>
+        <li id="ref-10">Zador, A. M. (2019). <em>A critique of pure learning and what artificial neural networks can learn from animal brains</em>. Nature Communications, 10, 3770. <a href="https://doi.org/10.1038/s41467-019-11786-6" target="_blank" rel="noopener">doi.org/10.1038/s41467-019-11786-6</a> — <strong>[contrapõe]</strong> o cérebro não parte de um sorteio em branco: o genoma pré-estrutura muita coisa antes de qualquer experiência.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">PH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Peter Huttenlocher</span></div>
+          <p class="autor-tag">Neurologista pediátrico (1931–2013)</p>
+          <p class="autor-bio">Contou sinapses no córtex humano em diferentes idades e revelou o padrão que dá título a este capítulo: uma explosão na infância seguida de uma longa poda. Mostrou que crescer é, em boa parte, perder conexões. <span class="aqui">No capítulo: a superprodução e a poda sináptica.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">PK</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Patricia Kuhl</span></div>
+          <p class="autor-tag">Cientista da fala e do desenvolvimento (Univ. de Washington)</p>
+          <p class="autor-bio">Mostrou que os bebês nascem "cidadãos do mundo", capazes de ouvir todos os fonemas de todas as línguas, e vão se especializando na própria língua ao <em>perder</em> as distinções que não usam. <span class="aqui">No capítulo: o exemplo mais claro de aprender podando.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">JF</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Jonathan Frankle</span></div>
+          <p class="autor-tag">Pesquisador de aprendizado de máquina</p>
+          <p class="autor-bio">Com Michael Carbin, formulou a Hipótese do Bilhete Premiado: dentro de uma rede grande e aleatória existe uma sub-rede pequena que já contém o essencial. É o eco, no silício, da poda sináptica do cérebro. <span class="aqui">No capítulo: a superprodução e a seleção do lado da máquina.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="37-cerebro-e-senciencia-dados-para-experiencia.html"><span class="rotulo">Anterior</span>O cérebro e a senciência: do treinamento com dados ao treinamento pela experiência</a>
+    <a class="prox" href="39-neuronio-digital-e-uma-simplificacao.html"><span class="rotulo">Próximo</span>O neurônio digital é uma simplificação; o neurônio real está imerso em um organismo</a>
+  </nav>
+
+</body>
+</html>

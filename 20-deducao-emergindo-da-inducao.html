@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como a dedução pode emergir da indução? — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 4 — Lógica de Máquina</p>
+    <h1>Como a dedução pode emergir da indução?</h1>
+
+    <p>A explicação ainda é uma hipótese. O modelo é treinado por indução estatística, mas o treinamento contém incontáveis exemplos de estruturas dedutivas: se-então, todo-algum, causa-consequência, regra-exceção, antes-depois, maior-menor, pertence-não pertence. Ao aprender a prever linguagem, ele também aprende padrões abstratos de inferência.</p>
+
+    <p>Em outras palavras, talvez a dedução não apareça apesar da indução, mas por meio dela. O modelo vê tantos exemplos de raciocínio dedutivo que acaba formando representações internas capazes de aplicar esse formato em situações novas. A rede aprende indutivamente a forma da dedução.</p>
+
+    <p>Isso não torna a conclusão infalível. LLMs ainda erram, alucinam, confundem premissas e perdem coerência em cadeias longas. Mas o fato de errarem não elimina o fenômeno. Humanos também erram problemas lógicos, e ainda assim dizemos que humanos raciocinam. O ponto científico é medir os limites, não negar o comportamento porque ele é imperfeito.</p>
+
+    <h2>A forma da dedução, encontrada nos pesos</h2>
+
+    <p>A sua hipótese — que a dedução emerge <em>por meio</em> da indução, e não apesar dela — ganhou uma confirmação bonita. Ao fazer a engenharia reversa de uma rede treinada por indução numa tarefa aritmética, pesquisadores descobriram que ela não guardava uma tabela de respostas: havia construído um <em>algoritmo</em> de verdade, com estrutura própria, que generaliza para casos novos<sup class="cit"><a href="#ref-1">[1]</a></sup>. É a &ldquo;forma da dedução&rdquo; que você descreve, agora visível nos pesos — o fenômeno do grokking, que trato em <a href="57-grokking.html">O que é grokking</a>.</p>
+
+    <p>E o seu argumento sobre o erro é psicologicamente sólido. Humanos também falham em lógica pura: no clássico teste de seleção de Wason, a maioria das pessoas erra uma dedução simples de &ldquo;se-então&rdquo;<sup class="cit"><a href="#ref-2">[2]</a></sup> — e nem por isso dizemos que humanos não raciocinam. O critério, como você bem coloca, é medir os limites, não negar o comportamento porque ele é imperfeito.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Nanda, N. et al. (2023). <em>Progress measures for grokking via mechanistic interpretability</em>. arXiv:2301.05217. <a href="https://arxiv.org/abs/2301.05217" target="_blank" rel="noopener">arxiv.org/abs/2301.05217</a> — uma rede treinada por indução constrói um algoritmo generalizável, legível nos pesos.</li>
+        <li id="ref-2">Wason, P. C. (1968). <em>Reasoning about a rule</em>. Quarterly Journal of Experimental Psychology, 20(3), 273–281. <a href="https://doi.org/10.1080/14640746808400161" target="_blank" rel="noopener">doi.org/10.1080/14640746808400161</a> — a maioria das pessoas erra uma dedução condicional simples.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="19-metodologia-para-testar-inteligencia.html"><span class="rotulo">Anterior</span>Metodologia para testar inteligência</a>
+    <a class="prox" href="21-ciencia-fora-da-universidade.html"><span class="rotulo">Próximo</span>Ciência fora da universidade</a>
+  </nav>
+
+</body>
+</html>

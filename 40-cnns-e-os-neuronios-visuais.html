@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>As CNNs e os neurônios visuais: a profundidade que refina o conhecimento — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>As CNNs e os neurônios visuais: a profundidade que refina o conhecimento</h1>
+
+    <p>Por décadas, ensinar um computador a enxergar foi um fracasso humilhante. Os pesquisadores escreviam, à mão, regras do tipo "se houver duas curvas e um traço, talvez seja um rosto" — e a máquina tropeçava em qualquer sombra ou ângulo novo. A virada não veio de uma regra mais esperta. Veio de copiar a natureza. E a história de como isso aconteceu começa, curiosamente, com um gato anestesiado e um projetor de slides quebrando o galho.</p>
+
+    <h2>O gato que ensinou a máquina a enxergar</h2>
+
+    <p>No fim dos anos 1950, em Harvard, David Hubel e Torsten Wiesel enfiaram um eletrodo no córtex visual de um gato e projetaram pontos de luz numa tela, tentando fazer os neurônios dispararem. Nada. Frustração. Até que, ao trocar um slide, a <em>borda</em> da lâmina de vidro cruzou a tela como uma linha em movimento — e um neurônio disparou como louco. Estava ali, por acaso, a descoberta que renderia o Nobel de 1981: os neurônios da visão não respondem a pontos, mas a <strong>bordas e linhas com uma orientação específica</strong>.</p>
+
+    <p>Hubel e Wiesel mapearam dois tipos de célula<sup class="cit"><a href="#ref-1">[1]</a></sup>. As <strong>células simples</strong> são pequenos detectores de borda: cada uma responde a uma linha numa certa inclinação, num certo ponto do campo visual. As <strong>células complexas</strong> respondem à mesma inclinação, mas em qualquer posição de uma região — quer dizer, elas já toleram que o objeto se mova um pouco. E, o mais importante, tudo isso é <em>hierárquico</em>: as células simples alimentam as complexas, que alimentam outras adiante, montando, camada após camada, do simples ao elaborado. A visão, descobriu-se, não é um grande reconhecedor único. É uma pilha de detectores locais, cada um olhando um pedacinho, empilhados de modo que traços viram formas, e formas viram objetos.</p>
+
+    <h2>Do neurônio visual ao kernel</h2>
+
+    <p>Essa arquitetura era boa demais para não ser copiada. Em 1980, o japonês Kunihiko Fukushima construiu o <strong>Neocognitron</strong>, uma rede de várias camadas que implementava, em software, as células simples e complexas de Hubel e Wiesel<sup class="cit"><a href="#ref-2">[2]</a></sup>. Faltava só uma peça: ele não sabia treiná-la direito.</p>
+
+    <p>A ideia que sobreviveu foi a do <strong>kernel</strong> — a versão digital do campo receptivo de uma célula simples. Um kernel é um filtro pequeno (uns 3×3 ou 5×5 pixels) que desliza por toda a imagem perguntando a mesma coisa em cada pedacinho: "tem uma borda aqui? uma quina? uma textura?". Esse deslizar do mesmo detector por toda parte é a <em>convolução</em> — daí o nome, redes neurais <em>convolucionais</em> (CNNs). E há uma elegância dupla nisso: reaproveitar o mesmo filtro em toda a imagem espelha o modo como o córtex usa a mesma maquinaria em todo o campo visual, e ainda dá de brinde a <em>invariância à posição</em> (um gato é um gato esteja ele no canto ou no centro da foto).</p>
+
+    <p>O salto decisivo foi de <a href="62-yann-lecun.html">Yann LeCun</a>, no fim dos anos 1980: ele casou a convolução com o <a href="35-backpropagation-e-auto-organizacao.html">backpropagation</a><sup class="cit"><a href="#ref-3">[3]</a></sup>. Em vez de desenhar os filtros à mão, ele deixou a própria rede <em>aprendê-los</em>. Os kernels passaram a se <strong>auto-ajustar</strong>: alimentada com exemplos, a rede descobre sozinha que vale a pena ter detectores de borda na primeira camada, e como combiná-los depois. Ninguém programa o que é um olho ou uma roda — a rede esculpe esses detectores no próprio treino, corrigindo cada filtro um tiquinho a cada erro, exatamente como a orquestra do capítulo anterior se afina.</p>
+
+    <h2>A profundidade que refina</h2>
+
+    <p>É aqui que o subtítulo deste capítulo ganha corpo. Empilhe muitas camadas convolucionais e veja o que cada uma aprende. A primeira aprende <strong>bordas e orientações</strong> — e o assombroso é que ela reinventa, sozinha, quase os mesmos detectores das células simples do gato. A segunda combina bordas em <strong>quinas e texturas</strong>. As mais profundas montam <strong>partes</strong> (um olho, uma pata, uma janela) e, no fim, <strong>objetos inteiros</strong> (um rosto, um carro). Cada camada refina o que a anterior entregou. Profundidade é refinamento: quanto mais fundo, mais abstrato e mais rico o conhecimento.</p>
+
+    <p>E a semelhança com o cérebro não é vaga — é mensurável. A pilha das CNNs reproduz o caminho da visão no córtex: da área V1 (bordas) para V2, V4 e o córtex temporal inferior (objetos). O grupo de James DiCarlo mostrou algo que ainda arrepia: uma CNN treinada <em>apenas</em> para classificar imagens desenvolve, nas suas camadas profundas, representações internas que <strong>predizem os disparos de neurônios reais</strong> do córtex visual de um macaco diante das mesmas imagens<sup class="cit"><a href="#ref-4">[4]</a></sup><sup class="cit"><a href="#ref-5">[5]</a></sup>. Ninguém pediu à máquina para imitar o cérebro. Pediram só que ela enxergasse bem — e, ao fazê-lo, ela reinventou o código visual do cérebro. Duas engenharias, a da carne e a do silício, chegando à mesma solução por serem empurradas pelo mesmo problema.</p>
+
+    <h2>2012: a virada que as GPUs destravaram</h2>
+
+    <p>Curioso é que essas ideias já existiam nos anos 1990 e mesmo assim ficaram décadas hibernando. Faltavam dois combustíveis. O primeiro foi <em>dado</em>: o ImageNet, um banco com milhões de imagens rotuladas<sup class="cit"><a href="#ref-6">[6]</a></sup>, deu à rede o que estudar. O segundo, e talvez o mais transformador, foi <em>hardware</em>: as GPUs.</p>
+
+    <p>As placas de vídeo (GPUs) tinham sido criadas para renderizar gráficos de videogame — milhares de núcleos pequenos fazendo a mesma continha ao mesmo tempo. Acontece que essa é <em>exatamente</em> a conta de que uma rede neural precisa: multiplicações e somas em paralelo, aos milhões. Reaproveitar as GPUs para treinar redes acelerou tudo em ordens de grandeza. Em 2012, Alex Krizhevsky, Ilya Sutskever e Geoffrey Hinton treinaram uma CNN profunda — a <strong>AlexNet</strong> — em apenas duas placas de videogame, e arrasaram a competição do ImageNet: o erro despencou de 26,2% para 15,3%, uma margem que deixou a área de queixo caído<sup class="cit"><a href="#ref-7">[7]</a></sup>. Da noite para o dia, a visão computacional abandonou as regras feitas à mão e migrou em massa para o aprendizado profundo.</p>
+
+    <p>Mas a lição das GPUs vai além da velocidade: elas <strong>mudaram o modo de fazer iA</strong>. O gargalo deixou de ser a esperteza do programador e passou a ser a escala — mais dados, mais computação, arquiteturas simples repetidas. É o mesmo recado que atravessa o livro na <a href="29-evolucao-mesmo-cerebro-desempenhos-diferentes.html">Lei da Escala</a> e na "lição amarga" de <a href="64-richard-sutton.html">Richard Sutton</a>. A AlexNet foi o pistolão de largada; tudo o que veio depois, inclusive as LLMs, correu nessa mesma pista aberta pelas placas de vídeo.</p>
+
+    <h2>Processamento distribuído: mais perto do cérebro ainda</h2>
+
+    <p>E há um detalhe bonito nessa mudança de hardware, que fecha o círculo do capítulo. Ao migrar da CPU (um processador central, poderoso e solitário) para a GPU (milhares de processadorezinhos trabalhando em paralelo), a iA passou a computar de forma <strong>distribuída e local</strong> — e isso a aproximou ainda mais do cérebro.</p>
+
+    <p>Porque o cérebro é exatamente isso: não tem um processador central. São bilhões de neurônios fazendo cada um o seu processamento local, em paralelo, e modificando as próprias conexões localmente, como vimos no <a href="35-backpropagation-e-auto-organizacao.html">capítulo do backpropagation</a>. As CNNs já imitavam essa localidade na estrutura — cada kernel enxerga só um pedacinho da imagem, como um neurônio cortical enxerga só a sua fatia do campo visual. Rodá-las sobre hardware massivamente paralelo, que também processa em pequenos pedaços locais, aprofundou a semelhança: campos receptivos locais, ajustes locais e paralelismo gigantesco — a planta do córtex, agora em silício.</p>
+
+    <p>Sejamos justos: a semelhança é real, mas parcial. Uma CNN ainda aprende com um erro global e um objetivo único, enquanto o cérebro é recorrente, corporificado e aprende com regras locais; e há um lembrete incômodo de que elas <em>não</em> enxergam como nós — um ruído imperceptível, invisível para um humano, pode fazer a rede confundir um panda com um abutre<sup class="cit"><a href="#ref-8">[8]</a></sup>. O <a href="39-neuronio-digital-e-uma-simplificacao.html">neurônio digital continua sendo uma simplificação</a>. Mas a trajetória é eloquente. A história das CNNs é a do livro inteiro em miniatura: entendemos um pouco do cérebro (Hubel e Wiesel), copiamos a ideia (os kernels), deixamos a máquina se afinar sozinha (o backpropagation), demos a ela o hardware certo (as GPUs) — e ela, por conta própria, caminhou de volta na direção do cérebro.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a convergência entre CNN e visão biológica; <strong>[contrapõe]</strong> serve de crítica.</p>
+      <ol>
+        <li id="ref-1">Hubel, D. H. &amp; Wiesel, T. N. (1962). <em>Receptive fields, binocular interaction and functional architecture in the cat's visual cortex</em>. The Journal of Physiology, 160(1), 106–154. <a href="https://doi.org/10.1113/jphysiol.1962.sp006837" target="_blank" rel="noopener">doi.org/10.1113/jphysiol.1962.sp006837</a> — <strong>[sustenta]</strong> células simples e complexas, campos receptivos orientados e o processamento visual hierárquico (Nobel de 1981).</li>
+        <li id="ref-2">Fukushima, K. (1980). <em>Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position</em>. Biological Cybernetics, 36(4), 193–202. <a href="https://doi.org/10.1007/BF00344251" target="_blank" rel="noopener">doi.org/10.1007/BF00344251</a> — <strong>[sustenta]</strong> a primeira rede multicamadas a implementar as células simples/complexas — a precursora das CNNs.</li>
+        <li id="ref-3">LeCun, Y., Bottou, L., Bengio, Y. &amp; Haffner, P. (1998). <em>Gradient-based learning applied to document recognition</em> (LeNet-5). Proceedings of the IEEE, 86(11), 2278–2324. <a href="https://doi.org/10.1109/5.726791" target="_blank" rel="noopener">doi.org/10.1109/5.726791</a> — <strong>[sustenta]</strong> convolução + backpropagation: os kernels deixam de ser desenhados à mão e passam a ser aprendidos.</li>
+        <li id="ref-4">Yamins, D. L. K. et al. (2014). <em>Performance-optimized hierarchical models predict neural responses in higher visual cortex</em>. PNAS, 111(23), 8619–8624. <a href="https://doi.org/10.1073/pnas.1403112111" target="_blank" rel="noopener">doi.org/10.1073/pnas.1403112111</a> — <strong>[sustenta]</strong> camadas de uma CNN otimizada para ver predizem os disparos de neurônios do córtex temporal inferior.</li>
+        <li id="ref-5">Yamins, D. L. K. &amp; DiCarlo, J. J. (2016). <em>Using goal-driven deep learning models to understand sensory cortex</em>. Nature Neuroscience, 19(3), 356–365. <a href="https://doi.org/10.1038/nn.4244" target="_blank" rel="noopener">doi.org/10.1038/nn.4244</a> — <strong>[sustenta]</strong> redes treinadas por uma tarefa reproduzem a organização do córtex sensorial.</li>
+        <li id="ref-6">Deng, J. et al. (2009). <em>ImageNet: A large-scale hierarchical image database</em>. CVPR. <a href="https://doi.org/10.1109/CVPR.2009.5206848" target="_blank" rel="noopener">doi.org/10.1109/CVPR.2009.5206848</a> — <strong>[sustenta]</strong> o banco de milhões de imagens rotuladas que deu combustível de dados ao aprendizado profundo.</li>
+        <li id="ref-7">Krizhevsky, A., Sutskever, I. &amp; Hinton, G. E. (2012). <em>ImageNet classification with deep convolutional neural networks</em> (AlexNet). NeurIPS. <a href="https://doi.org/10.1145/3065386" target="_blank" rel="noopener">doi.org/10.1145/3065386</a> — <strong>[sustenta]</strong> a CNN treinada em GPUs que venceu o ImageNet de 2012 (erro top-5 de 26,2% para 15,3%) e virou a chave da visão computacional.</li>
+        <li id="ref-8">Szegedy, C. et al. (2014). <em>Intriguing properties of neural networks</em>. ICLR. arXiv:1312.6199. <a href="https://arxiv.org/abs/1312.6199" target="_blank" rel="noopener">arxiv.org/abs/1312.6199</a> — <strong>[contrapõe]</strong> exemplos adversariais: um ruído imperceptível engana a rede, provando que ela não enxerga como nós.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">HW</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">David Hubel e Torsten Wiesel</span></div>
+          <p class="autor-tag">Neurofisiologistas · Nobel de Medicina de 1981</p>
+          <p class="autor-bio">Descobriram, ouvindo neurônios do córtex visual de um gato, que a visão começa com detectores de borda orientada, organizados em hierarquia. Sem saber, escreveram a planta das redes convolucionais. <span class="aqui">No capítulo: a descoberta biológica que inspirou os kernels.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">YL</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="62-yann-lecun.html">Yann LeCun</a></span></div>
+          <p class="autor-tag">Inventor das redes convolucionais · Turing 2018</p>
+          <p class="autor-bio">Uniu a convolução ao backpropagation, fazendo os kernels se auto-ajustarem no treino. As CNNs dele viraram a base de quase toda a visão computacional moderna. <span class="aqui">No capítulo: quem transformou a inspiração biológica em uma máquina que aprende a ver.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">JD</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">James DiCarlo</span></div>
+          <p class="autor-tag">Neurocientista (MIT)</p>
+          <p class="autor-bio">Estuda o córtex visual e mostrou, com Daniel Yamins, que redes treinadas apenas para reconhecer objetos predizem a atividade de neurônios reais do cérebro — a prova de que a convergência entre CNN e visão biológica é mensurável. <span class="aqui">No capítulo: a ponte medida entre o kernel e o neurônio.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="39-neuronio-digital-e-uma-simplificacao.html"><span class="rotulo">Anterior</span>O neurônio digital é uma simplificação; o neurônio real está imerso em um organismo</a>
+    <a class="prox" href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html"><span class="rotulo">Próximo</span>O refinamento do backpropagation e o cérebro de longo prazo</a>
+  </nav>
+
+</body>
+</html>

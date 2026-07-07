@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O modelo de Atenção — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 1 — Inteligência Artificial e Neurociência</p>
+    <h1>O modelo de Atenção</h1>
+
+    <p>Em 2017 surgem os Transformers, a tecnologia que fez as LLMs brilharem, a partir de um artigo com um título que é quase uma provocação: <em>Attention Is All You Need</em> — "atenção é tudo de que você precisa"<sup class="cit"><a href="#ref-1">[1]</a></sup>. Pesquisadores da Google apresentaram ali um modelo que era um tradutor, mas que abandonava as duas técnicas dominantes da época — as redes recorrentes e as convolucionais — dizendo, no fundo: esqueçam aquilo, só a atenção basta.</p>
+
+    <p>Esse título não é modéstia; é um recado direto ao que veio antes. Para entender por que ele foi tão marcante, primeiro precisamos entender o que estava sendo jogado fora.</p>
+
+    <h2>O que foi jogado fora</h2>
+
+    <p>As <strong>redes recorrentes</strong> (as RNNs, e suas versões mais espertas como as LSTMs) processavam texto como quem lê em voz alta: uma palavra de cada vez, carregando na memória um resumo do que já passou. Funcionavam, mas tinham dois problemas sérios. Primeiro, eram lentas — como cada palavra depende da anterior, não dá para processar tudo de uma vez, em paralelo. Segundo, elas se perdiam nas distâncias longas: quando o texto crescia, o começo ia sumindo da memória, feito um telefone sem fio. (Era o tal problema de "perda de contexto conforme o texto ficava grande".)</p>
+
+    <p>As <strong>redes convolucionais</strong> (as CNNs), campeãs em imagens, também foram tentadas em texto. Elas são ótimas para captar padrões locais e montar hierarquias — bordas viram formas, formas viram objetos. Mas, para conectar duas palavras distantes numa frase, uma CNN precisa empilhar muitas camadas até a informação de um canto alcançar o outro. Trabalhoso, e caro.</p>
+
+    <p>O mecanismo de atenção resolve os dois de uma vez. Ele olha para todas as palavras ao mesmo tempo (paralelo, rápido) e consegue ligar diretamente qualquer palavra a qualquer outra, não importa a distância. Por isso o título: se a atenção faz sozinha o que a recorrência e a convolução faziam com esforço, então "atenção é tudo de que você precisa". O nome do artigo é, ele mesmo, o anúncio de uma aposentadoria.</p>
+
+    <h2>A neurociência já sabia disso</h2>
+
+    <p>E aqui entra uma ponte que a maioria dos debates ignora — e que é fundamental. A palavra "atenção" não foi escolhida por acaso. A neurociência estuda a atenção há décadas e sabe que ela é uma das peças centrais da inteligência e do aprendizado.</p>
+
+    <p>No cérebro, atenção não é só "olhar para algo". É um mecanismo que <em>modula</em> as vias neurais: os neurônios que representam aquilo em que você presta atenção têm sua resposta <em>amplificada</em>, enquanto os do resto são <em>suprimidos</em>. O modelo clássico da "competição enviesada", de Desimone e Duncan, descreve exatamente isso: os estímulos competem entre si por representação no cérebro, e essa competição é enviesada em favor do que é relevante no momento<sup class="cit"><a href="#ref-2">[2]</a></sup>. Repara na semelhança: no Transformer, os tokens também competem por peso de atenção, e a competição pende para os mais relevantes ao contexto. É quase a mesma frase, dita em dois idiomas diferentes.</p>
+
+    <p>E não é detalhe: no cérebro, a atenção decide o que será aprendido. Ela funciona como um portão — aquilo a que você presta atenção grava mais fundo, molda a plasticidade, muda as conexões. Dois campos que nunca se falaram chegaram, cada um por seu caminho, à mesma conclusão: a inteligência depende de saber para onde direcionar recursos limitados. Não à toa, a neurocientista Grace Lindsay escreveu uma revisão inteira mapeando a atenção "na psicologia, na neurociência e no aprendizado de máquina", mostrando lado a lado as versões biológica e artificial<sup class="cit"><a href="#ref-3">[3]</a></sup>.</p>
+
+    <h2>O modelo de atenção é bizarro de complexo</h2>
+
+    <p>Agora, um recado para quem é da neurociência e ainda torce o nariz para a iA: o modelo de atenção é <em>muito</em> mais complexo do que parece — e entendê-lo devolve insights para o cérebro.</p>
+
+    <p>A ideia básica é simples. Cada palavra "pergunta" às outras quão relevantes elas são para ela, recebe uma nota para cada uma e monta o próprio significado como uma média ponderada do contexto. A palavra "banco" cercada de "dinheiro" e "depósito" vira uma coisa; cercada de "praça" e "sentar", vira outra. Até aí, tranquilo.</p>
+
+    <p>Mas então vem a parte doida. Isso não acontece uma vez. Acontece em <strong>várias cabeças de atenção em paralelo</strong> — cada uma olhando o contexto por um ângulo diferente, uma cuidando da gramática, outra do assunto, outra da posição — e em <strong>dezenas de blocos empilhados</strong>, um refinando a saída do outro. Junta as duas coisas e você tem uma estrutura quase tridimensional: a sequência de palavras num eixo, as várias cabeças lado a lado noutro, e a pilha de blocos subindo num terceiro. A atenção vem de todos os lados ao mesmo tempo, refina, sobe um andar, refina de novo, dezenas de vezes.</p>
+
+    <p>Isso é radicalmente diferente de pegar uma imagem, passar por uma rede multicamada e receber um rótulo ("gato") na saída. Aquilo é uma via de mão única: entra, processa, sai. O Transformer é uma malha de idas e vindas, cada pedaço do texto reconsiderando todos os outros, andar após andar. É por isso que, pela primeira vez, uma iA parecia "pensar" e responder como um ser humano — falar de medicina, matemática, geografia, escrever programas, em qualquer idioma. Não é um classificador; é um refinador obstinado de contexto.</p>
+
+    <h2>O livro que engana o pesquisador</h2>
+
+    <p>Aqui vale um aviso prático, porque é uma armadilha comum. Quem vai atrás de entender redes neurais quase sempre cai num de dois buracos: ou fica preso estudando redes multicamada em livros antigos, ou pega o clássico <em>Artificial Intelligence: A Modern Approach</em>, de Russell e Norvig<sup class="cit"><a href="#ref-5">[5]</a></sup>. O título engana — "moderno" ali é o nome, não o atalho para quem quer LLMs. É um livro excelente <em>para formar um pesquisador de iA</em>, que precisa dos fundamentos de busca, lógica, perceptrons. Mas, para um neurocientista que quer entender por que os Transformers importam, ele complica o simples: você gasta meses em fundamentos que não são a chave e não chega no que interessa — o refinamento múltiplo da atenção.</p>
+
+    <p>Então, o que precisa ficar claro não é o perceptron de 1958; é essa cambada de atenção se refinando de todos os lados. É aí que mora a novidade, e é aí que está a ponte com o seu campo.</p>
+
+    <h2>Empatia com o cético</h2>
+
+    <p>E é justo dar razão ao cético num ponto: a "atenção" do Transformer não é, literalmente, a atenção do cérebro. São mecanismos diferentes — um é matemática de vetores, o outro é biologia de neurônios, hormônios e circuitos. Quem se irrita com a analogia solta tem razão. Mas o próprio Demis Hassabis — neurocientista de formação antes de virar um dos maiores nomes da iA — defende que os dois campos têm tudo a ganhar conversando, e que a neurociência já inspirou, e ainda vai inspirar, avanços na iA<sup class="cit"><a href="#ref-4">[4]</a></sup>. A convergência não precisa ser identidade para ser fértil. Quando duas ciências independentes tropeçam na mesma ideia — a atenção como coração da inteligência —, isso é um sinal, não um acaso.</p>
+
+    <h2>O efeito do tempo — o curso do rio</h2>
+
+    <p>Falta o ingrediente que amarra tudo: o tempo. O modelo de atenção não cospe uma resposta pronta como um oráculo. Ele gera <em>token a token</em>. E aqui está o pulo do gato: cada token que ele gera é <em>devolvido</em> para a entrada, para ajudar a gerar o próximo.</p>
+
+    <p>Isso cria um efeito de "curso do rio". A primeira gota de água escava um caminho; a segunda segue por ele e o aprofunda; a terceira já encontra um leito quase pronto. Cada novo token nasce olhando para tudo o que já foi escrito — inclusive o que a própria máquina acabou de gerar — e, ao nascer, estreita o caminho para o token seguinte. Vai se formando uma teia de dependência entre o passado e o futuro: o que foi dito restringe o que pode ser dito, e a resposta vai ficando cada vez mais coerente consigo mesma, mais amarrada, mais cheia de significado construído no percurso.</p>
+
+    <p>É por isso que a iA não é, e provavelmente não será, um oráculo instantâneo. O significado complexo dela não está pronto num átimo; ele é <em>construído no tempo</em>, gota a gota, cada token delimitando o próximo. A atenção dá o alcance; o tempo dá o sentido. (Esse mesmo fio — inteligência que se constrói no tempo, não num estalo — reaparece em <a href="31-crianca-rabisco-nem-tudo-e-ruido.html">A criança e o rabisco</a>.)</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a tese; <strong>[contrapõe]</strong> serve de crítica; <strong>[contexto]</strong> situa a fonte.</p>
+      <ol>
+        <li id="ref-1">Vaswani, A. et al. (2017). <em>Attention Is All You Need</em>. NeurIPS. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arxiv.org/abs/1706.03762</a> — <strong>[sustenta]</strong> o Transformer, que dispensa recorrência e convolução e usa só atenção.</li>
+        <li id="ref-2">Desimone, R.; Duncan, J. (1995). <em>Neural mechanisms of selective visual attention</em>. Annual Review of Neuroscience, 18, 193–222. — <strong>[sustenta]</strong> a "competição enviesada": no cérebro, os estímulos competem e a atenção pende a balança para o relevante.</li>
+        <li id="ref-3">Lindsay, G. W. (2020). <em>Attention in Psychology, Neuroscience, and Machine Learning</em>. Frontiers in Computational Neuroscience, 14, 29. <a href="https://www.frontiersin.org/articles/10.3389/fncom.2020.00029/full" target="_blank" rel="noopener">frontiersin.org</a> — <strong>[sustenta e contrapõe]</strong> mapeia a atenção nos dois mundos, mostrando os paralelos e também as diferenças.</li>
+        <li id="ref-4">Hassabis, D.; Kumaran, D.; Summerfield, C.; Botvinick, M. (2017). <em>Neuroscience-Inspired Artificial Intelligence</em>. Neuron, 95, 245–258. <a href="https://doi.org/10.1016/j.neuron.2017.06.011" target="_blank" rel="noopener">doi.org/10.1016/j.neuron.2017.06.011</a> — <strong>[sustenta]</strong> a defesa da fertilização cruzada entre neurociência e iA, por um neurocientista de formação.</li>
+        <li id="ref-5">Russell, S.; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>. — <strong>[contexto]</strong> o livro-texto clássico de fundamentos de iA (ótimo para o pesquisador; o caminho longo para quem só quer entender LLMs).</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">DH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Demis Hassabis</span></div>
+          <p class="autor-tag">Neurocientista e cientista da computação · cofundador da DeepMind · Nobel de Química 2024</p>
+          <p class="autor-bio">Fez doutorado em neurociência cognitiva antes de fundar a DeepMind e liderar feitos como o AlphaGo e o AlphaFold — este lhe rendeu o Nobel de Química de 2024. Defende que entender o cérebro é uma das melhores rotas para construir máquinas inteligentes. <span class="aqui">No capítulo: a voz de que neurociência e iA têm tudo a ganhar conversando.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">GL</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Grace Lindsay</span></div>
+          <p class="autor-tag">Neurocientista computacional (NYU)</p>
+          <p class="autor-bio">Estuda como o cérebro e as máquinas resolvem problemas parecidos. Escreveu a revisão que mapeia a atenção lado a lado na psicologia, na neurociência e no aprendizado de máquina, e o livro <em>Models of the Mind</em>. <span class="aqui">No capítulo: a ponte explícita entre a atenção do cérebro e a atenção do Transformer.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">RD</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Robert Desimone</span></div>
+          <p class="autor-tag">Neurocientista (MIT)</p>
+          <p class="autor-bio">Diretor do Instituto McGovern de pesquisa do cérebro, no MIT. Com John Duncan, propôs o modelo da "competição enviesada": os estímulos competem por representação no cérebro, e a atenção pende a balança para o que é relevante. <span class="aqui">No capítulo: a descrição biológica que ecoa, de forma impressionante, o que o Transformer faz com os tokens.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="01-neuronios-digitais.html"><span class="rotulo">Anterior</span>O surgimento dos Neurônios Digitais</a>
+    <a class="prox" href="03-ia-nao-raciocina-presta-atencao.html"><span class="rotulo">Próximo</span>A iA não raciocina, ela presta atenção</a>
+  </nav>
+
+</body>
+</html>

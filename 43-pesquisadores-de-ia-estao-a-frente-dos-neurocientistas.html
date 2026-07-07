@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisadores de iA estão à frente dos Neurocientistas — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 1 — Inteligência Artificial e Neurociência</p>
+    <h1>Pesquisadores de iA estão à frente dos Neurocientistas</h1>
+
+    <p>Intuitivamente, parece que, como os neurocientistas pesquisam o cérebro há tantos anos, eles deveriam estar bem à frente dos pesquisadores de iA. Porém essa intuição não se sustenta quando observamos o nível das discussões dentro de cada área.</p>
+
+    <p>A questão não é que o neurocientista seja menos capaz. É que ele joga um jogo muito mais difícil. Ele estuda um objeto ao qual quase não tem acesso.</p>
+
+    <h2>As amarras do neurocientista</h2>
+
+    <p>Pensa nos problemas que ele precisa enfrentar: não consegue observar todos os neurônios individualmente; o acesso ao cérebro é física e eticamente difícil; mesmo as técnicas mais avançadas costumam ser medições indiretas; as medições diretas contemplam um número baixo de neurônios; há limites éticos claros na pesquisa com humanos; e as pesquisas feitas em animais não têm o feedback humano para confirmar o que realmente está acontecendo.</p>
+
+    <p>O resultado é que boa parte da literatura convive com metodologias frágeis e conclusões subjetivas. E isso não é opinião minha: quando a própria neurociência se olhou no espelho, o diagnóstico foi duro. Uma análise clássica estimou que a mediana do poder estatístico dos estudos da área fica entre 8% e 31%<sup class="cit"><a href="#ref-2">[2]</a></sup> — ou seja, uma parte enorme dos achados nasce de amostras pequenas demais para serem confiáveis. Em neuroimagem a situação ficou famosa: um estudo mostrou que os pacotes de software mais usados para fMRI podiam produzir taxas de falso-positivo de até 70%, onde se esperava 5%<sup class="cit"><a href="#ref-3">[3]</a></sup>. Traduzindo: durante anos, manchas coloridas em cérebros publicadas como "descoberta" podiam ser, em boa medida, ruído.</p>
+
+    <p>Tem um experimento que resume tudo de um jeito quase cruel. Dois pesquisadores pegaram os métodos-padrão da neurociência e aplicaram… num microprocessador antigo, o chip de videogames dos anos 80, um sistema que a engenharia entende 100%, transistor por transistor. Se os métodos funcionassem, deveriam reconstruir como o chip funciona. Não reconstruíram. As análises produziam gráficos bonitos e "regiões" que lembravam achados neurocientíficos, mas não levavam a nenhuma compreensão real de como aquilo computava<sup class="cit"><a href="#ref-1">[1]</a></sup>. Se o método falha até num objeto que conhecemos por completo, imagina no cérebro.</p>
+
+    <h2>As vantagens de quem estuda uma iA</h2>
+
+    <p>Agora inverte a mesa. O pesquisador de iA não lida com um organismo vivo. Ele tem <em>white box</em>: acesso total aos pesos, às ativações, a cada conexão. Ele pode usar matemática objetiva para ler grupos de neurônios e neurônios individuais, acompanhar passo a passo cada etapa da rede processando, rodar o mesmo estímulo mil vezes, pausar, voltar, editar um peso e ver o efeito. Pode treinar múltiplas iAs, clonar uma rede inteira em segundos, comparar versões. Nada disso é possível com um cérebro humano.</p>
+
+    <p>E isso não é promessa: já virou ferramenta. Existe hoje um campo inteiro — a interpretabilidade mecanicista — que decompõe modelos de linguagem em "features" legíveis. Num trabalho, uma camada de 512 neurônios artificiais foi decomposta em mais de 4000 unidades interpretáveis, cada uma representando coisas específicas como sequências de DNA, texto jurídico ou hebraico — padrões que eram invisíveis quando se olhava um neurônio de cada vez<sup class="cit"><a href="#ref-6">[6]</a></sup>. É literalmente abrir o cérebro artificial e ler o que cada parte faz. O neurocientista sonha com esse nível de acesso.</p>
+
+    <p>Há um sinal ainda mais forte dessa inversão: em vários pontos, os modelos de iA passaram a ser a melhor teoria que temos do próprio cérebro. Redes profundas treinadas para enxergar viraram os melhores preditores da atividade do córtex visual<sup class="cit"><a href="#ref-4">[4]</a></sup>. E os neurocientistas começaram a importar o arcabouço da iA — pensar o cérebro em termos de objetivo, arquitetura e regra de aprendizado — como programa de pesquisa<sup class="cit"><a href="#ref-5">[5]</a></sup>. Quando a área mais antiga adota a linguagem da área mais nova para se entender, é difícil dizer quem está guiando quem.</p>
+
+    <h2>O contraponto honesto</h2>
+
+    <p>Agora, seria desonesto vender essa tese sem o outro lado — e é aqui que a discussão fica interessante de verdade.</p>
+
+    <p>Primeiro: ter <em>white box</em> não é a mesma coisa que entender. Volta no experimento do microprocessador. Os pesquisadores tinham acesso a cada transistor, a cada bit, a dados infinitos — e ainda assim não reconstruíram a lógica do chip<sup class="cit"><a href="#ref-1">[1]</a></sup>. Ou seja, o mesmo estudo que critica a neurociência também é um alerta contra o nosso otimismo: acesso total mais montanha de dados não garante compreensão. E, sejamos francos, ninguém entende de verdade, ponta a ponta, por que uma LLM grande responde o que responde. O white box existe, mas ler tudo ainda é um problema aberto.</p>
+
+    <p>Segundo: prever não é explicar. Um modelo pode acertar a atividade do córtex visual e, mesmo assim, não nos dizer por que o cérebro faz assim. Há um argumento forte de que a iA atual é excelente em reconhecer padrões, mas fraca em construir modelos causais do mundo, que é justamente o que a cognição humana faz<sup class="cit"><a href="#ref-7">[7]</a></sup>. Estar à frente em desempenho não é o mesmo que estar à frente em entendimento.</p>
+
+    <p>Terceiro: cuidado ao confundir "melhor modelo que temos" com "bom modelo". Há uma crítica contundente de que as redes neurais, apesar de baterem recordes, são modelos ruins da visão biológica quando você testa hipóteses psicológicas específicas — elas falham exatamente onde a ciência do cérebro precisa de respostas<sup class="cit"><a href="#ref-8">[8]</a></sup>. Ser o menos ruim não é ser o certo.</p>
+
+    <p>Então, qual é a conclusão? Os pesquisadores de iA estão à frente numa coisa muito específica e muito importante: eles têm um objeto de estudo dócil, transparente e replicável, e por isso conseguem fazer ciência de verdade — hipótese, teste, refutação — numa velocidade que a neurociência não consegue. Não é que eles sejam mais inteligentes. É que eles têm o microscópio que o neurocientista nunca teve. E, ironicamente, talvez seja estudando essas iAs transparentes que a gente finalmente aprenda a fazer as perguntas certas sobre o cérebro de carne.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a tese do capítulo; <strong>[contrapõe]</strong> serve de crítica.</p>
+      <ol>
+        <li id="ref-1">Jonas, E.; Kording, K. P. (2017). <em>Could a Neuroscientist Understand a Microprocessor?</em> PLOS Computational Biology, 13(1), e1005268. <a href="https://doi.org/10.1371/journal.pcbi.1005268" target="_blank" rel="noopener">doi.org/10.1371/journal.pcbi.1005268</a> — <strong>[sustenta e contrapõe]</strong> os métodos da neurociência falham até num chip totalmente conhecido; mas mostra que acesso total + dados infinitos ainda não garantem compreensão.</li>
+        <li id="ref-2">Button, K. S.; Ioannidis, J. P. A.; Mokrysz, C.; Nosek, B. A.; Flint, J.; Robinson, E. S. J.; Munafò, M. R. (2013). <em>Power failure: why small sample size undermines the reliability of neuroscience</em>. Nature Reviews Neuroscience, 14(5), 365–376. <a href="https://doi.org/10.1038/nrn3475" target="_blank" rel="noopener">doi.org/10.1038/nrn3475</a> — <strong>[sustenta]</strong> poder estatístico mediano de 8–31%; baixa confiabilidade dos achados.</li>
+        <li id="ref-3">Eklund, A.; Nichols, T. E.; Knutsson, H. (2016). <em>Cluster failure: Why fMRI inferences for spatial extent have inflated false-positive rates</em>. PNAS, 113(28), 7900–7905. <a href="https://doi.org/10.1073/pnas.1602413113" target="_blank" rel="noopener">doi.org/10.1073/pnas.1602413113</a> — <strong>[sustenta]</strong> falso-positivo de até 70% em softwares de fMRI muito usados.</li>
+        <li id="ref-4">Yamins, D. L. K.; DiCarlo, J. J. (2016). <em>Using goal-driven deep learning models to understand sensory cortex</em>. Nature Neuroscience, 19(3), 356–365. <a href="https://doi.org/10.1038/nn.4244" target="_blank" rel="noopener">doi.org/10.1038/nn.4244</a> — <strong>[sustenta]</strong> redes profundas viraram os melhores modelos preditivos do córtex visual.</li>
+        <li id="ref-5">Richards, B. A. et al. (2019). <em>A deep learning framework for neuroscience</em>. Nature Neuroscience, 22(11), 1761–1770. <a href="https://doi.org/10.1038/s41593-019-0520-2" target="_blank" rel="noopener">doi.org/10.1038/s41593-019-0520-2</a> — <strong>[sustenta]</strong> a neurociência adotando o arcabouço da iA (objetivo, arquitetura, regra de aprendizado).</li>
+        <li id="ref-6">Bricken, T. et al. (2023). <em>Towards Monosemanticity: Decomposing Language Models With Dictionary Learning</em>. Transformer Circuits Thread, Anthropic. <a href="https://www.anthropic.com/research/towards-monosemanticity-decomposing-language-models-with-dictionary-learning" target="_blank" rel="noopener">anthropic.com/research/towards-monosemanticity…</a> — <strong>[sustenta]</strong> leitura matemática de features/neurônios individuais de uma rede (white box na prática).</li>
+        <li id="ref-7">Lake, B. M.; Ullman, T. D.; Tenenbaum, J. B.; Gershman, S. J. (2017). <em>Building machines that learn and think like people</em>. Behavioral and Brain Sciences, 40, e253. <a href="https://doi.org/10.1017/S0140525X16001837" target="_blank" rel="noopener">doi.org/10.1017/S0140525X16001837</a> — <strong>[contrapõe]</strong> a iA reconhece padrões, mas ainda é fraca em construir modelos causais como a cognição humana; prever ≠ explicar.</li>
+        <li id="ref-8">Bowers, J. S. et al. (2023). <em>Deep problems with neural network models of human vision</em>. Behavioral and Brain Sciences, 46. <a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/abs/deep-problems-with-neural-network-models-of-human-vision/ABCE483EE95E80315058BB262DCA26A9" target="_blank" rel="noopener">cambridge.org/core/…/deep-problems…</a> — <strong>[contrapõe]</strong> apesar dos recordes, as redes são modelos ruins da visão biológica onde importa testar hipóteses.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="42-atencao-como-guia-do-backpropagation.html"><span class="rotulo">Anterior</span>O modelo de atenção como guia do backpropagation</a>
+    <a class="prox" href="44-genetica-consciencia-sistema-exato.html"><span class="rotulo">Próximo</span>A genética como prova de que a consciência pode emergir de um sistema exato</a>
+  </nav>
+
+</body>
+</html>

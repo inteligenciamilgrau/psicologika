@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Da filosofia à matemática das redes neurais — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 3 — O que é a Consciência?</p>
+    <h1>Da filosofia à matemática das redes neurais</h1>
+
+    <p>As redes neurais são frequentemente descritas como aproximadores universais de funções. De forma simplificada, isso significa que elas podem aprender a representar relações extremamente complexas entre entradas e saídas. Se existe uma relação entre padrões, uma rede neural suficientemente adequada pode aproximar essa relação.</p>
+
+    <p>Isso não prova que uma rede neural tenha consciência. Mas abre uma possibilidade conceitual: se pensamento, memória, percepção e autorrelação puderem ser descritos como relações funcionais complexas, então talvez sistemas artificiais consigam representar camadas cada vez mais profundas dessas relações.</p>
+
+    <p>O mecanismo de atenção das LLMs é um exemplo inicial. Quando um modelo avalia quais palavras são mais importantes em relação a outras palavras, ele está calculando relações. Uma palavra recebe mais peso, outra menos peso, um trecho do contexto se torna mais relevante do que outro. Esse ainda é um nível muito primitivo, mas já existe uma forma matemática de relação entre elementos.</p>
+
+    <h2>O que &ldquo;aproximador universal&rdquo; quer e não quer dizer</h2>
+
+    <p>Vale um cuidado com essa expressão, porque ela promete menos do que parece. O teorema da aproximação universal, provado por George Cybenko em 1989<sup class="cit"><a href="#ref-1">[1]</a></sup> e generalizado por Kurt Hornik em 1991<sup class="cit"><a href="#ref-2">[2]</a></sup>, diz que uma rede com neurônios suficientes <em>pode representar</em> qualquer função contínua. Mas &ldquo;pode representar&rdquo; não é &ldquo;consegue aprender&rdquo;, nem &ldquo;aprende de forma eficiente&rdquo;. Existir uma configuração de pesos que resolve o problema é uma coisa; encontrá-la, com dados finitos e no tempo desta vida, é outra. É por isso que a profundidade importa: empilhar camadas torna aprendível o que, numa camada só, exigiria uma largura absurda.</p>
+
+    <p>Ainda assim, o seu ponto de fundo se mantém: se pensamento e autorrelação forem, no limite, relações funcionais, então há um espaço matemático onde eles podem, ao menos em princípio, ser representados. O mecanismo de atenção é o primeiro tijolo concreto disso — desmonto a sua mecânica (as consultas, chaves e valores) em <a href="42-atencao-como-guia-do-backpropagation.html">O modelo de atenção como guia do backpropagation</a>.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <ol>
+        <li id="ref-1">Cybenko, G. (1989). <em>Approximation by superpositions of a sigmoidal function</em>. Mathematics of Control, Signals and Systems, 2, 303–314. <a href="https://doi.org/10.1007/BF02551274" target="_blank" rel="noopener">doi.org/10.1007/BF02551274</a> — uma rede com uma camada escondida pode aproximar qualquer função contínua.</li>
+        <li id="ref-2">Hornik, K. (1991). <em>Approximation capabilities of multilayer feedforward networks</em>. Neural Networks, 4(2), 251–257. <a href="https://doi.org/10.1016/0893-6080(91)90009-T" target="_blank" rel="noopener">doi.org/10.1016/0893-6080(91)90009-T</a> — generaliza o resultado para redes multicamadas.</li>
+        <li id="ref-3">Vaswani, A. et al. (2017). <em>Attention Is All You Need</em>. arXiv:1706.03762. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arxiv.org/abs/1706.03762</a> — o mecanismo de atenção que calcula relações entre os elementos do texto.</li>
+      </ol>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="08-descartes-kierkegaard.html"><span class="rotulo">Anterior</span>Descartes, Kierkegaard e a relação consigo mesmo</a>
+    <a class="prox" href="10-pensamento-de-maquina.html"><span class="rotulo">Próximo</span>O pensamento de máquina</a>
+  </nav>
+
+</body>
+</html>

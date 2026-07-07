@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O segredo do backpropagation e a auto-organização — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 6 — Conceitos a desenvolver</p>
+    <h1>O segredo do backpropagation e a auto-organização</h1>
+
+    <p>Uma rede neural começa burra. Bilhões de números — os pesos das conexões — sorteados ao acaso. Se você pedir a essa rede recém-nascida que complete uma frase, ela devolve lixo. E, no entanto, depois de rodar sobre montanhas de texto, esse mesmo emaranhado de números passa a escrever, programar, argumentar. Entre um estado e outro há uma única ideia fazendo quase todo o trabalho pesado. Ela tem um nome técnico e feio — <strong>backpropagation</strong>, ou retropropagação do erro — e é uma das invenções mais espetaculares da história da computação. Este capítulo é sobre ela, e sobre uma coincidência que dá arrepio: o cérebro, por um caminho completamente diferente, chega ao mesmo lugar.</p>
+
+    <h2>Um erro global, bilhões de correções minúsculas</h2>
+
+    <p>O mecanismo é mais simples do que o nome sugere. A rede recebe uma entrada — digamos, um trecho de texto — e a empurra camada por camada até cuspir uma resposta: qual a próxima palavra. Essa resposta é comparada com a palavra que <em>de fato</em> vinha no texto, e a diferença entre as duas vira um único número: o <strong>erro</strong>. Um só número resumindo o quanto a rede inteira errou naquela tentativa.</p>
+
+    <p>Agora vem a pergunta de um trilhão de dólares: dos bilhões de pesos da rede, <em>quais</em> ajustar, e <em>quanto</em>, para que esse número diminua? Responder isso na marra seria impossível. O backpropagation responde de um jeito elegante: ele pega o erro lá na saída e o <em>propaga de volta</em>, camada por camada, distribuindo a cada conexão a sua parcela exata de culpa. E então corrige cada peso um tiquinho, na direção que reduz o erro. Repita para o próximo exemplo. E o próximo. Bilhões de vezes.</p>
+
+    <p>Há dois detalhes que tornam isso genial. Primeiro, a correção de cada conexão é <strong>proporcional</strong>: leva em conta o quanto aquela conexão contribuiu para o erro <em>e</em> o quanto o neurônio que a alimenta estava ativo. Um neurônio que "gritou" — que disparou forte — e empurrou a rede para a resposta errada tem sua conexão corrigida com mais força; um neurônio que ficou quieto quase não muda. A culpa é dividida na proporção da participação. Segundo, cada ajuste isolado é <em>minúsculo</em> — um empurrãozinho. É a soma de bilhões desses empurrões, ao longo de bilhões de exemplos, que esculpe a competência.</p>
+
+    <p>Gosto de pensar numa <strong>orquestra de bilhões de músicos</strong>. Todos tocam ao mesmo tempo, e no fim o maestro dá um único veredito: "soou desafinado, e para o lado agudo". Não existe tempo para repreender cada músico individualmente. Então cada um se ajusta um fio de cabelo, na proporção de quão alto estava tocando e de quanto contribuiu para a dissonância. Ninguém, sozinho, sabe a música inteira. Mas, repetido milhões de vezes, o conjunto se afina sozinho até o menor erro possível diante das partituras — os textos — que lhe foram dados. Essa auto-organização a partir de um sinal global de erro é a receita descrita em 1986 por David Rumelhart, <a href="61-geoffrey-hinton.html">Geoffrey Hinton</a> e Ronald Williams<sup class="cit"><a href="#ref-1">[1]</a></sup>, e é o motor de praticamente toda a iA que você usa hoje.</p>
+
+    <h2>O cérebro faz o mesmo — por um caminho totalmente diferente</h2>
+
+    <p>Aqui mora a analogia mais rica do capítulo. O cérebro também é uma rede que aprende ajustando conexões — mas ele <em>não</em> faz backpropagation. Não há, no tecido nervoso, um erro global sendo empurrado para trás por fios espelhados; isso seria biologicamente implausível, e Francis Crick apontou o problema já em 1989<sup class="cit"><a href="#ref-2">[2]</a></sup>. O cérebro resolve o mesmo problema com um arsenal completamente diferente: <strong>regras locais</strong>.</p>
+
+    <p>A mais famosa é a de Donald Hebb, de 1949: neurônios que disparam juntos, fortalecem sua conexão — <em>"fire together, wire together"</em><sup class="cit"><a href="#ref-3">[3]</a></sup>. A sinapse observa apenas os dois neurônios que ela liga e se fortalece ou enfraquece conforme a atividade local, sem consultar nenhum maestro. Mas há também um sinal mais global, e ele é <em>químico</em>: os neuromoduladores. A dopamina, por exemplo, funciona como um sinal de "erro de previsão de recompensa" — quando algo é melhor ou pior do que o esperado, ela é liberada de forma difusa e diz às sinapses, banhando-as, "agora é hora de mudar"<sup class="cit"><a href="#ref-4">[4]</a></sup>. É um veredito global carregado pela química, não pelos fios.</p>
+
+    <p>O resultado desse sistema distribuído é o que você vive: bilhões de neurônios se conectando e se desconectando, formando redes de atenção, agrupando ideias semelhantes em mapas, e tecendo, nesse mesmo emaranhado, os seus aprendizados e a sua <a href="30-emergencia-do-qualia.html">experiência subjetiva</a>. E é aqui que a coincidência aperta: <strong>dois mecanismos que não poderiam ser mais diferentes — um gradiente global e exato de um lado, química local e difusa do outro — produzem o mesmo resultado: aprendizagem</strong>. Uma rede que reduz o próprio erro e, ao fazê-lo, passa a entender o mundo. E a fronteira da neurociência desconfia que a distância seja ainda menor do que parece: um trabalho de 2020, assinado por Timothy Lillicrap e o próprio Hinton, argumenta que o cérebro pode <em>aproximar</em> algo funcionalmente parecido com o backpropagation, usando as conexões de retorno para gerar, localmente, sinais de erro<sup class="cit"><a href="#ref-5">[5]</a></sup> — na mesma linha da "codificação preditiva", em que o córtex aprende minimizando, camada a camada, a diferença entre o que previu e o que chegou<sup class="cit"><a href="#ref-6">[6]</a></sup>. Substratos diferentes, resultado convergente: é o mesmo fio que atravessa este livro.</p>
+
+    <h2>Precisão, quantização e arquitetura: o afinamento importa</h2>
+
+    <p>Se as correções do backprop são minúsculas, então a capacidade da rede de <em>registrar</em> ajustes finos vira uma variável crítica. E aqui entra a <strong>precisão numérica</strong>. Cada peso é um número guardado com uma certa quantidade de casas. Se você o guarda de forma grosseira demais — a isso se chama <strong>quantização</strong> —, o empurrãozinho que o backprop queria dar simplesmente desaparece no arredondamento, pequeno demais para mudar o número. A orquestra perde a capacidade de se afinar por frações de tom.</p>
+
+    <p>Por isso o treino de uma rede grande é cuidadoso com a precisão: mantém-se uma cópia "mestra" dos pesos em alta precisão e chega-se a <em>amplificar</em> o erro artificialmente só para que os gradientes minúsculos não sumam antes de serem aplicados<sup class="cit"><a href="#ref-7">[7]</a></sup>. Já uma rede <em>pronta</em> tolera bem a quantização: dá para rodá-la com pesos de 4 bits e economizar até 75% de memória com perda pequena de qualidade<sup class="cit"><a href="#ref-8">[8]</a></sup> — mas force a mão e a precisão despenca junto com a competência. Em resumo: precisão compra capacidade de aprender; a quantização troca um pouco dessa capacidade por muita eficiência. É um botão de controle direto sobre o quanto a rede consegue aprender e o quão bem ela se comporta depois.</p>
+
+    <p>A <strong>arquitetura</strong> é o outro botão. Profundidade, largura e o modo como as camadas se conectam decidem se o sinal de erro consegue sequer <em>chegar</em> a cada músico. Em redes muito profundas, o erro se dissipava antes de alcançar as primeiras camadas — o famoso problema do gradiente que desaparece; foi preciso inventar conexões de atalho e normalizações para manter o "encanamento" aberto, e depois a <a href="42-atencao-como-guia-do-backpropagation.html">atenção</a> para mudar o que era possível aprender. A arquitetura é a acústica da sala de concerto: define se o veredito do maestro chega íntegro até a última fileira. (Aprofundo esses refinamentos no capítulo <a href="41-refinamento-do-backpropagation-cerebro-longo-prazo.html">O refinamento do backpropagation</a>.)</p>
+
+    <p>Curioso é o contraste com o cérebro, que faz tudo isso com hardware <em>impreciso</em>: sinapses ruidosas, disparos probabilísticos, componentes que erram o tempo todo. E ainda assim aprende lindamente — porque compensa a baixa precisão com redundância monstruosa, paralelismo e repetição. Onde o silício busca exatidão, a carne aposta no número. (É o eco de <a href="33-macacos-e-humanos-qualidade-das-conexoes.html">"força no número"</a> aparecendo de novo.)</p>
+
+    <h2>O problema da atribuição de crédito</h2>
+
+    <p>Por baixo de tudo isso está uma dificuldade que é, no fundo, <em>a</em> dificuldade. Quando a rede inteira erra, de quem é a culpa? Como repartir a responsabilidade por um resultado global entre bilhões de componentes locais — e, pior, entre muitas decisões tomadas em momentos diferentes? Esse é o <strong>problema da atribuição de crédito</strong>, batizado por Marvin Minsky ainda em 1961<sup class="cit"><a href="#ref-9">[9]</a></sup>, e é assustadoramente difícil. Achar uma forma <em>automática</em> de ajustar uma rede tão complexa parecia, por décadas, um beco sem saída.</p>
+
+    <p>O que torna o backpropagation tão importante é justamente isto: ele é uma solução <em>exata e automática</em> para esse problema. A regra da cadeia — o velho cálculo do ensino médio — entrega a cada um dos bilhões de parâmetros a sua fatia precisa de culpa, sem que ninguém precise inspecionar a rede à mão. Foi essa resposta que transformou uma tarefa impossível numa conta que um computador roda milhões de vezes por segundo. Sem ela, nada do que veio depois existiria.</p>
+
+    <p>E o problema fica ainda mais duro no tempo: quando uma ação de agora só rende recompensa lá na frente, qual passo mereceu o crédito? Essa versão temporal é o motor do <a href="28-alphago-alphazero.html">aprendizado por reforço</a> — e resolvê-la com sinais apenas locais, como o cérebro parece fazer, é um dos enigmas em aberto da neurociência. No fim, o milagre não é que uma rede possa ser afinada. É que existam, no mundo, <em>duas</em> respostas para uma pergunta quase impossível — a regra da cadeia no silício, a química local na carne — e que ambas, tão diferentes, terminem na mesma coisa: aprender.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a convergência entre rede e cérebro; <strong>[contrapõe]</strong> serve de crítica.</p>
+      <ol>
+        <li id="ref-1">Rumelhart, D. E., Hinton, G. E. &amp; Williams, R. J. (1986). <em>Learning representations by back-propagating errors</em>. Nature, 323, 533–536. <a href="https://doi.org/10.1038/323533a0" target="_blank" rel="noopener">doi.org/10.1038/323533a0</a> — <strong>[sustenta]</strong> o algoritmo do backpropagation: um erro global reparte correções proporcionais por toda a rede.</li>
+        <li id="ref-2">Crick, F. (1989). <em>The recent excitement about neural networks</em>. Nature, 337, 129–132. <a href="https://doi.org/10.1038/337129a0" target="_blank" rel="noopener">doi.org/10.1038/337129a0</a> — <strong>[contrapõe]</strong> o backpropagation exige mecanismos (transporte de pesos para trás) que o cérebro não teria: é biologicamente implausível como está.</li>
+        <li id="ref-3">Hebb, D. O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. Wiley. — <strong>[sustenta]</strong> a regra local do aprendizado biológico: neurônios que disparam juntos reforçam sua conexão.</li>
+        <li id="ref-4">Schultz, W., Dayan, P. &amp; Montague, P. R. (1997). <em>A neural substrate of prediction and reward</em>. Science, 275(5306), 1593–1599. <a href="https://doi.org/10.1126/science.275.5306.1593" target="_blank" rel="noopener">doi.org/10.1126/science.275.5306.1593</a> — <strong>[sustenta]</strong> a dopamina como sinal difuso de erro de previsão: um "veredito" químico que regula a plasticidade.</li>
+        <li id="ref-5">Lillicrap, T. P., Santoro, A., Marris, L., Akerman, C. J. &amp; Hinton, G. (2020). <em>Backpropagation and the brain</em>. Nature Reviews Neuroscience, 21, 335–346. <a href="https://doi.org/10.1038/s41583-020-0277-3" target="_blank" rel="noopener">doi.org/10.1038/s41583-020-0277-3</a> — <strong>[sustenta]</strong> o cérebro poderia aproximar sinais de erro parecidos com os do backprop usando conexões de retorno e diferenças locais.</li>
+        <li id="ref-6">Rao, R. P. N. &amp; Ballard, D. H. (1999). <em>Predictive coding in the visual cortex</em>. Nature Neuroscience, 2, 79–87. <a href="https://doi.org/10.1038/4580" target="_blank" rel="noopener">doi.org/10.1038/4580</a> — <strong>[sustenta]</strong> o córtex aprende minimizando, camada a camada, a diferença entre o previsto e o recebido.</li>
+        <li id="ref-7">Micikevicius, P. et al. (2018). <em>Mixed Precision Training</em>. ICLR. arXiv:1710.03740. <a href="https://arxiv.org/abs/1710.03740" target="_blank" rel="noopener">arxiv.org/abs/1710.03740</a> — <strong>[sustenta]</strong> mantém pesos-mestre em alta precisão e escala o erro para que gradientes minúsculos não sumam no arredondamento.</li>
+        <li id="ref-8">Dettmers, T., Pagnoni, A., Holtzman, A. &amp; Zettlemoyer, L. (2023). <em>QLoRA: Efficient Finetuning of Quantized LLMs</em>. arXiv:2305.14314. <a href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener">arxiv.org/abs/2305.14314</a> — <strong>[sustenta]</strong> quantização a 4 bits economiza memória mantendo boa parte da qualidade: a troca entre precisão e eficiência.</li>
+        <li id="ref-9">Minsky, M. (1961). <em>Steps toward artificial intelligence</em>. Proceedings of the IRE, 49(1), 8–30. <a href="https://doi.org/10.1109/JRPROC.1961.287775" target="_blank" rel="noopener">doi.org/10.1109/JRPROC.1961.287775</a> — <strong>[sustenta]</strong> nomeia o problema da atribuição de crédito, que o backpropagation viria a resolver de forma automática.</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">GH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="61-geoffrey-hinton.html">Geoffrey Hinton</a></span></div>
+          <p class="autor-tag">"Padrinho da iA" · Nobel de Física 2024 · Turing 2018</p>
+          <p class="autor-bio">Coautor do artigo de 1986 que popularizou o backpropagation e, décadas depois, do trabalho que investiga se o cérebro faria algo parecido. Ninguém personifica melhor a ponte entre o algoritmo do silício e o aprendizado da carne. <span class="aqui">No capítulo: o motor do backprop e a hipótese de que o cérebro o aproxima.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">DH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Donald Hebb</span></div>
+          <p class="autor-tag">Psicólogo canadense (1904–1985)</p>
+          <p class="autor-bio">Formulou, em 1949, a regra que leva seu nome: conexões entre neurônios que se ativam juntos se fortalecem. É a base local do aprendizado biológico — o contraponto natural ao erro global do backpropagation. <span class="aqui">No capítulo: como o cérebro ajusta conexões sem um maestro.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">TL</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome">Timothy Lillicrap</span></div>
+          <p class="autor-tag">Neurocientista e pesquisador de iA (DeepMind)</p>
+          <p class="autor-bio">Estuda a fronteira entre os dois mundos: mostrou que redes aprendem mesmo sem os pesos espelhados que o backprop exigia e defende que o cérebro pode implementar uma aproximação de gradiente com sinais locais. <span class="aqui">No capítulo: o elo que aproxima o backprop do que o cérebro realmente faz.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="33-macacos-e-humanos-qualidade-das-conexoes.html"><span class="rotulo">Anterior</span>Macacos e humanos: a mesma arquitetura, um abismo de resultado</a>
+    <a class="prox" href="36-llms-e-a-criacao-do-tempo.html"><span class="rotulo">Próximo</span>LLMs e a criação do tempo</a>
+  </nav>
+
+</body>
+</html>

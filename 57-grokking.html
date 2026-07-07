@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O que é grokking e por que numa LLM ele pode demorar décadas — PsicoLógika</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <nav class="topo">
+    <a href="index.html">← Índice</a>
+    <span class="marca">PsicoLógika</span>
+    <a href="index.html">Capítulos</a>
+  </nav>
+
+  <main class="capitulo" data-status="aguardando-revisao">
+    <p class="parte-rotulo">Parte 4 — Lógica de Máquina</p>
+    <h1>O que é grokking e por que numa LLM ele pode demorar décadas para acontecer</h1>
+
+    <p>Imagine que você quer que uma rede neural aprenda uma tarefa de matemática — digamos, contas de resto de divisão — de um jeito que ela resolva <em>qualquer</em> conta, até as que nunca viu. Você quer que ela <em>generalize</em>: que aprenda a regra, não os exemplos. Só que, no começo, ela faz o atalho preguiçoso. Em vez de aprender a regra, simplesmente <em>decora</em> a lista do treino: crava 100% no que já viu e erra quase tudo o que é novo. Isso não é vitória — é o pesadelo de todo treinador, e tem nome: <strong>overfitting</strong> (sobreajuste). A rede memorizou a prova sem entender a matéria.</p>
+
+    <p>E o overfit costuma ser um beco sem saída. O treinador de iA passa a vida caçando o ponto de equilíbrio entre treinar de menos e treinar demais — e <em>fugindo</em> do overfit, porque uma rede que decorou, em geral, não passa a generalizar só porque você insistiu mais. Põe-se no lugar dele: o erro no treino já está zerado, o acerto no que é novo está travado no chão, época após época — uma linha morta no gráfico. Todo manual manda o mesmo: pare, conserte, recomece. Insistir dali é desperdício de tempo e energia. Você pararia. Eu pararia. Qualquer treinador com juízo pararia — e, quase sempre, estaria certo.</p>
+
+    <p>Só que, num experimento da OpenAI, ninguém parou — e não por estratégia. A pessoa que cuidava daquele treino saiu de férias e <em>esqueceu de desligar</em>. A máquina ficou girando sozinha, sobre uma tarefa já decorada, por muito mais tempo do que qualquer um em sã consciência deixaria — ordens de grandeza além do necessário para memorizar, chegando à casa do milhão de passos de treino. Puro acaso. Como a própria líder do time, Alethea Power, resumiu depois: "a gente teve sorte — e por sorte, quero dizer esquecimento"<sup class="cit"><a href="#ref-6">[6]</a></sup>.</p>
+
+    <p>E então, no meio daquele esquecimento, aconteceu o improvável. A linha morta — que ninguém estava mais olhando — deu um solavanco e disparou. Num punhado de passos, a rede que só sabia decorar passou a acertar também o que nunca tinha visto. Ela <em>entendeu</em>. Não porque alguém consertou algo, mas porque alguém, por acidente, teve uma paciência que nenhum humano teria de propósito. Esse salto tardio e súbito ganhou nome: <strong>grokking</strong>.</p>
+
+    <p>A palavra vem de um romance de ficção científica de 1961, <em>Um Estranho numa Terra Estranha</em>, de Robert Heinlein<sup class="cit"><a href="#ref-3">[3]</a></sup>. "Grok", na língua marciana que ele inventou, quer dizer entender algo tão fundo que aquilo vira parte de você. Não é saber de cor: é <em>sacar</em>.</p>
+
+    <h2>A regra que o grokking quebrou</h2>
+
+    <p>Aquilo que você concluiu lá no começo — que, depois de decorar, insistir no treino é desperdício — não era palpite ingênuo. É uma das regras mais consolidadas do aprendizado de máquina. O pesquisador clássico vive equilibrando dois erros: de um lado o <strong>underfit</strong> (subajuste), modelo simples demais ou treino de menos, que vai mal em tudo porque nem pegou o padrão; do outro o <strong>overfit</strong>, treino demais, que decora e falha no novo. O alvo é o meio-termo, e a ferramenta para garanti-lo é a "parada antecipada" — frear assim que o desempenho no novo deixa de melhorar. Ou seja: o instinto de parar não é preguiça, é doutrina. Você estava pensando <em>exatamente</em> como um bom pesquisador.</p>
+
+    <p>Por isso o grokking é um escândalo silencioso. Ele mostra que, em certas condições — com uma pressão constante rumo à simplicidade, o <em>weight decay</em> —, atravessar o muro do overfit e seguir em frente faz a rede largar a decoreba pesada e adotar um algoritmo enxuto, que generaliza. O overfit não era o fim da linha; era uma estação no meio do caminho. E não é um caso solto: é primo da "descida dupla" (<em>double descent</em>), em que, passado o ponto em que o modelo já consegue decorar tudo, o erro no teste — contra todo o bom senso clássico — <em>volta a cair</em><sup class="cit"><a href="#ref-5">[5]</a></sup>.</p>
+
+    <p>Fica a lição incômoda: a regra sensata que mandaria você parar quase sempre acerta — e foi ela, também, que por um triz quase escondeu de todos o momento exato em que a máquina passa a compreender.</p>
+
+    <h2>O que acontece por dentro</h2>
+
+    <p>Aqui é preciso não transformar isso num "causo de sorte". O acaso esteve na <em>descoberta</em> — não no fenômeno. Quando os pesquisadores voltaram e refizeram o treino de propósito, o grokking reapareceu, e foi medido com cuidado num artigo de 2022<sup class="cit"><a href="#ref-1">[1]</a></sup>: em tarefas algorítmicas pequenas, a generalização só chegava centenas de milhares — às vezes milhões — de passos depois de a rede já ter decorado tudo. É um padrão mensurável e repetível, não um golpe de sorte de uma vez só.</p>
+
+    <p>O mais bonito veio na sequência. Em 2023, um grupo abriu a rede por dentro para ver o que ela tinha aprendido<sup class="cit"><a href="#ref-2">[2]</a></sup>. Descoberta: a rede não guardou uma tabelona de respostas. Ela construiu, nos próprios pesos, um <em>algoritmo de verdade</em> — no caso da soma modular, um mecanismo feito de senos e cossenos que transforma "somar" em "girar num círculo". O treino passou por três fases: decorar, formar o circuito e, por fim, limpar a decoreba, deixando só o algoritmo. Ou seja: dá para flagrar, no microscópio, o exato momento em que a máquina para de imitar e passa a compreender. Para quem quer <em>ver</em> isso acontecendo, o Google publicou uma demonstração visual interativa do fenômeno<sup class="cit"><a href="#ref-4">[4]</a></sup>.</p>
+
+    <h2>Imitar não é compreender</h2>
+
+    <p>E é aqui que está o coração deste capítulo — com um cuidado importante. O que o grokking mostra <em>não</em> é a diferença entre fazer algo devagar e fazer no automático. Isso seria o "rápido e devagar" de Kahneman: outra conversa, sobre esforço e velocidade. O grokking é sobre outra coisa: a diferença entre <em>imitar</em> e <em>compreender</em>.</p>
+
+    <p>Pensa numa criança e a tabuada. Uma decorou que "7 × 8 = 56", mas trava no "7 × 9", porque esse não estava na listinha. Ela imita: repete o que viu. Outra criança sacou que multiplicar é somar repetido — e com isso resolve qualquer conta, inclusive as que nunca viu. As duas "sabem tabuada", mas só a segunda <em>compreende</em>. Grokking é exatamente isso acontecendo dentro da rede: a passagem da primeira criança para a segunda.</p>
+
+    <p>Se você quiser a imagem de "aprender a dirigir", ela serve — mas com uma ressalva. O ponto não é que o iniciante dirige devagar, pensando, e o experiente dirige no automático (de novo, isso seria velocidade). O ponto é que um motorista que só <em>decorou</em> um trajeto — "vira à direita na casa azul" — quebra no instante em que a rua muda; quem <em>compreendeu</em> dirigir lida com qualquer rua nova. Mesma velocidade, entendimentos diferentes. Compreender é aquilo que <em>generaliza</em> para o que você nunca viu.</p>
+
+    <h2>Por que numa LLM isso pode demorar "décadas"</h2>
+
+    <p>Agora a parte que dá vertigem: a conta de tempo. Numa tarefinha de brinquedo, com um punhado de dados, o grokking já só aparece depois de algo como um milhão de passos de treino — muito além do ponto em que a rede já tinha decorado tudo. Decorar é barato; sacar é caro. Reorganizar os pesos até virar um algoritmo custa uma quantidade enorme de repetição.</p>
+
+    <p>Agora escala isso. Uma LLM não precisa sacar uma continha de resto: precisaria "grokar" estruturas incomparavelmente mais ricas — gramática profunda, causalidade, modelos de mundo. Se uma regra minúscula custa cerca de um milhão de passos, uma estrutura, digamos, bilhões de vezes mais complexa custaria uma montanha de passos proporcionalmente maior. E cada passo de treino de um modelo gigante consome minutos de milhares de chips e uma fortuna em energia. Multiplique uma coisa pela outra e o "tempo até grokar" essas estruturas mais profundas estoura para uma escala que, com o orçamento de hoje, seria como esperar décadas — ou simplesmente não acontece dentro de um único treino. <em>(Os números aqui são ilustrativos, para dar a dimensão do problema, não uma medição.)</em></p>
+
+    <p>Vale somar três ressalvas honestas. Primeiro: o grokking, do jeito que foi flagrado, apareceu em tarefas pequenas e limpas; não está provado que ele acontece igualzinho na bagunça da linguagem inteira. Segundo: é um fenômeno <em>contingente</em> — só surge se o tamanho do modelo, os dados e a "pressão por simplicidade" (o tal <em>weight decay</em>) estiverem no ponto certo. Terceiro: nem tudo groka. Algumas coisas a rede talvez só decore para sempre — e é por isso que uma LLM às vezes parece compreender e às vezes escancara que só está papagaiando.</p>
+
+    <p>Mas o recado de fundo é enorme, e conversa direto com o capítulo <a href="45-llms-base-material-do-pensamento.html">As LLMs e a base material do pensamento</a>. O grokking é a prova, pega no flagrante e no microscópio, de que uma rede material <em>pode</em> cruzar a fronteira entre imitar e compreender — de que a compreensão não é um dom místico, é um evento que acontece nos pesos e dá para observar. A pergunta deixa de ser <em>se</em> a máquina consegue sacar. Passa a ser <em>quanto tempo</em> e <em>quanta energia</em> custa cada saque. E é aí que mora a diferença entre a iA de hoje e a de amanhã.</p>
+
+    <section class="bibliografia">
+      <h2>Bibliografia e fontes</h2>
+      <p style="font-size:.9rem;font-style:italic">Marcação: <strong>[sustenta]</strong> apoia a tese; <strong>[contexto]</strong> situa a fonte.</p>
+      <ol>
+        <li id="ref-1">Power, A.; Burda, Y.; Edwards, H.; Babuschkin, I.; Misra, V. (2022). <em>Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets</em>. arXiv:2201.02177. <a href="https://arxiv.org/abs/2201.02177" target="_blank" rel="noopener">arxiv.org/abs/2201.02177</a> — <strong>[sustenta]</strong> a descoberta do fenômeno: generalização súbita muito depois da memorização.</li>
+        <li id="ref-2">Nanda, N.; Chan, L.; Lieberum, T.; Smith, J.; Steinhardt, J. (2023). <em>Progress measures for grokking via mechanistic interpretability</em>. ICLR 2023, arXiv:2301.05217. <a href="https://arxiv.org/abs/2301.05217" target="_blank" rel="noopener">arxiv.org/abs/2301.05217</a> — <strong>[sustenta]</strong> a engenharia reversa: a rede aprende um algoritmo real (Fourier/senos e cossenos), em três fases (memorizar, formar circuito, limpar).</li>
+        <li id="ref-3">Heinlein, R. A. (1961). <em>Stranger in a Strange Land</em> (Um Estranho numa Terra Estranha). — <strong>[contexto]</strong> origem da palavra "grok".</li>
+        <li id="ref-4">Google PAIR. <em>Do Machine Learning Models Memorize or Generalize?</em> (explorável interativo). <a href="https://pair.withgoogle.com/explorables/grokking/" target="_blank" rel="noopener">pair.withgoogle.com/explorables/grokking</a> — <strong>[sustenta]</strong> demonstração visual do grokking para leigos.</li>
+        <li id="ref-5">Belkin, M.; Hsu, D.; Ma, S.; Mandal, S. (2019). <em>Reconciling modern machine-learning practice and the classical bias–variance trade-off</em>. PNAS, 116(32), 15849–15854. <a href="https://arxiv.org/abs/1812.11118" target="_blank" rel="noopener">arxiv.org/abs/1812.11118</a> — <strong>[sustenta]</strong> a "descida dupla": passado o ponto de decorar tudo, o erro no teste torna a cair, contrariando a regra clássica.</li>
+        <li id="ref-6"><em>How Do Machines "Grok" Data?</em> (2024). Quanta Magazine. <a href="https://www.quantamagazine.org/how-do-machines-grok-data-20240412/" target="_blank" rel="noopener">quantamagazine.org/how-do-machines-grok-data</a> — <strong>[contexto]</strong> a história (acidental) da descoberta e a fala de Alethea Power: "a gente teve sorte — e por sorte, quero dizer esquecimento".</li>
+      </ol>
+    </section>
+
+    <section class="autores">
+      <h2>Os autores deste capítulo</h2>
+      <p class="autores-intro">Quem está por trás das ideias citadas aqui.</p>
+
+      <div class="autor">
+        <div class="autor-avatar">AP</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="60-alethea-power.html">Alethea Power</a></span></div>
+          <p class="autor-tag">Pesquisadora de iA · descobriu o grokking (OpenAI)</p>
+          <p class="autor-bio">Liderou o time da OpenAI que topou com o grokking e é a primeira autora do artigo que o batizou. A descoberta veio de um acaso — um colega esqueceu de desligar um treino durante as férias. <span class="aqui">No capítulo: a protagonista do acaso que revelou o fenômeno.</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">RH</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="58-robert-heinlein.html">Robert A. Heinlein</a></span><span class="autor-anos">1907–1988</span></div>
+          <p class="autor-tag">Escritor americano de ficção científica</p>
+          <p class="autor-bio">Um dos maiores nomes da ficção científica do século XX. No romance <em>Um Estranho numa Terra Estranha</em> (1961), inventou o verbo marciano "grok" — entender algo tão fundo que vira parte de você. <span class="aqui">No capítulo: é dele a palavra que a iA adotou para o momento em que a máquina finalmente "saca".</span></p>
+        </div>
+      </div>
+
+      <div class="autor">
+        <div class="autor-avatar">NN</div>
+        <div class="autor-corpo">
+          <div class="autor-cab"><span class="autor-nome"><a href="59-neel-nanda.html">Neel Nanda</a></span></div>
+          <p class="autor-tag">Pesquisador de interpretabilidade mecanicista (Google DeepMind)</p>
+          <p class="autor-bio">Um dos nomes centrais da interpretabilidade mecanicista — o campo que "abre" as redes neurais para descobrir os algoritmos que elas aprenderam por dentro. <span class="aqui">No capítulo: foi o grupo dele que fez a engenharia reversa do grokking, revelando o algoritmo escondido nos pesos.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <nav class="rodape-nav">
+    <a class="ant" href="56-timnit-gebru.html"><span class="rotulo">Anterior</span>Timnit Gebru</a>
+    <a class="prox" href="58-robert-heinlein.html"><span class="rotulo">Próximo</span>Robert A. Heinlein</a>
+  </nav>
+
+</body>
+</html>

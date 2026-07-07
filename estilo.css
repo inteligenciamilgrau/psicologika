@@ -1,0 +1,383 @@
+/* =========================================================================
+   PsicoLógika — estilo compartilhado por todas as páginas do livro.
+   Edite AQUI para mudar a aparência de TODOS os capítulos de uma vez.
+   ========================================================================= */
+
+:root {
+  --papel:        #faf7f1;   /* fundo cor de papel */
+  --papel-borda:  #ece5d8;
+  --tinta:        #24211c;   /* cor do texto */
+  --tinta-suave:  #5c574d;   /* texto secundário */
+  --destaque:     #8a5a2b;   /* marrom/sépia de destaque */
+  --destaque-forte:#6d4620;
+  --citacao-fundo:#f2ecdf;
+  --largura:      44rem;     /* largura da coluna de leitura */
+  --serif:  "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --sans:   system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  font-size: 1.18rem;
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Cabeçalho fino de navegação em cada página ---- */
+.topo {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  border-bottom: 1px solid var(--papel-borda);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.topo a { color: var(--tinta-suave); text-decoration: none; }
+.topo a:hover { color: var(--destaque); }
+.topo .marca { font-weight: 700; color: var(--tinta); letter-spacing: 0.08em; }
+
+/* ---- Coluna de leitura ---- */
+main {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2rem;
+}
+
+.parte-rotulo {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin-bottom: 0.6rem;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 1.8rem;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-size: 1.5rem;
+  margin: 2.6rem 0 0.8rem;
+  line-height: 1.3;
+}
+h3 {
+  font-size: 1.2rem;
+  font-family: var(--sans);
+  color: var(--tinta-suave);
+  margin: 2rem 0 0.6rem;
+}
+
+p { margin: 0 0 1.15rem; }
+
+em { font-style: italic; }
+strong { font-weight: 700; }
+
+a { color: var(--destaque-forte); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--destaque); }
+
+blockquote {
+  margin: 1.6rem 0;
+  padding: 1rem 1.4rem;
+  background: var(--citacao-fundo);
+  border-left: 3px solid var(--destaque);
+  border-radius: 2px;
+  font-size: 1.05rem;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ---- Fotos / imagens ---- */
+figure { margin: 1.8rem 0; text-align: center; }
+figure img, main img { max-width: 100%; height: auto; border-radius: 3px; }
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  margin-top: 0.5rem;
+}
+
+/* ---- Citação marcada no texto (liga ao item da bibliografia) ---- */
+sup.cit { line-height: 0; }
+sup.cit a {
+  font-family: var(--sans);
+  font-size: 0.7em;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--destaque-forte);
+  padding: 0 0.1em;
+}
+sup.cit a:hover { color: var(--destaque); }
+/* realce rápido ao pular para a referência */
+.bibliografia li:target { background: #fff3d6; border-radius: 3px; }
+
+ol, ul { margin: 0 0 1.15rem; padding-left: 1.6rem; }
+li { margin-bottom: 0.5rem; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--papel-borda);
+  margin: 2.5rem 0;
+}
+
+/* ---- Bibliografia / fontes ---- */
+.bibliografia {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--papel-borda);
+  font-size: 0.98rem;
+  color: var(--tinta-suave);
+}
+.bibliografia h2 {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin: 0 0 0.9rem;
+}
+.bibliografia ol { padding-left: 1.4rem; }
+.bibliografia li { margin-bottom: 0.7rem; line-height: 1.5; }
+.bibliografia .vazio {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ---- Os autores deste capítulo (elenco de personagens) ---- */
+.autores {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--papel-borda);
+}
+.autores > h2 {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin: 0 0 0.5rem;
+}
+.autores-intro {
+  color: var(--tinta-suave);
+  font-size: 1.02rem;
+  margin: 0 0 1.6rem;
+}
+.autor {
+  display: flex;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--papel-borda);
+}
+.autor:last-child { border-bottom: none; padding-bottom: 0; }
+.autor-avatar {
+  flex: 0 0 auto;
+  width: 3.2rem; height: 3.2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b9863f, #6d4620);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans);
+  font-weight: 700; font-size: 1.05rem;
+}
+.autor-corpo { flex: 1; min-width: 0; }
+.autor-cab { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.autor-nome { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; }
+.autor-anos { font-family: var(--sans); font-size: 0.85rem; color: var(--tinta-suave); }
+.autor-tag {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--destaque-forte);
+  margin: 0.15rem 0 0.5rem;
+}
+.autor-bio { margin: 0; font-size: 1.02rem; line-height: 1.62; }
+.autor-bio .aqui { font-style: italic; color: var(--tinta-suave); }
+
+/* ---- Pós-escrito / nota do autor ---- */
+.ps {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--papel-borda);
+  font-size: 1.02rem;
+  color: var(--tinta-suave);
+}
+.ps-titulo {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin: 0 0 0.9rem;
+}
+.ps p { margin-bottom: 0.9rem; }
+.ps .nome-metodo { font-style: italic; color: var(--tinta); font-weight: 600; }
+
+/* ---- Capítulo de ficha de autor ---- */
+.ficha-sub {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+  margin: -1rem 0 1.8rem;
+}
+.onde-aparece {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  background: var(--citacao-fundo);
+  border-left: 3px solid var(--destaque);
+  padding: 0.8rem 1.1rem;
+  border-radius: 2px;
+}
+/* nomes clicáveis no elenco (cards .autor) */
+.autor-nome a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--papel-borda); }
+.autor-nome a:hover { color: var(--destaque); border-color: var(--destaque); }
+
+/* ---- Aviso de rascunho / a escrever ---- */
+.rascunho {
+  margin: 2rem 0;
+  padding: 1rem 1.3rem;
+  background: #fff7e8;
+  border: 1px dashed #d8b978;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: #7a5a1e;
+}
+
+/* ---- Rodapé de navegação anterior/próximo ---- */
+.rodape-nav {
+  max-width: var(--largura);
+  margin: 3rem auto 4rem;
+  padding: 1.5rem 1.5rem 0;
+  border-top: 1px solid var(--papel-borda);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+}
+.rodape-nav a { text-decoration: none; display: block; max-width: 45%; }
+.rodape-nav .rotulo { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-suave); }
+.rodape-nav .prox { text-align: right; margin-left: auto; }
+
+/* =========================================================================
+   CAPA / ÍNDICE (index.html)
+   ========================================================================= */
+.capa {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 2rem;
+  text-align: center;
+}
+.capa .titulo {
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.capa .subtitulo {
+  font-family: var(--sans);
+  color: var(--tinta-suave);
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  margin-top: 0.8rem;
+}
+.capa .autor {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin-top: 2rem;
+}
+
+.sumario { max-width: 50rem; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
+
+.parte {
+  margin-top: 3rem;
+}
+.parte > h2 {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  border-bottom: 1px solid var(--papel-borda);
+  padding-bottom: 0.5rem;
+  margin: 0 0 0.4rem;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.7rem 0.4rem;
+  border-bottom: 1px solid var(--papel-borda);
+  text-decoration: none;
+  color: var(--tinta);
+}
+.item:hover { background: var(--citacao-fundo); }
+.item .num {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+  min-width: 2.2rem;
+}
+.item .txt { flex: 1; }
+.item .selo {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.selo-pronto   { background: #e3efe0; color: #3d6b39; }
+.selo-rascunho { background: #fdeecf; color: #8a6417; }
+
+/* paleta de status (índice + seletor de cada capítulo) */
+.status-a-escrever          { background: #efeae1; color: #6b6355; }
+.status-rascunho            { background: #fdeecf; color: #8a6417; }
+.status-aguardando-revisao  { background: #e5eefc; color: #2b5aa0; }
+.status-revisado            { background: #d9efd6; color: #2f6b2c; }
+.status-bibliografia-pendente { background: #f6e3f0; color: #8a2b6d; }
+.status-finalizado          { background: #cdeccd; color: #1f5e2a; }
+
+/* linhas "a escrever" ficam mais discretas */
+.item.aescrever { opacity: 0.62; }
+.item.aescrever:hover { opacity: 1; }
+
+/* =========================================================================
+   IMPRESSÃO (usado tanto por cada página quanto pelo livro-completo)
+   ========================================================================= */
+@media print {
+  body { background: #fff; font-size: 11pt; line-height: 1.55; }
+  .topo, .rodape-nav { display: none; }
+  main { max-width: none; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+  .capitulo { page-break-before: always; }
+  .capitulo:first-of-type { page-break-before: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+  blockquote, figure, .autor { page-break-inside: avoid; }
+}
+
+/* Telas estreitas */
+@media (max-width: 640px) {
+  body { font-size: 1.08rem; }
+  .capa .titulo { font-size: 2.4rem; }
+  main { padding-top: 2.2rem; }
+}
